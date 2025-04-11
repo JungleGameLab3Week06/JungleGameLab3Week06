@@ -1,15 +1,19 @@
+using System;
 using UnityEngine;
 using static Define;
 
-public class YBH_PlayerController : MonoBehaviour
+public class YBH_PlayerController : MonoBehaviour, IStatus
 {
     Elemental _playerElemental;
     public Elemental PlayerElemental => _playerElemental;
 
     bool _hasInputThisBeat = false; // 현재 비트에서 입력 여부
 
+    public event Action OnDie;
+    //[SerializeField] private PlayerSkill PlayerSkill; // 플레이어 스킬 스크립트
     public bool HasInputThisBeat { get { return _hasInputThisBeat; } set { _hasInputThisBeat = value; } } // 현재 비트에서 입력 여부
 
+    public float Health { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     void Start()
     {
@@ -20,7 +24,7 @@ public class YBH_PlayerController : MonoBehaviour
     public void SelectElemental(Elemental tag)
     {
         double now = AudioSettings.dspTime;
-        if (!GameManager.Instance.IsJudging)
+        if (!RhythmManager.Instance.IsJudging)
         {
             Debug.Log("[무시됨] 현재 큰 박자 아님");
             return;
@@ -46,8 +50,31 @@ public class YBH_PlayerController : MonoBehaviour
         else
         {
 
-            Debug.Log($"[즉시 Miss] now: {now:F4} (성공 구간: {GameManager.Instance.JudgeWindowStart:F4}~{GameManager.Instance.JudgeWindowEnd:F4})");
+            Debug.Log($"[즉시 Miss] now: {now:F4} (성공 구간: {RhythmManager.Instance.JudgeWindowStart:F4}~{RhythmManager.Instance.JudgeWindowEnd:F4})");
         }
         _hasInputThisBeat = true; // 큰 박자 내 첫 입력 처리 완료
     }
+
+    public void TakeDamage(float Damage) //플레이어 데미지 피해 
+    {
+
+        Health -= Damage;
+
+        if (Health <= 0)
+        {
+            Health = 0;
+            Debug.Log("플레이어 사망");
+            Dieevent();
+            OnDie?.Invoke();
+        }
+    }
+    void Dieevent() //사망 이벤트 처리
+    {
+        // 사망 애니메이션 재생
+        // 사망 이펙트 재생
+        // 사망 사운드 재생
+        // UI 업데이트
+        Debug.Log("플레이어 사망 이벤트 발생");
+    }
+   
 }
