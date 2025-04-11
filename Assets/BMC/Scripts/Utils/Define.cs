@@ -36,9 +36,10 @@ public class Define
     public enum Elemental
     {
         Flame,      // 화염
-        Water,       // 물
+        Water,      // 물
         Ground,     // 땅
-        Lightning  // 번개
+        Lightning,  // 번개
+        None
     }
     public enum EnemyType
     {
