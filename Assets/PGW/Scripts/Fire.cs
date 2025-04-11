@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class Fire : ISkill
@@ -7,12 +8,16 @@ public class Fire : ISkill
 
     public void Execute()
     {
-        if (GameManager.Instance.enemies.Length == 0) return;
+        if (GameManager.Instance.enemyList == null || GameManager.Instance.enemyList.Count == 0)
+        {
+            Debug.Log("적 리스트가 비어 있습니다!");
+            return;
+        }
 
         if (GameManager.Instance.isFireStrong)
         {
             // isStrong이 true면 모든 적에게 strongDamage를 줌
-            foreach (Enemy enemy in GameManager.Instance.enemies)
+            foreach (Enemy enemy in GameManager.Instance.enemyList)
             {
                 if (enemy.gameObject.activeSelf)
                 {
@@ -22,7 +27,7 @@ public class Fire : ISkill
             Debug.Log($"모든 적에게 {_strongDamage} 데미지!");
         }
 
-        Enemy target = GameManager.Instance.enemies
+        Enemy target = GameManager.Instance.enemyList
             .Where(e => e.gameObject.activeSelf)
             .OrderBy(e => e.transform.position.x)
             .FirstOrDefault();

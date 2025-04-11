@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class Water : ISkill
@@ -6,9 +7,13 @@ public class Water : ISkill
 
     public void Execute()
     {
-        if (GameManager.Instance.enemies.Length == 0) return;
+        if (GameManager.Instance.enemyList == null || GameManager.Instance.enemyList.Count == 0)
+        {
+            Debug.Log("적 리스트가 비어 있습니다!");
+            return;
+        }
 
-        Enemy target = GameManager.Instance.enemies
+        Enemy target = GameManager.Instance.enemyList
             .Where(e => e.gameObject.activeSelf)
             .OrderBy(e => e.transform.position.x)
             .FirstOrDefault();
