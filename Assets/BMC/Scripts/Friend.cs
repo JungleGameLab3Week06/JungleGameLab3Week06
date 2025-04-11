@@ -5,20 +5,29 @@ public class Friend : MonoBehaviour
 {
     Elemental _friendElemental;
     public Elemental FriendElemental => _friendElemental;
-
+    Elemental actualAllyTag; // 동료의 실제 태그
+    bool isLying = false; // 동료가 속이고 있는지 여부
     [SerializeField] Sprite[] _weakSprites;                 // 적 머리 위에 나타나는 약점 Sprite
 
     // 동료 행동 (추후에 동료 스크립트 따로 만들어서 분리)
     public void CastElemental()
     {
-        // 동료의 실제 태그 (70% 확률로 예고와 다름)
-        Elemental actualAllyTag = Random.value > 1f ? (Elemental)Random.Range(0, System.Enum.GetValues(typeof(Elemental)).Length) : _friendElemental;
+        if (GameManager.Instance.enemyList.Count > 0)
+        {
+            Enemy firstEnemy = GameManager.Instance.enemyList[0];
+            if (firstEnemy.enemType == EnemyType.Confuse)
+            {
+                CastLie();
+            }
+            else actualAllyTag = Random.value > 1f ? (Elemental)Random.Range(0, System.Enum.GetValues(typeof(Elemental)).Length) : _friendElemental;
+        }
         Debug.Log($"조합 체크: (동료: {actualAllyTag.ToString()}, 플레이어: {_friendElemental})");
-        ElementalEffect interaction = GameManager.Instance.GetInteraction(actualAllyTag, _friendElemental);
+        ElementalEffect interaction = GameManager.Instance.GetInteraction(actualAllyTag, _friendElemental); // GetInteraction PlayerSkills에서 받아오도록 수정
 
         if (actualAllyTag != _friendElemental)
         {
-            Debug.Log($"동료가 속였다! 예고: {_friendElemental}, 실제: {actualAllyTag}");
+            Debug.Log($"조합 체크: (동료: {actualAllyTag.ToString()}, 플레이어: {_friendElemental})");
+            Debug.Log("동료가 잘못된 태그를 발사했다..!");
         }
         else
         {
@@ -27,7 +36,7 @@ public class Friend : MonoBehaviour
         if (interaction != null)
         {
             Debug.Log($"반응 발생: {interaction}");
-            GameManager.Instance.ApplyInteraction(interaction);
+            GameManager.Instance.ApplyInteraction(interaction); // ApplyInteraction PlayerSkills에서 받아오도록 수정
         }
         else
         {
@@ -52,5 +61,16 @@ public class Friend : MonoBehaviour
                 Debug.Log($"동료 예고 변경: {_friendElemental}");
             }
         }
+    }
+    void CastLie()
+    {
+        actualAllyTag = Random.value > 0.75f ? (Elemental)Random.Range(0, System.Enum.GetValues(typeof(Elemental)).Length) : _friendElemental;
+        Debug.LogError("동료는 헷갈려한다..!");
+        isLying = true; // 동료가 속이고 있는 상태로 설정
+        //PlayerController 혹은 PlayerSkill쪽으로 가짜예고가 아닌 실제 속성 전달 {actualAllyTag}
+        // 동료가 속였다! 예고: {_friendElemental}, 실제: {actualAllyTag}
+        //Ui관련, 이펙트 관련 이벤트  전달하기위한 이벤트
+
+        //적타입에 따라 헷갈려하는거만 구분하기.
     }
 }
