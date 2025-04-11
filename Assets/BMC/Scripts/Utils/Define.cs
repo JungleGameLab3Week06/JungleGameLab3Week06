@@ -20,6 +20,7 @@ public class Define
     public enum ElementalEffect
     {
         None,      // 없음
+        ElectricShock, // 감전
         Fire,      // 화염
         Water,     // 물
         Ground,    // 땅
@@ -27,7 +28,6 @@ public class Define
         Wall,      // 벽
         Diffusion, // 확산
         Ignition,  // 점화
-        ElectricShock, // 감전
         Fog,       // 안개
         Grease,    // 기름
     }
@@ -36,9 +36,9 @@ public class Define
     public enum Elemental
     {
         Flame,      // 화염
-        Lightning,  // 번개
+        Water,       // 물
         Ground,     // 땅
-        Water       // 냉기
+        Lightning  // 번개
     }
 
     #region Sound
