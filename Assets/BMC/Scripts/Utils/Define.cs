@@ -13,16 +13,23 @@ public class Define
     public enum  EnemyState
     {
         None,      // 없음
-        Ignite,    // 점화
-        Shock,     // 감전
+        Shock,     // 감전, 기절
     }
 
     // 원소 효과 <- EnemyState와 순서 및 내용 동일
     public enum ElementalEffect
     {
         None,      // 없음
-        Ignite,    // 점화
-        Shock,     // 감전
+        Fire,      // 화염
+        Water,     // 물
+        Ground,    // 땅
+        Lightning, // 번개
+        Wall,      // 벽
+        Diffusion, // 확산
+        Ignition,  // 점화
+        ElectricShock, // 감전
+        Fog,       // 안개
+        Grease,    // 기름
     }
 
     // 플레이어 마법 속성
@@ -30,8 +37,8 @@ public class Define
     {
         Flame,      // 화염
         Lightning,  // 번개
-        Oil,        // 기름
-        Frost       // 냉기
+        Ground,     // 땅
+        Water       // 냉기
     }
 
     #region Sound
