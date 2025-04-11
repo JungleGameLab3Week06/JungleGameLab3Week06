@@ -3,11 +3,11 @@ using static Define;
 
 public class Friend : MonoBehaviour
 {
-    Elemental _friendElemental;
     public Elemental FriendElemental => _friendElemental;
-    Elemental actualAllyTag; // 동료의 실제 태그
-    bool isLying = false; // 동료가 속이고 있는지 여부
-    [SerializeField] Sprite[] _weakSprites;                 // 적 머리 위에 나타나는 약점 Sprite
+    Elemental _friendElemental;
+    Elemental actualAllyTag;                    // 동료의 실제 태그
+    bool isLying = false;                       // 동료가 속이고 있는지 여부
+    [SerializeField] Sprite[] _willCastSprites; // 적 머리 위에 나타나는 약점 Sprite
 
     // 동료 행동 (추후에 동료 스크립트 따로 만들어서 분리)
     public void CastElemental()
@@ -15,7 +15,7 @@ public class Friend : MonoBehaviour
         if (GameManager.Instance.enemyList.Count > 0)
         {
             Enemy firstEnemy = GameManager.Instance.enemyList[0];
-            if (firstEnemy.enemType == EnemyType.Confuse)
+            if (firstEnemy.EnemyType == EnemyType.Confuse)
             {
                 CastLie();
             }
@@ -57,7 +57,7 @@ public class Friend : MonoBehaviour
             if (newAllyTag != _friendElemental) // 이전과 다를 때만 업데이트
             {
                 _friendElemental = newAllyTag;
-                GameManager.Instance.CurrentEnemy.SetPreviewTag(_friendElemental, _weakSprites); // 올바른 매개변수 전달
+                GameManager.Instance.CurrentEnemy.SetPreviewTag(_friendElemental, _willCastSprites); // 올바른 매개변수 전달
                 Debug.Log($"동료 예고 변경: {_friendElemental}");
             }
         }

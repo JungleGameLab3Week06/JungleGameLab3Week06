@@ -11,7 +11,7 @@ public class ResourceManager
     // Resources 경로 중 해당 폴더의 특정 모든 에셋 로드
     public T[] LoadAll<T>(string path) where T : Object
     {
-        return Resources.LoadAll<T>($"Prefabs/{path}");
+        return Resources.LoadAll<T>(path);
     }
 
     // Resources 경로에 있는 에셋 Instantiate

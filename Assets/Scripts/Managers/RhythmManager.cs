@@ -73,7 +73,7 @@ public class RhythmManager : MonoBehaviour
             if (beatTime == _currentBeatTime) return; // 동일 박자 중복 처리 방지
 
             float beatInterval = _beatInterval; // 큰 박자 간격 (BPM 기반)
-            float window = beatInterval * 0.3f; // 성공 구간 (±0.3초, BPM 60 기준 0.6초)
+            float window = beatInterval * 0.5f; // 성공 구간 (±0.5초, BPM 60 기준 1초)
             _judgeWindowStart = beatTime - window;
             _judgeWindowEnd = beatTime + window;
             //Debug.Log($"[큰 박자] 비트: {beatTime:F4}, 간격: {beatInterval:F4}, 성공 구간: {judgeWindowStart:F4}~{judgeWindowEnd:F4}");
@@ -90,5 +90,13 @@ public class RhythmManager : MonoBehaviour
                 _isJudging = false;
             }
         }
+    }
+
+    // 타이밍 판정
+    public bool CheckTimingJudgement(double timeDiff)
+    {
+        float beatInterval = _beatInterval;
+        float perfectWindow = beatInterval * 0.15f; // ±0.15초 (BPM 60 기준 0.3초)
+        return (timeDiff <= perfectWindow) ? true : false;
     }
 }
