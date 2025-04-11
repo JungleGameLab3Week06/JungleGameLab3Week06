@@ -12,6 +12,7 @@ public class FriendCopy : MonoBehaviour
     // 동료 행동 (추후에 동료 스크립트 따로 만들어서 분리)
     public void CastElemental()
     {
+        Debug.LogError("아리까리아리까리");
         if (GameManager.Instance.enemyList.Count > 0)
         {
             Enemy firstEnemy = GameManager.Instance.enemyList[0];
