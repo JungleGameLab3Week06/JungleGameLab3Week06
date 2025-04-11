@@ -54,12 +54,12 @@ public class InputManager : MonoBehaviour
             }
             else if (castValue.y == -1) // Oil (기름)
             {
-                selectElementalAction.Invoke(Elemental.Oil);
+                selectElementalAction.Invoke(Elemental.Ground);
                 Debug.Log("Oil 키 입력: 기름");
             }
             else if (castValue.x == 1) // Frost (냉기)
             {
-                selectElementalAction.Invoke(Elemental.Frost);
+                selectElementalAction.Invoke(Elemental.Water);
                 Debug.Log("Frost 키 입력: 냉기");
             }
         }
