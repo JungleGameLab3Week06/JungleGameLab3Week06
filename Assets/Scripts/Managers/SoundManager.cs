@@ -15,6 +15,8 @@ public class SoundManager
         _bgmSource = audioSources[0];
         _effectSource = audioSources[1];
 
+        /* 추후에 Resources 특정 폴더 다 가져와서 등록하기 */
+
         // BGM 등록
         AudioClip audioClip =  Manager.Resource.Load<AudioClip>($"Sounds/BGM/{BGM.Main.ToString()}");
         _bgmDict.Add(BGM.Main, audioClip);
@@ -33,5 +35,11 @@ public class SoundManager
     public void PlayEffect(Effect effect)
     {
         _effectSource.PlayOneShot(_effectDict[effect]);
+    }
+
+    public void Clear()
+    {
+        _bgmSource.Stop();
+        _effectSource.Stop();
     }
 }
