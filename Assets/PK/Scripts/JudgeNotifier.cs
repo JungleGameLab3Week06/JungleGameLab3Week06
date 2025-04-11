@@ -70,6 +70,7 @@ public class JudgeNotifier : MonoBehaviour
         
         // Hide Text
         alphaValue = 0;
+        _judgeText.text = "";
         _canvasGroup.alpha = alphaValue;
     }
 }
