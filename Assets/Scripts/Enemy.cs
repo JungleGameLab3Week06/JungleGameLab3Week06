@@ -24,6 +24,11 @@ public class Enemy : MonoBehaviour
 
     public void Move()
     {
+        if(state == EnemyState.Shock)
+        {
+            // 스턴 상태일 때는 이동하지 않음
+            return;
+        }
         transform.position += (Vector3)(Vector2.left * _moveSpeed); // 왼쪽으로 이동
         //CheckDamagePosition();
     }

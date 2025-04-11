@@ -10,7 +10,7 @@ public class ElectricShock : ISkill
         {
             if (enemy.gameObject.activeSelf)
             {
-                enemy.SetSturnState();
+                enemy.ApplyState(Define.EnemyState.Shock);
             }
         }
         Debug.Log($"모든 적 스턴!");
