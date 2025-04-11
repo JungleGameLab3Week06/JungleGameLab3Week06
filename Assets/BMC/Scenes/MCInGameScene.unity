@@ -1663,6 +1663,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 5400555874492717680, guid: 1231bb7cb3a1d0648aaa928373dae8bd, type: 3}
   _spawnPoint: {fileID: 241331882}
+  _playerController: {fileID: 0}
+  _friend: {fileID: 0}
   enemyList: []
   isFireStrong: 0
   isLightningStrong: 0
@@ -5705,7 +5707,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06723824217f1124daf3a274d76a2d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _willCastSprites: []
+  _visualElemental: 4
+  _realElemental: 4
+  _isLying: 0
+  _willCastSprites:
+  - {fileID: 1098286324429101383, guid: fce4f5cceab8f22428351ffecbcc24a1, type: 3}
+  - {fileID: 6049605792901559095, guid: bc1118dfc57834d42b40668753e28533, type: 3}
+  - {fileID: -6748384255609890082, guid: ae46c06a7e4cca348aea45c54dc4d3b5, type: 3}
+  - {fileID: -894095381526335850, guid: d8cca2083027839409a96a748162b300, type: 3}
+  _mistakeProbability: 0.75
 --- !u!212 &1713244354
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6899,6 +6909,7 @@ GameObject:
   - component: {fileID: 1996462382}
   - component: {fileID: 1996462381}
   - component: {fileID: 1996462380}
+  - component: {fileID: 1996462384}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -7019,6 +7030,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1996462384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996462379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458c05cc4d505af46b31142fd2f6ea01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1998696288
 GameObject:
   m_ObjectHideFlags: 0

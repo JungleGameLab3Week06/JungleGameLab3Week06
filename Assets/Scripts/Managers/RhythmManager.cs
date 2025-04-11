@@ -64,6 +64,7 @@ public class RhythmManager : MonoBehaviour
         if (GameManager.Instance.CurrentEnemy == null)
         {
             GameManager.Instance.SpawnEnemy(); // 적이 없으면 소환
+            Debug.LogWarning("적 소환");
         }
         else
         {

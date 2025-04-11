@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour, IStatus
         Manager.UI.showJudgeTextAction(isPerfect);
         if (!isPerfect)
         {
-            GameManager.Instance.Friend.CastElemental();
+            //GameManager.Instance.Friend.CastElemental();
         }
         else
         {
