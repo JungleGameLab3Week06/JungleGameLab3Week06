@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 public interface IStatus
 {
-    float HP { get; set; }
-    void TakeDamage(int Damage);
-    void Die();
+    float Health { get; set; }
+    void TakeDamage(float Damage);
+    
+    event Action OnDie;
 }

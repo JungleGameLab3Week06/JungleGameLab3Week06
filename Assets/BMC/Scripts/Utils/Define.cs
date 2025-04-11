@@ -40,7 +40,12 @@ public class Define
         Ground,     // 땅
         Lightning  // 번개
     }
-
+    public enum EnemyType
+    {
+        None, //기본타입
+        Special, //특수타입(강적)
+        Confuse //혼란타입
+    }
     #region Sound
     public enum BGM
     {
