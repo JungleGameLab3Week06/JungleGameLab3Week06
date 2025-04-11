@@ -34,10 +34,10 @@ public class GameManager : MonoBehaviour
     Elemental _friendElemental;
     Dictionary<(Elemental, Elemental), ElementalEffect> tagInteractions = new Dictionary<(Elemental, Elemental), ElementalEffect>
     {
-        { (Elemental.Oil, Elemental.Flame), ElementalEffect.Ignite },
+        { (Elemental.Ground, Elemental.Flame), ElementalEffect.Ignition },
         // { ("화염", "기름"), "점화" }, // 반대 순서 추가
         // { ("냉기", "번개"), "감전" },
-        { (Elemental.Lightning, Elemental.Frost), ElementalEffect.Shock } // 반대 순서 추가
+        { (Elemental.Lightning, Elemental.Water), ElementalEffect. ElectricShock } // 반대 순서 추가
     };
 
     Enemy _currentEnemy; // 추후에 리스트로 바꿔서 관리하기
@@ -124,12 +124,12 @@ public class GameManager : MonoBehaviour
     {
         switch (interaction)
         {
-            case ElementalEffect.Ignite:
-                _currentEnemy.ApplyState((EnemyState)ElementalEffect.Ignite);
+            case ElementalEffect.Ignition:
+                _currentEnemy.ApplyState((EnemyState)ElementalEffect.Ignition);
                 _currentEnemy.TakeDamage(70);
                 break;
-            case ElementalEffect.Shock:
-                _currentEnemy.ApplyState((EnemyState)ElementalEffect.Shock);
+            case ElementalEffect. ElectricShock:
+                _currentEnemy.ApplyState((EnemyState)ElementalEffect. ElectricShock);
                 _currentEnemy.TakeDamage(50);
                 Debug.Log("감전감전50");
                 break;
