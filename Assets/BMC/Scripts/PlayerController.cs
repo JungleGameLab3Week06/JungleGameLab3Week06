@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
         if (_hasInputThisBeat)
         {
-            GameManager.Instance.ShowJudge("Miss");
+            JudgeNotifier.Instance.ShowJudge("Miss");
             Debug.Log("[즉시 Miss] 큰 박자 내 연속 입력");
             return;
         }
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         double diff = System.Math.Abs(now - beatTime);
         string judge = GameManager.Instance.GetTimingJudgement(diff);
 
-        GameManager.Instance.ShowJudge(judge);
+        JudgeNotifier.Instance.ShowJudge(judge);
         if (judge != "Miss")
         {
             GameManager.Instance.Friend.CastElemental();
