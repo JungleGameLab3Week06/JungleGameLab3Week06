@@ -12,19 +12,12 @@ public class GameManager : MonoBehaviour
     [Header("적")]
     [SerializeField] Enemy _enemyPrefab;       // 적 Prefab
     [SerializeField] Transform _spawnPoint;    // 적 소환 지점
-    
-    [Header("판정")]
-    public bool IsJudging => _isJudging;                 // 현재 판정 중인지 여부
-    public double JudgeWindowStart => _judgeWindowStart; // 판정 시작 지점
-    public double JudgeWindowEnd => _judgeWindowEnd;     // 판정 종료 지점
-    bool _isJudging = false;                             // 판정 중인지 여부
-    double _judgeWindowStart;                            // 판정 시작 지점
-    double _judgeWindowEnd;                              // 판정 종료 지점
+
+    [Header("UI")]
     [SerializeField] TextMeshProUGUI _judgeText;         // 판정 텍스트
     float judgeDisplayTime = 0.5f;                       // 판정 텍스트 표시 시간
     Coroutine judgeCoroutine;
-    double _currentBeatTime = -1;   // 현재 처리 중인 비트
-
+    
     [Header("플레이어 및 동료")]
     PlayerController _playerController;
     public PlayerController PlayerController => _playerController;
@@ -43,6 +36,11 @@ public class GameManager : MonoBehaviour
     Enemy _currentEnemy; // 추후에 리스트로 바꿔서 관리하기
     public Enemy CurrentEnemy => _currentEnemy;
 
+    // (테스트용)
+    public List<Enemy> enemyList = new List<Enemy>(); // 적 리스트 
+    public bool isFireStrong = false;
+    public bool isLightningStrong = false;
+
     void Awake()
     {
         if (_instance == null)
@@ -57,48 +55,8 @@ public class GameManager : MonoBehaviour
         _friend = FindAnyObjectByType<Friend>();
     }
 
-    void Start()
-    {
-        // 첫 적은 바로 스폰하지 않고 비트에서 처리
-        RhythmManager.Instance.beatAction += HandleBeat;
-    }
-
-    // RhythomManager가 비트에 맞게 호출하는 함수
-    void HandleBeat()
-    {
-        if (_currentEnemy == null)
-        {
-            SpawnEnemy();
-        }
-        else
-        {
-            _currentEnemy.Move();
-
-            double beatTime = RhythmManager.Instance.LastBeatTime;
-            if (beatTime == _currentBeatTime) return; // 동일 박자 중복 처리 방지
-
-            float beatInterval = RhythmManager.Instance.BeatInterval; // 큰 박자 간격 (BPM 기반)
-            float window = beatInterval * 0.3f; // 성공 구간 (±0.3초, BPM 60 기준 0.6초)
-            _judgeWindowStart = beatTime - window;
-            _judgeWindowEnd = beatTime + window;
-            //Debug.Log($"[큰 박자] 비트: {beatTime:F4}, 간격: {beatInterval:F4}, 성공 구간: {judgeWindowStart:F4}~{judgeWindowEnd:F4}");
-
-            _isJudging = true;
-            _playerController.HasInputThisBeat = false; // 플레이어 입력 초기화
-            _currentBeatTime = beatTime;
-
-            // 입력이 없으면 박자 끝에서 Miss
-            if (!_playerController.HasInputThisBeat && AudioSettings.dspTime >= _judgeWindowEnd)
-            {
-                ShowJudge("Miss");
-                Debug.Log("입력 없이 큰 박자 종료 - Miss");
-                _isJudging = false;
-            }
-        }
-    }
-
     // 적 소환
-    void SpawnEnemy()
+    public void SpawnEnemy()
     {
         _currentEnemy = Instantiate(_enemyPrefab, _spawnPoint.position, Quaternion.identity);
 
