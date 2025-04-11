@@ -3374,7 +3374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06723824217f1124daf3a274d76a2d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weakSprites:
+  _willCastSprites:
   - {fileID: 1098286324429101383, guid: fce4f5cceab8f22428351ffecbcc24a1, type: 3}
   - {fileID: -894095381526335850, guid: d8cca2083027839409a96a748162b300, type: 3}
   - {fileID: -6748384255609890082, guid: ae46c06a7e4cca348aea45c54dc4d3b5, type: 3}
@@ -3959,6 +3959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace79107853fc9543a9e070fc1f0c02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 100
 --- !u!1001 &1890952577
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -42,10 +42,11 @@ public class Define
     }
     public enum EnemyType
     {
-        None, //기본타입
+        None,    //기본타입
         Special, //특수타입(강적)
-        Confuse //혼란타입
+        Confuse  //혼란타입
     }
+
     #region Sound
     public enum BGM
     {
@@ -54,7 +55,6 @@ public class Define
         Boss,
         GameOver
     }
-
     public enum Effect
     {
 
