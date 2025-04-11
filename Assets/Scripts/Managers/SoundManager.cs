@@ -4,10 +4,10 @@ using static Define;
 
 public class SoundManager
 {
-    AudioSource _bgmSource;                 // BGM
-    AudioSource _effectSource;              // 효과음
-    Dictionary<BGM, AudioClip> _bgmDict = new Dictionary<BGM, AudioClip>();
-    Dictionary<Effect, AudioClip> _effectDict;
+    AudioSource _bgmSource;                                                             // BGM
+    AudioSource _effectSource;                                                          // 효과음
+    Dictionary<BGM, AudioClip> _bgmDict = new Dictionary<BGM, AudioClip>();             // BGM 딕셔너리
+    Dictionary<Effect, AudioClip> _effectDict = new Dictionary<Effect, AudioClip>();    // 효과음 딕셔너리
 
     public void Init()
     {
