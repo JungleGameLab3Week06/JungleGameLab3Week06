@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using static Define;
 
 public class GameManager : MonoBehaviour
@@ -20,16 +18,12 @@ public class GameManager : MonoBehaviour
     bool _isJudging = false;                             // 판정 중인지 여부
     double _judgeWindowStart;                            // 판정 시작 지점
     double _judgeWindowEnd;                              // 판정 종료 지점
-    //[SerializeField] TextMeshProUGUI _judgeText;         // 판정 텍스트
-    //float judgeDisplayTime = 0.5f;                       // 판정 텍스트 표시 시간
-    //Coroutine judgeCoroutine;
-    double _currentBeatTime = -1;   // 현재 처리 중인 비트
 
     [Header("플레이어 및 동료")]
-    PlayerController _playerController;
     public PlayerController PlayerController => _playerController;
-    Friend _friend;
     public Friend Friend => _friend;
+    PlayerController _playerController;
+    Friend _friend;
 
     Elemental _friendElemental;
     Dictionary<(Elemental, Elemental), ElementalEffect> tagInteractions = new Dictionary<(Elemental, Elemental), ElementalEffect>
@@ -102,22 +96,5 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-    #endregion
-
-    #region 판정
-    // 판정
-    public string GetTimingJudgement(double timeDiff)
-    {
-        float beatInterval = RhythmManager.Instance.BeatInterval;
-        float perfectWindow = beatInterval * 0.15f; // ±0.15초 (BPM 60 기준 0.3초)
-        float goodWindow = beatInterval * 0.3f;     // ±0.3초 (BPM 60 기준 0.6초)
-
-        if (timeDiff <= perfectWindow) return "Perfect";
-        if (timeDiff <= goodWindow) return "Good";
-        return "Miss";
-    }
-
-    /*
-    */
     #endregion
 }
