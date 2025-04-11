@@ -5,7 +5,6 @@ public class Manager : MonoBehaviour
     static Manager _instance;
     public static Manager Instance => _instance;
 
-    
     ResourceManager _resource = new ResourceManager();
     SoundManager _sound = new SoundManager();
     SceneManagerEX _scene = new SceneManagerEX();
