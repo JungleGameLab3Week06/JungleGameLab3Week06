@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class UIManager
@@ -12,17 +13,20 @@ public class UIManager
     [SerializeField] JudgeNotifier judgeNotifier;
     Coroutine judgeCoroutine;
 
-    #endregion
 
-    #region Start
-
-    void Start()
-    {
-        beatNotifier = UnityEngine.Object.FindAnyObjectByType<BeatNotifier>();
-        judgeNotifier = UnityEngine.Object.FindAnyObjectByType<JudgeNotifier>();
-    }
+    public Action<string> showJudgeTextAction;
 
     #endregion
+
+    //#region Start
+
+    //void Start()
+    //{
+    //    beatNotifier = UnityEngine.Object.FindAnyObjectByType<BeatNotifier>();
+    //    judgeNotifier = UnityEngine.Object.FindAnyObjectByType<JudgeNotifier>();
+    //}
+
+    //#endregion
 
     #region Notifiers
 
