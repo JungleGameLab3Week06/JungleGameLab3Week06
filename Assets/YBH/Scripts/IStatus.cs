@@ -3,8 +3,8 @@ using UnityEngine;
 
 public interface IStatus
 {
-    float Health { get; set; }
-    void TakeDamage(float Damage);
+    int Health { get; set; }
+    void TakeDamage(int Damage);
     
     event Action OnDie;
 }

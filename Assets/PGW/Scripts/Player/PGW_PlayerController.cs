@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using static Define;
 
@@ -7,9 +8,10 @@ public class PGW_PlayerController : MonoBehaviour, IStatus
     public Elemental PlayerElemental => _playerElemental;
     bool _hasInputThisBeat = false; // 현재 비트에서 입력 여부
     public bool HasInputThisBeat { get { return _hasInputThisBeat; } set { _hasInputThisBeat = value; } } // 현재 비트에서 입력 여부
+    public event Action OnDie;
 
     private int _hp = 1;
-    public int HP{get => _hp; set => _hp = Mathf.Max(value, 0);}
+    public int Health { get => _hp; set => _hp = Mathf.Max(value, 0);}
 
     void Start()
     {
@@ -50,18 +52,27 @@ public class PGW_PlayerController : MonoBehaviour, IStatus
         _hasInputThisBeat = true; // 큰 박자 내 첫 입력 처리 완료
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int Damage) //플레이어 데미지 피해 
     {
-        if (damage < 0) return;
-        HP -= damage;
-        if (HP <= 0)
+
+        Health -= Damage;
+
+        if (Health <= 0)
         {
-            Die();
+            Health = 0;
+            Debug.Log("플레이어 사망");
+            Dieevent();
+            OnDie?.Invoke();
         }
     }
 
-    public void Die()
+    void Dieevent() //사망 이벤트 처리
     {
-        gameObject.SetActive(false); // 임시로 비활성화
+        // 사망 애니메이션 재생
+        // 사망 이펙트 재생
+        // 사망 사운드 재생
+        // UI 업데이트
+        Debug.Log("플레이어 사망 이벤트 발생");
     }
+
 }

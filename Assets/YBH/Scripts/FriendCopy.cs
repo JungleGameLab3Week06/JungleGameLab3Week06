@@ -18,11 +18,12 @@ public class FriendCopy : MonoBehaviour
             if (firstEnemy.enemType == EnemyType.Confuse)
             {
                 actualAllyTag = Random.value > 0.75f ? (Elemental)Random.Range(0, System.Enum.GetValues(typeof(Elemental)).Length) : _friendElemental;
+                Debug.LogError("아리까리아리까리");
             }
             else actualAllyTag = Random.value > 1f ? (Elemental)Random.Range(0, System.Enum.GetValues(typeof(Elemental)).Length) : _friendElemental;
         }
         Debug.Log($"조합 체크: (동료: {actualAllyTag.ToString()}, 플레이어: {_friendElemental})");
-        ElementalEffect interaction = GameManager.Instance.GetInteraction(actualAllyTag, _friendElemental);
+        ElementalEffect interaction = GameManager.Instance.GetInteraction(actualAllyTag, _friendElemental); // GetInteraction PlayerSkills에서 받아오도록 수정
 
         if (actualAllyTag != _friendElemental)
         {
@@ -35,7 +36,7 @@ public class FriendCopy : MonoBehaviour
         if (interaction != null)
         {
             Debug.Log($"반응 발생: {interaction}");
-            GameManager.Instance.ApplyInteraction(interaction);
+            GameManager.Instance.ApplyInteraction(interaction); // ApplyInteraction PlayerSkills에서 받아오도록 수정
         }
         else
         {

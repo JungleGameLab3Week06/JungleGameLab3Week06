@@ -13,7 +13,7 @@ public class YBH_PlayerController : MonoBehaviour, IStatus
     //[SerializeField] private PlayerSkill PlayerSkill; // 플레이어 스킬 스크립트
     public bool HasInputThisBeat { get { return _hasInputThisBeat; } set { _hasInputThisBeat = value; } } // 현재 비트에서 입력 여부
 
-    public float Health { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public int Health { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     void Start()
     {
@@ -55,7 +55,7 @@ public class YBH_PlayerController : MonoBehaviour, IStatus
         _hasInputThisBeat = true; // 큰 박자 내 첫 입력 처리 완료
     }
 
-    public void TakeDamage(float Damage) //플레이어 데미지 피해 
+    public void TakeDamage(int Damage) //플레이어 데미지 피해 
     {
 
         Health -= Damage;
@@ -70,6 +70,7 @@ public class YBH_PlayerController : MonoBehaviour, IStatus
     }
     void Dieevent() //사망 이벤트 처리
     {
+        gameObject.SetActive(false); // 플레이어 비활성화
         // 사망 애니메이션 재생
         // 사망 이펙트 재생
         // 사망 사운드 재생
