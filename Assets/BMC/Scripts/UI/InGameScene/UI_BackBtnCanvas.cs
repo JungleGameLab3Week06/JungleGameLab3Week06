@@ -1,16 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 
+// 뒤로 가기 버튼 캔버스
 public class UI_BackBtnCanvas : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    Canvas _backBtnCanvas;
+    Button _backBtn;
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _backBtnCanvas = GetComponent<Canvas>();
+        _backBtn = GetComponentInChildren<Button>();
+        _backBtn.onClick.AddListener(() => Manager.Scene.LoadScene(Define.SceneType.TitleScene));
     }
 }

@@ -12,12 +12,19 @@ public class GameManager : MonoBehaviour
     [Header("적")]
     [SerializeField] Enemy _enemyPrefab;       // 적 Prefab
     [SerializeField] Transform _spawnPoint;    // 적 소환 지점
-
-    [Header("UI")]
-    [SerializeField] TextMeshProUGUI _judgeText;         // 판정 텍스트
-    float judgeDisplayTime = 0.5f;                       // 판정 텍스트 표시 시간
-    Coroutine judgeCoroutine;
     
+    [Header("판정")]
+    public bool IsJudging => _isJudging;                 // 현재 판정 중인지 여부
+    public double JudgeWindowStart => _judgeWindowStart; // 판정 시작 지점
+    public double JudgeWindowEnd => _judgeWindowEnd;     // 판정 종료 지점
+    bool _isJudging = false;                             // 판정 중인지 여부
+    double _judgeWindowStart;                            // 판정 시작 지점
+    double _judgeWindowEnd;                              // 판정 종료 지점
+    //[SerializeField] TextMeshProUGUI _judgeText;         // 판정 텍스트
+    //float judgeDisplayTime = 0.5f;                       // 판정 텍스트 표시 시간
+    //Coroutine judgeCoroutine;
+    double _currentBeatTime = -1;   // 현재 처리 중인 비트
+
     [Header("플레이어 및 동료")]
     PlayerController _playerController;
     public PlayerController PlayerController => _playerController;
@@ -110,36 +117,7 @@ public class GameManager : MonoBehaviour
         return "Miss";
     }
 
-    // 판정 표시
-    public void ShowJudge(string result)
-    {
-        if (judgeCoroutine != null)
-            StopCoroutine(judgeCoroutine);
-        judgeCoroutine = StartCoroutine(ShowJudgeCoroutine(result));
-    }
-
-    // 판정 표시 코루틴
-    IEnumerator ShowJudgeCoroutine(string result)
-    {
-        _judgeText.text = result;
-        _judgeText.gameObject.SetActive(true);
-
-        // 색상 또는 효과 설정 (선택)
-        switch (result)
-        {
-            case "Perfect":
-                _judgeText.color = Color.yellow;
-                break;
-            case "Good":
-                _judgeText.color = Color.green;
-                break;
-            case "Miss":
-                _judgeText.color = Color.red;
-                break;
-        }
-
-        yield return new WaitForSeconds(judgeDisplayTime);
-        _judgeText.gameObject.SetActive(false);
-    }
+    /*
+    */
     #endregion
 }
