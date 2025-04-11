@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Ignition : ISkill
 {
     int _baseDamage = 4;

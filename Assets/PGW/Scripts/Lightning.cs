@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Lightning : ISkill
 {
     int _baseDamage = 3;

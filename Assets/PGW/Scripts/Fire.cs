@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Fire : ISkill
 {
     int _baseDamage = 1;

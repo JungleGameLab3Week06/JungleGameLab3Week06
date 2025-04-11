@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Diffusion : ISkill
 {
     int _baseDamage = 1;
