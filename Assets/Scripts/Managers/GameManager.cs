@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
     public void SpawnEnemy()
     {
         _currentEnemy = Instantiate(_enemyPrefab, _spawnPoint.position, Quaternion.identity);
-
+        enemyList.Add(_currentEnemy);
         _friendElemental = (Elemental)Random.Range(0, System.Enum.GetValues(typeof(Elemental)).Length); // 나중에 뺄 예정
         //allyTag = tags[Random.Range(0, tags.Length)];
         //_currentEnemy.SetPreviewTag(_friendElemental, _weakSprites); // 이번 태그만 표시

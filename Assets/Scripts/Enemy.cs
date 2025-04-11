@@ -7,12 +7,12 @@ public class Enemy : MonoBehaviour
 {
     public Image tagIcon; // 이번에 시전할 태그 아이콘 (머리 위 UI)
     [SerializeField] int hp = 100;
-    EnemyState state = EnemyState.None;    
+    EnemyState state = EnemyState.None;
+    public EnemyType enemType; // 적 타입
     public TextMeshProUGUI previewTagUI; // 적 머리 위 UI
     float _moveSpeed = 2f; // 비트당 이동 거리
     string previewTag;
     bool hasDamaged = false; // 중복 피해 방지
-
     // 동료가 적 머리 위에 시전할 마법 표시
     public void SetPreviewTag(Elemental tag, Sprite[] tagSprites)
     {
@@ -24,6 +24,11 @@ public class Enemy : MonoBehaviour
 
     public void Move()
     {
+        if(state == EnemyState.Shock)
+        {
+            // 스턴 상태일 때는 이동하지 않음
+            return;
+        }
         transform.position += (Vector3)(Vector2.left * _moveSpeed); // 왼쪽으로 이동
         //CheckDamagePosition();
     }
