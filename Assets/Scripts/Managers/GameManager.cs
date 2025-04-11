@@ -20,9 +20,9 @@ public class GameManager : MonoBehaviour
     bool _isJudging = false;                             // 판정 중인지 여부
     double _judgeWindowStart;                            // 판정 시작 지점
     double _judgeWindowEnd;                              // 판정 종료 지점
-    [SerializeField] TextMeshProUGUI _judgeText;         // 판정 텍스트
-    float judgeDisplayTime = 0.5f;                       // 판정 텍스트 표시 시간
-    Coroutine judgeCoroutine;
+    //[SerializeField] TextMeshProUGUI _judgeText;         // 판정 텍스트
+    //float judgeDisplayTime = 0.5f;                       // 판정 텍스트 표시 시간
+    //Coroutine judgeCoroutine;
     double _currentBeatTime = -1;   // 현재 처리 중인 비트
 
     [Header("플레이어 및 동료")]
@@ -90,7 +90,6 @@ public class GameManager : MonoBehaviour
             // 입력이 없으면 박자 끝에서 Miss
             if (!_playerController.HasInputThisBeat && AudioSettings.dspTime >= _judgeWindowEnd)
             {
-                ShowJudge("Miss");
                 Debug.Log("입력 없이 큰 박자 종료 - Miss");
                 _isJudging = false;
             }
@@ -152,36 +151,7 @@ public class GameManager : MonoBehaviour
         return "Miss";
     }
 
-    // 판정 표시
-    public void ShowJudge(string result)
-    {
-        if (judgeCoroutine != null)
-            StopCoroutine(judgeCoroutine);
-        judgeCoroutine = StartCoroutine(ShowJudgeCoroutine(result));
-    }
-
-    // 판정 표시 코루틴
-    IEnumerator ShowJudgeCoroutine(string result)
-    {
-        _judgeText.text = result;
-        _judgeText.gameObject.SetActive(true);
-
-        // 색상 또는 효과 설정 (선택)
-        switch (result)
-        {
-            case "Perfect":
-                _judgeText.color = Color.yellow;
-                break;
-            case "Good":
-                _judgeText.color = Color.green;
-                break;
-            case "Miss":
-                _judgeText.color = Color.red;
-                break;
-        }
-
-        yield return new WaitForSeconds(judgeDisplayTime);
-        _judgeText.gameObject.SetActive(false);
-    }
+    /*
+    */
     #endregion
 }
