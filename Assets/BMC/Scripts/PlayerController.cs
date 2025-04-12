@@ -42,14 +42,7 @@ public class PlayerController : MonoBehaviour, IStatus
         }
 
         _playerElemental = elemental;
-
-        // 시간 계산
-        //dspTime = AudioSettings.dspTime; 
-        //lastBeatTime = RhythmManager.Instance.LastBeatTime;
-        //deltaTime = System.Math.Abs(dspTime - lastBeatTime);
-        //isPerfect = RhythmManager.Instance.CheckTimingJudgement(deltaTime);
-        isPerfect = RhythmManager.Instance.JudgeInput();
-
+        isPerfect = RhythmManager.Instance.IsJudging;
         Manager.UI.showJudgeTextAction(isPerfect);
         if (isPerfect)
         {

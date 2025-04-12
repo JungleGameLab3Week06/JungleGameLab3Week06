@@ -1,7 +1,14 @@
 using System;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using System.Collections.Generic;
+
+public struct BeatJudgementWindow
+{
+    public double SuccessStart1;
+    public double FailStart;
+    public double SuccessStart2;
+    public double End;
+}
 
 public class RhythmManager : MonoBehaviour
 {
@@ -10,31 +17,27 @@ public class RhythmManager : MonoBehaviour
     public static RhythmManager Instance => _instance;
 
     [Header("비트")]
-    AudioSource _beatSource;                                       // 비트 소스
-    AudioClip _beatClip;                                             // 비트 클립
+    AudioSource _beatSource;                                        // 비트 소스
+    AudioClip _beatClip;                                            // 비트 클립
+
+    double _prevBpm;
+    [SerializeField] double _bpm = 60f;                             // 분당 비트 수
+
     public double BeatInterval => _beatInterval;
     public double LastBeatTime => _lastBeatTime; 
-    double _prevBpm = 60f;
-    [SerializeField] double _bpm = 60f;                              // 분당 비트 수
-    double _beatInterval;                                            // 비트 간격 (초 단위)
-    double _nextBeatTime = -1;                                            // 다음 비트 발생 시점
+    double _beatInterval;                                           // 비트 간격 (초 단위)
     double _lastBeatTime;                                           // 마지막 비트 발생 시점
-    BeatJudgementWindow _beatWindow;                                          // 비트 윈도우
+    double _nextBeatTime = -1;                                      // 다음 비트 발생 시점
+    BeatJudgementWindow _beatWindow;                                // 비트 윈도우
+
     public Action colorFloorAction;                                 // 비트 발생 시 바닥들 색상 변경하는 것
 
     [Header("판정")]
     public bool IsJudging => _isJudging;
-    [SerializeField] bool _isJudging = false;                                // 판정 중인지 여부
-    [SerializeField] bool _isJudgeChangedToTrue = false;                  // 판정이 바뀐 비트인지 여부
-    [SerializeField] bool _isJudgeChangedToFalse = false;                  // 판정이 바뀐 비트인지 여부
-
-    public struct BeatJudgementWindow
-    {
-        public double SuccessStart1;
-        public double FailStart;
-        public double SuccessStart2;
-        public double End;
-    }
+    [SerializeField] bool _isJudging = false;                       // 판정 중인지 여부
+    [SerializeField] bool _isJudgeChangedToTrue = false;            // 판정이 바뀐 비트인지 여부
+    [SerializeField] bool _isJudgeChangedToFalse = false;           // 판정이 바뀐 비트인지 여부
+    double _successRatio = 0.25f;
 
     void Awake()
     {
@@ -47,7 +50,7 @@ public class RhythmManager : MonoBehaviour
         {
             SetBpm();
         }
-        
+
         if (AudioSettings.dspTime >= _nextBeatTime)
         {
             _lastBeatTime = _nextBeatTime; // ← 여기 주의! 실제 비트 시점은 nextBeatTime
@@ -70,7 +73,6 @@ public class RhythmManager : MonoBehaviour
             _isJudgeChangedToTrue = true; // 판정이 바뀐 비트
             Debug.Log("판정 시작");
         }
-        
     }
 
     public void Init()
@@ -101,14 +103,16 @@ public class RhythmManager : MonoBehaviour
     // 정박자
     void RegularBeat()
     {
-        _beatSource.PlayOneShot(_beatClip); // 비트 소리 재생
-
+        _beatSource.PlayOneShot(_beatClip);         // 비트 소리 재생
         colorFloorAction?.Invoke();                 // 바닥 색상 변경
+
+        /* 추후에 Action으로 빼기 */
         List<Enemy> enemies = GameManager.Instance._currentEnemyList; // 적 리스트
         foreach (Enemy enemy in enemies)
         {
             enemy.Move();
         }
+
         if (GameManager.Instance.CheckSpawnPoint()) // 소환 포인트 체크
         {
             GameManager.Instance.SpawnEnemy(); // 적 소환
@@ -121,29 +125,13 @@ public class RhythmManager : MonoBehaviour
         _isJudgeChangedToFalse = false; // 판정이 바뀐 비트 초기화
     }
 
-    // 타이밍 판정
-    public bool CheckTimingJudgement(double deltaTime)
-    {
-        double beatInterval = _beatInterval;
-        double perfectWindow = beatInterval * 0.4f; // ±0.4초 (BPM 60 기준 0.8초)
-        return (deltaTime <= perfectWindow) ? true : false;
-    }
-    public bool JudgeInput()
-    {
-        if(_isJudging)
-        {
-            return true;
-        }
-        else return false;
-    }
-
     BeatJudgementWindow CreateBeatWindow(double beatTime)
     {
         double interval = _beatInterval;
 
-        double successRatio = 0.25f; // 성공: 25%, 실패: 50%, 성공: 25%
-        double successLen = interval * successRatio;
-        double failLen = interval * (1 - successRatio * 2);
+        // 성공: 25%, 실패: 50%, 성공: 25%
+        double successLen = interval * _successRatio;
+        double failLen = interval * (1 - _successRatio * 2);
 
         return new BeatJudgementWindow()
         {
