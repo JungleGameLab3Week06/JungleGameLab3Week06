@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using static Define;
 
 public class Fire : ISkill
 {
@@ -14,6 +15,8 @@ public class Fire : ISkill
             return;
         }
 
+        PlayerSkill playerSkill = GameManager.Instance.PlayerController.GetComponent<PlayerSkill>();
+
         if (GameManager.Instance.isFireStrong)
         {
             // isStrong이 true면 모든 적에게 strongDamage를 줌
@@ -21,6 +24,7 @@ public class Fire : ISkill
             {
                 if (enemy.gameObject.activeSelf)
                 {
+                    playerSkill.ExcuteEffect(ElementalEffect.Fire, enemy.transform.position);
                     enemy.TakeDamage(_strongDamage);
                 }
             }
@@ -34,6 +38,7 @@ public class Fire : ISkill
 
         if (target != null)
         {
+            playerSkill.ExcuteEffect(ElementalEffect.Fire, target.transform.position);
             target.TakeDamage(_baseDamage);
             Debug.Log($"맨 앞의 적에게 {_baseDamage} 데미지!");
         }

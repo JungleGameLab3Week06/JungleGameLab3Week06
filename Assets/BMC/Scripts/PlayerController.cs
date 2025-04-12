@@ -69,13 +69,13 @@ public class PlayerController : MonoBehaviour, IStatus
         if (interaction != null)
         {
             _playerSkill.ApplyInteraction(interaction);
-            Debug.Log($"반응 발생: {interaction}");
+            //Debug.Log($"반응 발생: {interaction}");
             Enemy firstEnemy = GameManager.Instance.enemyList[0];
             _friend.UpdatePreviewElemental();
         }
         else
         {
-            Debug.Log($"조합 실패: 플레이어({_playerElemental}) + 친구(visual: {_friend.VisualElemental} real: {_friend.RealElemental})는 잘못된 마법(기본 데미지 적용)");
+            //Debug.Log($"조합 실패: 플레이어({_playerElemental}) + 친구(visual: {_friend.VisualElemental} real: {_friend.RealElemental})는 잘못된 마법(기본 데미지 적용)");
             GameManager.Instance.CurrentEnemy.TakeDamage(10);
         }
     }
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour, IStatus
     public void TakeDamage(int amount)
     {
         _hp = Mathf.Clamp(_hp - amount, 0, _maxHp);
-        Debug.Log($"적 HP: {_hp}");
+        //Debug.Log($"플레이어 HP: {_hp}");
         if (_hp <= 0)
             Die();
     }

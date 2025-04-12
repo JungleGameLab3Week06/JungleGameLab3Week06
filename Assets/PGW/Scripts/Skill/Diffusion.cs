@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Define;
 
 public class Diffusion : ISkill
 {
@@ -13,6 +14,7 @@ public class Diffusion : ISkill
             return;
         }
 
+        PlayerSkill playerSkill = GameManager.Instance.PlayerController.GetComponent<PlayerSkill>();
         if (GameManager.Instance.isFireStrong || GameManager.Instance.isLightningStrong)
         {
             // isStrong이 true면 모든 적에게 strongDamage를 줌
@@ -20,17 +22,18 @@ public class Diffusion : ISkill
             {
                 if (enemy.gameObject.activeSelf)
                 {
+                    playerSkill.ExcuteEffect(ElementalEffect.Diffusion, new Vector3(0, 0, 0));
                     enemy.TakeDamage(_strongDamage);
                 }
             }
             Debug.Log($"모든 적에게 {_strongDamage} 데미지!");
         }
 
-        // isStrong이 true면 모든 적에게 strongDamage를 줌
         foreach (Enemy enemy in GameManager.Instance.enemyList)
         {
             if (enemy.gameObject.activeSelf)
             {
+                playerSkill.ExcuteEffect(ElementalEffect.Diffusion, new Vector3(0, 0, 0));
                 enemy.TakeDamage(_baseDamage);
             }
         }
