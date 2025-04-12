@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class BGFX : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] float degree = 0;
 
-    // Update is called once per frame
     void Update()
     {
         degree += Time.deltaTime * 10f;
