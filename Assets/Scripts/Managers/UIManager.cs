@@ -9,6 +9,10 @@ public class UIManager
     [SerializeField] BeatNotifier beatNotifier;
     Coroutine beatCoroutine;
 
+    [Header("Title")]
+    public Action toggleManualPanelCanvasAction;
+
+    [Header("InGame")]
     public Action<bool> showJudgeTextAction;
 
     #endregion
