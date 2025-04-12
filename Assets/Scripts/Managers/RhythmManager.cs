@@ -36,9 +36,7 @@ public class RhythmManager : MonoBehaviour
         if (AudioSettings.dspTime >= _nextBeatTime)
         {
             _lastBeatTime = _nextBeatTime; // ← 여기 주의! 실제 비트 시점은 nextBeatTime
-
-            //lastBeatTime = nextBeatTime; // 다음 비트 전에 미리 저장!
-            //Debug.Log($"[Rhythm] 비트 발생 시점 기록: {_lastBeatTime:F4}, 현재 시간: {AudioSettings.dspTime:F4}");
+            // Debug.Log($"[Rhythm] 비트 발생 시점 기록: {_lastBeatTime:F4}, 현재 시간: {AudioSettings.dspTime:F4}");
             HandleBeat();
             colorFloorAction?.Invoke();         // 바닥 색상 변경
             _nextBeatTime += _beatInterval;
@@ -94,10 +92,10 @@ public class RhythmManager : MonoBehaviour
     }
 
     // 타이밍 판정
-    public bool CheckTimingJudgement(double timeDiff)
+    public bool CheckTimingJudgement(double deltaTime)
     {
         float beatInterval = _beatInterval;
-        float perfectWindow = beatInterval * 0.15f; // ±0.15초 (BPM 60 기준 0.3초)
-        return (timeDiff <= perfectWindow) ? true : false;
+        float perfectWindow = beatInterval * 0.5f; // ±0.5초 (BPM 60 기준 1초)
+        return (deltaTime <= perfectWindow) ? true : false;
     }
 }

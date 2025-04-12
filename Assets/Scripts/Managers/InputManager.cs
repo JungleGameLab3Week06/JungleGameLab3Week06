@@ -37,7 +37,13 @@ public class InputManager : MonoBehaviour
 
     void OnCast(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (!RhythmManager.Instance.IsJudging)
+        {
+            Debug.Log("[입력 무시] 현재 큰 박자 아님");
+            return;
+        }
+
+        if (context.performed)
         {
             Vector2 castValue = context.ReadValue<Vector2>();
 
@@ -63,10 +69,10 @@ public class InputManager : MonoBehaviour
                 Debug.Log("Frost 키 입력: 냉기");
             }
         }
-        else if (context.canceled)
-        {
-            // Cast 액션이 취소되었을 때의 처리
-            Debug.Log("Cast 액션 취소됨");
-        }
+        //else if (context.canceled)
+        //{
+        //    // Cast 액션이 취소되었을 때의 처리
+        //    Debug.Log("Cast 액션 취소됨");
+        //}
     }
 }
