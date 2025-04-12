@@ -1833,8 +1833,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b0d00aed6f341b45a9248d2803a448d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 5400555874492717680, guid: 1231bb7cb3a1d0648aaa928373dae8bd, type: 3}
+  _normalEnemyPrefab: []
+  _specialEnemyPrefab: []
+  _confuseEnemyPrefab: []
   _spawnPoint: {fileID: 241331882}
+  _playerController: {fileID: 0}
+  _friend: {fileID: 0}
   enemyList: []
   isFireStrong: 0
   isLightningStrong: 0
@@ -6046,6 +6050,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06723824217f1124daf3a274d76a2d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _visualElemental: 4
+  _realElemental: 4
+  _mistakeProbability: 0.75
   _willCastSprites: []
 --- !u!1001 &1617382379
 PrefabInstance:
@@ -6749,6 +6756,7 @@ GameObject:
   - component: {fileID: 1787858054}
   - component: {fileID: 1787858056}
   - component: {fileID: 1787858057}
+  - component: {fileID: 1787858058}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6868,7 +6876,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace79107853fc9543a9e070fc1f0c02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  _hp: 100
+  _maxHp: 100
+--- !u!114 &1787858058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787858053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458c05cc4d505af46b31142fd2f6ea01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1790190306
 GameObject:
   m_ObjectHideFlags: 0

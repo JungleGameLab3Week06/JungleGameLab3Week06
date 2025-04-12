@@ -22,7 +22,7 @@ public class ElectricShock : ISkill
             {
                 if (enemy.gameObject.activeSelf)
                 {
-                    playerSkill.ExcuteEffect(ElementalEffect.ElectricShock, new Vector3(0,0,0));
+                    playerSkill.ExcuteEffect(ElementalEffect.ElectricShock, new Vector3(0, 0, 0));
                     enemy.TakeDamage(_strongDamage);
                 }
             }
