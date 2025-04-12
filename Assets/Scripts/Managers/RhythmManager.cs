@@ -68,6 +68,17 @@ public class RhythmManager : MonoBehaviour
         {
             GameManager.Instance.CurrentEnemy.Move();
 
+            //Invokes Beat Notifier to show itself
+            if(BeatNotifier_MC.Instance)
+            {
+                BeatNotifier_MC.Instance.ShowBeat();
+                Debug.Log("Checking Beats");
+            }
+            else
+            {
+                Debug.LogError("There are no BeatNotifier..");
+            }
+
             double beatTime = _lastBeatTime;
             if (beatTime == _currentBeatTime) return; // 동일 박자 중복 처리 방지
 

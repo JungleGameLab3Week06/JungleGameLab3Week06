@@ -8,7 +8,7 @@ public class BeatNotifier_MC : MonoBehaviour
     private Coroutine beatCoroutine; // Coroutine which controls current work
 
     CanvasGroup beatNotifierCanvas;
-    readonly float _displayDuration = 0.1f;
+    readonly float _displayDuration = 8f;
 
     void Start()
     {
@@ -18,7 +18,7 @@ public class BeatNotifier_MC : MonoBehaviour
     }
 
     // Externally Accessible
-    public void ShowJudge()
+    public void ShowBeat()
     {
         if (beatCoroutine != null) StopCoroutine(beatCoroutine);
         beatCoroutine = StartCoroutine(ShowBeatCo());

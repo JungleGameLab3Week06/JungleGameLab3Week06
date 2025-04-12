@@ -18,7 +18,7 @@ public class BeatNotifier : MonoBehaviour
     }
 
     // Externally Accessible
-    public void ShowJudge()
+    public void ShowBeat()
     {
         if (beatCoroutine != null) StopCoroutine(beatCoroutine);
         beatCoroutine = StartCoroutine(ShowBeatCo());
