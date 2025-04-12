@@ -13,7 +13,7 @@ public class DataManager
     [Header("Wave")]
     int _maxWave = 3;
     public Dictionary<int, List<(Enemy enemy, float weight)>> WaveInfoDict => _waveInfoDict;
-    Dictionary<int, List<(Enemy enemy, float weight)>> _waveInfoDict = new Dictionary<int, List<(Enemy enemy, float weight)>>(); // key: 적 Prefab, value: 등장 가중치
+    Dictionary<int, List<(Enemy enemy, float weight)>> _waveInfoDict = new Dictionary<int, List<(Enemy enemy, float weight)>>(); // key: 웨이브 번호, value: List<(적 Prefab, 가중치)>
 
     float[][] _waveWeights =
     {
@@ -30,7 +30,6 @@ public class DataManager
         _enemyPrefabDict.Add(EnemyType.Special, Resources.LoadAll<Enemy>("Prefabs/Enemies/Special").ToList());
         _enemyPrefabDict.Add(EnemyType.Confuse, Resources.LoadAll<Enemy>("Prefabs/Enemies/Confuse").ToList());
         SetWaveInfo();
-
         //Debug.Log($"몬스터 프리팹 로드 완료 {_enemyPrefabDict[EnemyType.Normal].Count} {_enemyPrefabDict[EnemyType.Special].Count} {_enemyPrefabDict[EnemyType.Confuse].Count}");
     }
 
@@ -42,9 +41,9 @@ public class DataManager
             float normalWeight = _enemyPrefabDict[EnemyType.Normal].Count > 0 ? _waveWeights[i][0] / _enemyPrefabDict[EnemyType.Normal].Count : 0f;
             float specialWeight = _enemyPrefabDict[EnemyType.Special].Count > 0 ? _waveWeights[i][1] / _enemyPrefabDict[EnemyType.Special].Count : 0f;
             float confuseWeight = _enemyPrefabDict[EnemyType.Confuse].Count > 0 ? _waveWeights[i][2] / _enemyPrefabDict[EnemyType.Confuse].Count : 0f;
-            _enemyPrefabDict[EnemyType.Normal].ForEach(enemy => _waveInfoDict[i].Add((enemy, normalWeight)));
-            _enemyPrefabDict[EnemyType.Special].ForEach(enemy => _waveInfoDict[i].Add((enemy, specialWeight)));
-            _enemyPrefabDict[EnemyType.Confuse].ForEach(enemy => _waveInfoDict[i].Add((enemy, confuseWeight)));
+            _enemyPrefabDict[EnemyType.Normal].ForEach(enemyPrefab => _waveInfoDict[i].Add((enemyPrefab, normalWeight)));
+            _enemyPrefabDict[EnemyType.Special].ForEach(enemyPrefab => _waveInfoDict[i].Add((enemyPrefab, specialWeight)));
+            _enemyPrefabDict[EnemyType.Confuse].ForEach(enemyPrefab => _waveInfoDict[i].Add((enemyPrefab, confuseWeight)));
             Debug.Log($"웨이브 {i + 1} 설정: {_waveInfoDict[i].Count} 항목");
         }
     }

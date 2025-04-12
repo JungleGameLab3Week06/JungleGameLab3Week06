@@ -10,7 +10,13 @@ public class Friend : MonoBehaviour
     [SerializeField] Elemental _visualElemental = Elemental.None;   // 눈으로 보이는 속성
     [SerializeField] Elemental _realElemental = Elemental.None;     // 실제 속성
     [SerializeField] float _mistakeProbability = 0.75f;             // 동료가 실수할 확률
-    [SerializeField] Sprite[] _willCastSprites;                     // 동료 앞에 나타나야 할 속성 스프라이트
+    UI_FriendCastVisualCanvas _friendCastVisualCanvas;              // 동료 마법 예고 UI
+    bool _isLying = false;                                          // 동료가 속이는 중인지 여부
+
+    void Start()
+    {
+        _friendCastVisualCanvas = GetComponentInChildren<UI_FriendCastVisualCanvas>();
+    }
 
     // 마법 준비
     public void PrepareElemental()
@@ -19,9 +25,10 @@ public class Friend : MonoBehaviour
         _visualElemental = (Elemental)Random.Range(0, Enum.GetValues(typeof(Elemental)).Length - 1);
         TryMistake();
 
-        // 적 머리 위에 캐스팅한 원소 표시
+        // 동료 마법 예고 UI에 원소 표시
+        _friendCastVisualCanvas.SetElementalImage(_isLying, _visualElemental);
+
         Enemy firstEnemy = GameManager.Instance._currentEnemyList[0];
-        firstEnemy.ShowFriendElemental(_visualElemental, _willCastSprites);
         Debug.Log($"친구 예고: 비주얼({_visualElemental}), 실제({_realElemental})");
     }
 
@@ -32,10 +39,14 @@ public class Friend : MonoBehaviour
         if (firstEnemy.EnemyType == EnemyType.Confuse)  // 적이 혼란 상태일 경우(실수하게 됨)
         {
             _realElemental = Random.value > _mistakeProbability ? (Elemental)Random.Range(0, Enum.GetValues(typeof(Elemental)).Length - 1) : _visualElemental;
+
+            if(_realElemental != _visualElemental)
+                _isLying = true;
         }
         else // 실수 안 한 상태
         {
             _realElemental = _visualElemental;
+            _isLying = false;
         }
         Debug.Log($"조합 체크: 비주얼({_visualElemental}), 실제({_realElemental})");
     }
@@ -48,8 +59,9 @@ public class Friend : MonoBehaviour
         Elemental newRealElemental = (Elemental)Random.Range(0, Enum.GetValues(typeof(Elemental)).Length - 1);
         _realElemental = newRealElemental;
 
-        // 적 머리 위에 원소 표시
-        GameManager.Instance.CurrentEnemy.ShowFriendElemental(_visualElemental, _willCastSprites);
+        // 원소 표시
+        _isLying = (_realElemental != _visualElemental) ? true : false;
+        _friendCastVisualCanvas.SetElementalImage(_isLying, _visualElemental);
         Debug.Log($"친구 새로운 예고: 비주얼({_visualElemental}), 실제({_realElemental})");
     }
 }
