@@ -43,7 +43,7 @@ public class PlayerSkill : MonoBehaviour
         };
 
         // Skills 폴더의 모든 GameObject 로드
-        _skillEffects = Manager.Resource.LoadAll<GameObject>($"Skills");
+        _skillEffects = Manager.Resource.LoadAll<GameObject>("Prefabs/Skills");
     }
 
     // 마법 조합 결과 반환
