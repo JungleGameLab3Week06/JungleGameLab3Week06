@@ -54,6 +54,6 @@ public class GameManager : MonoBehaviour
         enemyList.Add(_currentEnemy);
 
         if (enemyList.Count > 0)
-            _friend.CastElemental(); // 동료 마법 시전
+            _friend.PrepareElemental(); // 동료 마법 준비
     }
 }

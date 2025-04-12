@@ -550,23 +550,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1192064598}
-  - {fileID: 86977963}
-  - {fileID: 709312332}
-  - {fileID: 219703822}
-  - {fileID: 1065333730}
-  - {fileID: 193235050}
-  - {fileID: 1356788954}
-  - {fileID: 1485654793}
-  - {fileID: 673418654}
-  - {fileID: 591333325}
-  - {fileID: 409077568}
-  - {fileID: 1739779485}
-  - {fileID: 1486516672}
-  - {fileID: 1246639387}
-  - {fileID: 1659091341}
-  - {fileID: 731025569}
-  - {fileID: 2078090104}
+  - {fileID: 1686850245}
+  - {fileID: 1461639839}
   m_Father: {fileID: 1723066061}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &193235050 stripped
@@ -1400,7 +1385,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1686850245}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -1428,7 +1413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.a
-      value: 1
+      value: 0.30588236
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.b
@@ -1444,7 +1429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.8509804
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -1460,7 +1445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -1469,6 +1454,10 @@ PrefabInstance:
     - target: {fileID: 5279997942055739253, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_Name
       value: Floor (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.28235295
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1689,7 +1678,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1686850245}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -1717,7 +1706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.a
-      value: 1
+      value: 0.30588236
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.b
@@ -1733,7 +1722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.8509804
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -1749,7 +1738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -1758,6 +1747,10 @@ PrefabInstance:
     - target: {fileID: 5279997942055739253, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_Name
       value: Floor (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.28235295
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1835,6 +1828,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 5400555874492717680, guid: 1231bb7cb3a1d0648aaa928373dae8bd, type: 3}
   _spawnPoint: {fileID: 241331882}
+  _playerController: {fileID: 0}
+  _friend: {fileID: 0}
   enemyList: []
   isFireStrong: 0
   isLightningStrong: 0
@@ -1859,7 +1854,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1686850245}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -1887,7 +1882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.a
-      value: 1
+      value: 0.30588236
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.b
@@ -1903,7 +1898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.8509804
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -1919,7 +1914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -1928,6 +1923,10 @@ PrefabInstance:
     - target: {fileID: 5279997942055739253, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_Name
       value: Floor (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.28235295
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2345,7 +2344,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1461639839}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -2389,7 +2388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.5882353
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -2409,7 +2408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -2419,13 +2418,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: -2.165465
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.70000005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2601,7 +2616,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1461639839}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -2645,7 +2660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.5882353
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -2661,7 +2676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -2671,13 +2686,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor (08)
       objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26
+      value: 8.66186
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.70000005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3570,7 +3601,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1686850245}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -3598,7 +3629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.a
-      value: 1
+      value: 0.30588236
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.b
@@ -3614,7 +3645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.8509804
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -3630,7 +3661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -3639,6 +3670,10 @@ PrefabInstance:
     - target: {fileID: 5279997942055739253, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_Name
       value: Floor (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.28235295
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3783,7 +3818,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1686850245}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -3811,7 +3846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.a
-      value: 1
+      value: 0.30588236
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.b
@@ -3827,7 +3862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.8509804
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -3843,7 +3878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -3852,6 +3887,10 @@ PrefabInstance:
     - target: {fileID: 5279997942055739253, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_Name
       value: Floor (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.28235295
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4083,7 +4122,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1461639839}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -4127,7 +4166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.5882353
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -4147,7 +4186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -4157,13 +4196,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22
+      value: 6.496395
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.70000005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4561,7 +4616,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1461639839}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -4605,7 +4660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.5882353
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -4625,7 +4680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -4635,13 +4690,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: -6.496395
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.70000005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4865,7 +4936,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1686850245}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -4893,7 +4964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.a
-      value: 1
+      value: 0.30588236
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.b
@@ -4909,7 +4980,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.8509804
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -4925,7 +4996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -4934,6 +5005,10 @@ PrefabInstance:
     - target: {fileID: 5279997942055739253, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_Name
       value: Floor (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.28235295
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4986,7 +5061,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1461639839}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -5030,7 +5105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.5882353
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -5050,7 +5125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -5060,13 +5135,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18
+      value: 4.33093
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.70000005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5279,6 +5370,46 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1461639838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1461639839}
+  m_Layer: 0
+  m_Name: Type2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1461639839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461639838}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10, y: -0.70000005, z: 0}
+  m_LocalScale: {x: 1.8471782, y: 5.556928, z: 43.784966}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1192064598}
+  - {fileID: 709312332}
+  - {fileID: 219703822}
+  - {fileID: 1356788954}
+  - {fileID: 673418654}
+  - {fileID: 1739779485}
+  - {fileID: 1486516672}
+  - {fileID: 1659091341}
+  - {fileID: 731025569}
+  m_Father: {fileID: 151725244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1475664043
 GameObject:
   m_ObjectHideFlags: 0
@@ -5636,7 +5767,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1686850245}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -5664,7 +5795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.a
-      value: 1
+      value: 0.30588236
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.b
@@ -5680,7 +5811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.8509804
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -5696,7 +5827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -5705,6 +5836,10 @@ PrefabInstance:
     - target: {fileID: 5279997942055739253, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_Name
       value: Floor (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.28235295
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6046,14 +6181,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06723824217f1124daf3a274d76a2d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _visualElemental: 4
+  _realElemental: 4
+  _isLying: 0
   _willCastSprites: []
+  _mistakeProbability: 0.75
 --- !u!1001 &1617382379
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1686850245}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -6081,7 +6220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.a
-      value: 1
+      value: 0.30588236
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _baseColor.b
@@ -6097,7 +6236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.8509804
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -6113,7 +6252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -6122,6 +6261,10 @@ PrefabInstance:
     - target: {fileID: 5279997942055739253, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_Name
       value: Floor (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.28235295
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6347,6 +6490,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1686850244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1686850245}
+  m_Layer: 0
+  m_Name: Type1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1686850245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686850244}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 86977963}
+  - {fileID: 1065333730}
+  - {fileID: 193235050}
+  - {fileID: 1485654793}
+  - {fileID: 591333325}
+  - {fileID: 409077568}
+  - {fileID: 1246639387}
+  - {fileID: 2078090104}
+  m_Father: {fileID: 151725244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1723066060
 GameObject:
   m_ObjectHideFlags: 0
@@ -6618,7 +6800,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1461639839}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -6662,7 +6844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.5882353
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -6682,7 +6864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -6692,13 +6874,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14
+      value: 2.165465
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.70000005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7049,7 +7247,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1461639839}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -7093,7 +7291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.5882353
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -7109,7 +7307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -7119,13 +7317,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: -8.66186
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.70000005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7201,7 +7415,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1461639839}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -7245,7 +7459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.5882353
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -7265,7 +7479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -7275,13 +7489,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.70000005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7496,7 +7726,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 151725244}
+    m_TransformParent: {fileID: 1461639839}
     m_Modifications:
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: baseColor.b
@@ -7540,7 +7770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.a
-      value: 1
+      value: 0.5882353
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _beatColor.b
@@ -7560,7 +7790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: _fadeDuration
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2760252117021647908, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: rhythmManager
@@ -7570,13 +7800,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 5795217420816908229, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: -4.33093
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.70000005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8159557858694793151, guid: 548a575b0250cad40aba96b065e055cd, type: 3}
       propertyPath: m_LocalPosition.z
