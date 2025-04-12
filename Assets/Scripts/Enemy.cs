@@ -3,6 +3,8 @@ using static Define;
 
 public class Enemy : MonoBehaviour, IStatus
 {
+    Animator _anim;
+
     public EnemyType EnemyType => _enemyType;
     public EnemyState EnemyState => _enemyState;
     [SerializeField] EnemyType _enemyType;                           // 적 타입
@@ -19,6 +21,7 @@ public class Enemy : MonoBehaviour, IStatus
     void Awake()
     {
         _friendCastElementalSpriteRenderer = transform.GetChild(1).GetComponentInChildren<SpriteRenderer>();
+        _anim = GetComponent<Animator>();
     }
 
     // 동료가 적 머리 위에 시전할 마법 표시
@@ -32,7 +35,8 @@ public class Enemy : MonoBehaviour, IStatus
     // 적 이동
     public void Move()
     {
-        if(_enemyState == EnemyState.Shock) // 스턴 상태일 때는 이동하지 않음
+        Wriggle();
+        if (_enemyState == EnemyState.Shock) // 스턴 상태일 때는 이동하지 않음
             return;
         transform.position += (Vector3)(Vector2.left * _moveSpeed); // 왼쪽으로 이동
     }
@@ -48,7 +52,7 @@ public class Enemy : MonoBehaviour, IStatus
     public void TakeDamage(int amount)
     {
         _hp = Mathf.Clamp(_hp - amount, 0, 100);
-        Debug.Log($"적 HP: {_hp}");
+        //Debug.Log($"적 HP: {_hp}");
         if (_hp <= 0)
             Die();
     }
@@ -62,5 +66,11 @@ public class Enemy : MonoBehaviour, IStatus
         효과음 
          */
         Destroy(gameObject);
+    }
+
+    // 꿈틀거리기
+    public void Wriggle()
+    {
+        _anim.SetTrigger("WriggleTrigger");
     }
 }
