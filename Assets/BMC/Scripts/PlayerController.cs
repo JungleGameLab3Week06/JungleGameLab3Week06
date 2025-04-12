@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour, IStatus
         {
             _playerSkill.ApplyInteraction(interaction);
             //Debug.Log($"반응 발생: {interaction}");
-            Enemy firstEnemy = GameManager.Instance.enemyList[0];
+            Enemy firstEnemy = GameManager.Instance._currentEnemyList[0];
             _friend.UpdatePreviewElemental();
         }
         else

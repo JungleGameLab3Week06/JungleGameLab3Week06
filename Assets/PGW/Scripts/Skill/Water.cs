@@ -8,7 +8,7 @@ public class Water : ISkill
 
     public void Execute()
     {
-        if (GameManager.Instance.enemyList == null || GameManager.Instance.enemyList.Count == 0)
+        if (GameManager.Instance._currentEnemyList == null || GameManager.Instance._currentEnemyList.Count == 0)
         {
             Debug.Log("적 리스트가 비어 있습니다!");
             return;
@@ -16,7 +16,7 @@ public class Water : ISkill
 
         PlayerSkill playerSkill = GameManager.Instance.PlayerController.GetComponent<PlayerSkill>();
 
-        Enemy target = GameManager.Instance.enemyList
+        Enemy target = GameManager.Instance._currentEnemyList
             .Where(e => e.gameObject.activeSelf)
             .OrderBy(e => e.transform.position.x)
             .FirstOrDefault();
