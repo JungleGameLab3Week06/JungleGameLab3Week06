@@ -1,6 +1,6 @@
-using System.Linq;
 using UnityEngine;
 using static Define;
+using System.Collections.Generic;
 
 public class Water : ISkill
 {
@@ -16,16 +16,21 @@ public class Water : ISkill
 
         PlayerSkill playerSkill = GameManager.Instance.PlayerController.GetComponent<PlayerSkill>();
 
-        Enemy target = GameManager.Instance.enemyList
-            .Where(e => e.gameObject.activeSelf)
-            .OrderBy(e => e.transform.position.x)
-            .FirstOrDefault();
+        // 맨 앞의 적에게 baseDamage를 줌
+        List<Enemy> target = GameManager.Instance.GetFrontEnemies();
 
-        if (target != null)
+        foreach (Enemy enemy in target)
         {
-            playerSkill.ExcuteEffect(ElementalEffect.Water, target.transform.position);
-            target.TakeDamage(_baseDamage);
-            Debug.Log($"맨 앞의 적에게 {_baseDamage} 데미지!");
+            if (enemy != null)
+            {
+                playerSkill.ExcuteEffect(ElementalEffect.Water, enemy.transform.position);
+                enemy.TakeDamage(_baseDamage);
+                Debug.Log($"맨 앞의 적에게 {_baseDamage} 데미지!");
+            }
+            else
+            {
+                Debug.Log("활성화된 적이 없습니다!");
+            }
         }
     }
 }

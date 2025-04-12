@@ -1,6 +1,6 @@
-using System.Linq;
 using UnityEngine;
 using static Define;
+using System.Collections.Generic;
 
 public class Ignition : ISkill
 {
@@ -31,16 +31,20 @@ public class Ignition : ISkill
             Debug.Log($"모든 적에게 {_strongDamage} 데미지!");
         }
 
-        Enemy target = GameManager.Instance.enemyList
-            .Where(e => e.gameObject.activeSelf)
-            .OrderBy(e => e.transform.position.x)
-            .FirstOrDefault();
-
-        if (target != null)
+        // 맨 앞의 적에게 baseDamage를 줌
+        List<Enemy> target = GameManager.Instance.GetFrontEnemies();
+        foreach (Enemy enemy in target)
         {
-            playerSkill.ExcuteEffect(ElementalEffect.Ignition, target.transform.position);
-            target.TakeDamage(_baseDamage);
-            Debug.Log($"맨 앞의 적에게 {_baseDamage} 데미지!");
+            if (enemy != null)
+            {
+                playerSkill.ExcuteEffect(ElementalEffect.Ignition, enemy.transform.position);
+                enemy.TakeDamage(_baseDamage);
+                Debug.Log($"맨 앞의 적에게 {_baseDamage} 데미지!");
+            }
+            else
+            {
+                Debug.Log("활성화된 적이 없습니다!");
+            }
         }
     }
 }
