@@ -1,6 +1,7 @@
 using System;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class RhythmManager : MonoBehaviour
 {
@@ -95,7 +96,11 @@ public class RhythmManager : MonoBehaviour
         _beatSource.PlayOneShot(_beatClip); // 비트 소리 재생
 
         colorFloorAction?.Invoke();                 // 바닥 색상 변경
-        GameManager.Instance.CurrentEnemy.Move();   // 적 이동
+        List<Enemy> enemies = GameManager.Instance._currentEnemyList; // 적 리스트
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.Move();
+        }
         if (GameManager.Instance.CheckSpawnPoint()) // 소환 포인트 체크
         {
             GameManager.Instance.SpawnEnemy(); // 적 소환
@@ -115,7 +120,7 @@ public class RhythmManager : MonoBehaviour
         double perfectWindow = beatInterval * 0.4f; // ±0.4초 (BPM 60 기준 0.8초)
         return (deltaTime <= perfectWindow) ? true : false;
     }
-    public bool JudgeInput(double inputTime)
+    public bool JudgeInput()
     {
         if(_isJudging)
         {
