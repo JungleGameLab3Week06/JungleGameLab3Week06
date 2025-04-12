@@ -51,22 +51,22 @@ public class InputManager : MonoBehaviour
             if (castValue.y == 1) // Flame (화염)
             {
                 selectElementalAction.Invoke(Elemental.Flame);
-                Debug.Log("Flame 키 입력: 화염");
+                //Debug.Log("Flame 키 입력: 화염");
             }
             else if (castValue.x == -1) // Lightning (번개)
             {
                 selectElementalAction.Invoke(Elemental.Lightning);
-                Debug.Log("Lightning 키 입력: 번개");
+                //Debug.Log("Lightning 키 입력: 번개");
             }
             else if (castValue.y == -1) // Oil (기름)
             {
                 selectElementalAction.Invoke(Elemental.Ground);
-                Debug.Log("Oil 키 입력: 기름");
+                //Debug.Log("Oil 키 입력: 기름");
             }
             else if (castValue.x == 1) // Frost (냉기)
             {
                 selectElementalAction.Invoke(Elemental.Water);
-                Debug.Log("Frost 키 입력: 냉기");
+                //Debug.Log("Frost 키 입력: 냉기");
             }
         }
         //else if (context.canceled)

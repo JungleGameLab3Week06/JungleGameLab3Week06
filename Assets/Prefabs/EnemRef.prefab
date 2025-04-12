@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3266665448250219200}
+  - component: {fileID: 8851142931642305517}
   - component: {fileID: 5400555874492717680}
   m_Layer: 0
   m_Name: EnemRef
@@ -27,13 +28,35 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.97, y: -1.72, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9025731102264150644}
   - {fileID: 1150467038130284490}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &8851142931642305517
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219603995879891223}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2983c70adfdb3fa45a79aaf2babc40a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &5400555874492717680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,7 +72,6 @@ MonoBehaviour:
   _enemyType: 0
   _enemyState: 0
   _hp: 100
-  _friendCastElementalText: {fileID: 0}
   _friendCastElementalSpriteRenderer: {fileID: 0}
 --- !u!1 &3742085425640472238
 GameObject:
