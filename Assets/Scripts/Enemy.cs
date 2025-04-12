@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using static Define;
 
 public class Enemy : MonoBehaviour, IStatus
@@ -16,35 +14,26 @@ public class Enemy : MonoBehaviour, IStatus
     float _moveSpeed = 2f;               // 비트당 이동 거리
 
     [Header("UI")]
-    [SerializeField] TextMeshPro _friendCastElementalText;              // 친구가 시전할 마법 속성 텍스트
     [SerializeField] SpriteRenderer _friendCastElementalSpriteRenderer; // 친구가 시전할 마법 속성 스프라이트 렌더러
 
-    void Start()
+    void Awake()
     {
-        _friendCastElementalText = transform.GetChild(1).GetComponentInChildren<TextMeshPro>();
         _friendCastElementalSpriteRenderer = transform.GetChild(1).GetComponentInChildren<SpriteRenderer>();
     }
 
-
     // 동료가 적 머리 위에 시전할 마법 표시
-    public void SetPreviewTag(Elemental tag, Sprite[] tagSprites)
+    public void ShowFriendElemental(Elemental elemental, Sprite[] elementalSprites)
     {
-        Debug.LogError("스프라이트 변경~");
-
-        int tagIndex = (int)tag;
-        if (tagIndex >= 0 && tagIndex < tagSprites.Length)
-            _friendCastElementalSpriteRenderer.sprite = tagSprites[tagIndex];
-        _friendCastElementalText.text = tag.ToString();
+        int elementalIndex = (int)elemental;
+        if (0 <= elementalIndex && elementalIndex < elementalSprites.Length)
+            _friendCastElementalSpriteRenderer.sprite = elementalSprites[elementalIndex];
     }
 
     // 적 이동
     public void Move()
     {
-        if(_enemyState == EnemyState.Shock)
-        {
-            // 스턴 상태일 때는 이동하지 않음
+        if(_enemyState == EnemyState.Shock) // 스턴 상태일 때는 이동하지 않음
             return;
-        }
         transform.position += (Vector3)(Vector2.left * _moveSpeed); // 왼쪽으로 이동
     }
     
