@@ -20,7 +20,7 @@ public class Friend : MonoBehaviour
         TryMistake();
 
         // 적 머리 위에 캐스팅한 원소 표시
-        Enemy firstEnemy = GameManager.Instance.enemyList[0];
+        Enemy firstEnemy = GameManager.Instance._currentEnemyList[0];
         firstEnemy.ShowFriendElemental(_visualElemental, _willCastSprites);
         Debug.Log($"친구 예고: 비주얼({_visualElemental}), 실제({_realElemental})");
     }
@@ -28,7 +28,7 @@ public class Friend : MonoBehaviour
     // 실수 시도
     void TryMistake()
     {
-        Enemy firstEnemy = GameManager.Instance.enemyList[0];
+        Enemy firstEnemy = GameManager.Instance._currentEnemyList[0];
         if (firstEnemy.EnemyType == EnemyType.Confuse)  // 적이 혼란 상태일 경우(실수하게 됨)
         {
             _realElemental = Random.value > _mistakeProbability ? (Elemental)Random.Range(0, Enum.GetValues(typeof(Elemental)).Length - 1) : _visualElemental;
