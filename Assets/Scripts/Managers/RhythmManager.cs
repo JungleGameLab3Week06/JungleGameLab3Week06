@@ -31,6 +31,15 @@ public class RhythmManager : MonoBehaviour
 
     int cnt = 0;
 
+    public struct BeatJudgementWindow
+    {
+        public double SuccessStart1;
+        public double FailStart;
+        public double SuccessStart2;
+        public double End;
+        public bool Judged;
+    }
+
     void Awake()
     {
         Init();
@@ -51,8 +60,10 @@ public class RhythmManager : MonoBehaviour
 
             _lastBeatTime = _nextBeatTime; // ← 여기 주의! 실제 비트 시점은 nextBeatTime
                                            // Debug.Log($"[Rhythm] 비트 발생 시점 기록: {_lastBeatTime:F4}, 현재 시간: {AudioSettings.dspTime:F4}");
-            RegularBeat();
+            _currentBeatTime = _lastBeatTime;
+            SetupJudgeWindow(_currentBeatTime);// 판정윈도우가 먼저 생성되는방식
             _nextBeatTime += _beatInterval;
+            RegularBeat();
         }
         else
         {
@@ -111,7 +122,7 @@ public class RhythmManager : MonoBehaviour
             float window = beatInterval * 0.5f;     // 성공 구간 (±0.5초, BPM 60 기준 1초)
             _judgeWindowStart = beatTime - window;
             _judgeWindowEnd = beatTime + window;
-
+            Debug.Log($"[정박자]: {beatTime:F3}");
             //Debug.Log($"[큰 박자] 비트: {beatTime:F4}, 간격: {beatInterval:F4}, 성공 구간: {judgeWindowStart:F4}~{judgeWindowEnd:F4}");
 
             GameManager.Instance.PlayerController.HasInputThisBeat = false; // 플레이어 입력 초기화
@@ -130,7 +141,62 @@ public class RhythmManager : MonoBehaviour
     public bool CheckTimingJudgement(double deltaTime)
     {
         float beatInterval = _beatInterval;
-        float perfectWindow = beatInterval * 0.5f; // ±0.5초 (BPM 60 기준 1초)
+        float perfectWindow = beatInterval * 0.4f; // ±0.4초 (BPM 60 기준 0.8초)
         return (deltaTime <= perfectWindow) ? true : false;
+    }
+    void SetupJudgeWindow(double beatTime) //판정윈도우
+    {
+        float window = _beatInterval * 0.5f;
+
+        _judgeWindowStart = beatTime - window;
+        _judgeWindowEnd = beatTime + window;
+        
+        _isJudging = true;
+        GameManager.Instance.PlayerController.HasInputThisBeat = false;
+
+        Debug.Log($"[판정윈도우 세팅] 중심: {beatTime:F3}, 윈도우: {_judgeWindowStart:F3}~{_judgeWindowEnd:F3}");
+    }
+    BeatJudgementWindow CreateBeatWindow(double beatTime)
+    {
+        double interval = _beatInterval;
+
+        double successRatio = 0.3; // 성공: 30%, 실패: 40%, 성공: 30%
+        double successLen = interval * successRatio;
+        double failLen = interval * (1 - successRatio * 2);
+
+        return new BeatJudgementWindow
+        {
+            SuccessStart1 = beatTime,
+            FailStart = beatTime + successLen,
+            SuccessStart2 = beatTime + successLen + failLen,
+            End = beatTime + interval,
+            Judged = false
+        };
+    }
+    public bool JudgeInput(double inputTime)
+    {
+        foreach (var window in _beatWindows)
+        {
+            if (window.Judged) continue;
+            if (inputTime < window.SuccessStart1 || inputTime > window.End) continue;
+
+            if (inputTime >= window.SuccessStart1 && inputTime < window.FailStart)
+            {
+                window.Judged = true;
+                return true;
+            }
+            else if (inputTime >= window.FailStart && inputTime < window.SuccessStart2)
+            {
+                window.Judged = true;
+                return false;
+            }
+            else if (inputTime >= window.SuccessStart2 && inputTime < window.End)
+            {
+                window.Judged = true;
+                return true;
+            }
+        }
+
+        return false; // 아직 유효한 박자 없음
     }
 }
