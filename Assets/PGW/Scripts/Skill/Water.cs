@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using static Define;
 
 public class Water : ISkill
 {
@@ -13,6 +14,8 @@ public class Water : ISkill
             return;
         }
 
+        PlayerSkill playerSkill = GameManager.Instance.PlayerController.GetComponent<PlayerSkill>();
+
         Enemy target = GameManager.Instance.enemyList
             .Where(e => e.gameObject.activeSelf)
             .OrderBy(e => e.transform.position.x)
@@ -20,6 +23,7 @@ public class Water : ISkill
 
         if (target != null)
         {
+            playerSkill.ExcuteEffect(ElementalEffect.Water, target.transform.position);
             target.TakeDamage(_baseDamage);
             Debug.Log($"맨 앞의 적에게 {_baseDamage} 데미지!");
         }

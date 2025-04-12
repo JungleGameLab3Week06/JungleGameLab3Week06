@@ -1,6 +1,9 @@
 using UnityEngine;
 using static Define;
 using System.Collections.Generic;
+using UnityEditor;
+using System.Linq;
+using System.Collections;
 
 public class PlayerSkill : MonoBehaviour
 {
@@ -29,7 +32,10 @@ public class PlayerSkill : MonoBehaviour
             { (Elemental.Lightning, Elemental.Ground), ElementalEffect.None },
             { (Elemental.Ground, Elemental.Lightning), ElementalEffect.None }
         };
-    void Awake()
+
+    GameObject[] _skillEffects;
+
+    void Start()
     {
         // 스킬 초기화
         _skillMap = new Dictionary<ElementalEffect, ISkill>
@@ -43,6 +49,9 @@ public class PlayerSkill : MonoBehaviour
             { ElementalEffect.Fog, new Fog() },
             { ElementalEffect.Grease, new Grease() }
         };
+
+        // Skills 폴더의 모든 GameObject 로드
+        _skillEffects = Manager.Resource.LoadAll<GameObject>($"Skills");
     }
 
     // 마법 조합 결과 반환
@@ -66,6 +75,48 @@ public class PlayerSkill : MonoBehaviour
         else
         {
             Debug.LogWarning($"등록되지 않은 효과: {effect}");
+        }
+    }
+
+    GameObject GetSkillEffect(ElementalEffect effect)
+    {
+        foreach (var skillEffect in _skillEffects)
+        {
+            if (skillEffect.name.Contains(effect.ToString()))
+            {
+                return skillEffect;
+            }
+        }
+        Debug.LogWarning($"스킬 효과를 찾을 수 없습니다: {effect}");
+        return null;
+    }
+
+    public void ExcuteEffect(ElementalEffect effect, Vector3 pos)
+    {
+        GameObject skillEffect = GetSkillEffect(effect);
+
+        if (skillEffect != null)
+        {
+            GameObject effectInstance = Instantiate(skillEffect, pos, Quaternion.identity);
+            Animator animator = effectInstance.GetComponent<Animator>();
+            if (animator != null)
+            {
+                // 애니메이션 길이에 맞춰 삭제
+                AnimationClip clip = animator.runtimeAnimatorController.animationClips.FirstOrDefault();
+                if (clip != null)
+                {
+                    StartCoroutine(DestroyAfterAnimation(effectInstance, clip.length));
+                }
+            }
+        }
+    }
+
+    private IEnumerator DestroyAfterAnimation(GameObject effectInstance, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        if (effectInstance != null)
+        {
+            Destroy(effectInstance);
         }
     }
 }
