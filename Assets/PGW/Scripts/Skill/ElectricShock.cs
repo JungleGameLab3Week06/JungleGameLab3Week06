@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Define;
 
 public class ElectricShock : ISkill
 {
@@ -12,6 +13,8 @@ public class ElectricShock : ISkill
             return;
         }
 
+        PlayerSkill playerSkill = GameManager.Instance.PlayerController.GetComponent<PlayerSkill>();
+        
         if (GameManager.Instance.isLightningStrong)
         {
             // isLightningStrong이 true면 모든 적에게 strongDamage를 줌
@@ -19,6 +22,7 @@ public class ElectricShock : ISkill
             {
                 if (enemy.gameObject.activeSelf)
                 {
+                    playerSkill.ExcuteEffect(ElementalEffect.ElectricShock, new Vector3(0,0,0));
                     enemy.TakeDamage(_strongDamage);
                 }
             }
@@ -28,7 +32,7 @@ public class ElectricShock : ISkill
         foreach (Enemy enemy in GameManager.Instance.enemyList)
         {
             if (enemy.gameObject.activeSelf)
-            {
+            {  
                 enemy.ApplyState(Define.EnemyState.Shock);
             }
         }
