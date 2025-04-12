@@ -1,5 +1,7 @@
 using System;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class RhythmManager : MonoBehaviour
 {
@@ -10,26 +12,21 @@ public class RhythmManager : MonoBehaviour
     [Header("비트")]
     AudioSource _beatSource;                                       // 비트 소스
     AudioClip _beatClip;                                             // 비트 클립
-    public float BeatInterval => _beatInterval;
+    public double BeatInterval => _beatInterval;
     public double LastBeatTime => _lastBeatTime; 
-    public double CurrentBeatTime => _nextBeatTime - _beatInterval;
-    float _prevBpm = 60f;
-    [SerializeField] float _bpm = 60f;                              // 분당 비트 수
-    float _beatInterval;                                            // 비트 간격 (초 단위)
-    float _nextBeatTime;                                            // 다음 비트 발생 시점
+    double _prevBpm = 60f;
+    [SerializeField] double _bpm = 60f;                              // 분당 비트 수
+    double _beatInterval;                                            // 비트 간격 (초 단위)
+    double _nextBeatTime = -1;                                            // 다음 비트 발생 시점
     double _lastBeatTime;                                           // 마지막 비트 발생 시점
-    double _currentBeatTime = -1;                                   // 현재 비트 시점
+    BeatJudgementWindow _beatWindow;                                          // 비트 윈도우
     public Action colorFloorAction;                                 // 비트 발생 시 바닥들 색상 변경하는 것
 
     [Header("판정")]
     public bool IsJudging => _isJudging;
-    public double JudgeWindowStart => _judgeWindowStart;
-    public double JudgeWindowEnd => _judgeWindowEnd;
-    bool _isJudging = false;                                // 판정 중인지 여부
-    double _judgeWindowStart;                               // 판정 시작 지점
-    double _judgeWindowEnd;                                 // 판정 종료 지점
-
-    int cnt = 0;
+    [SerializeField] bool _isJudging = false;                                // 판정 중인지 여부
+    [SerializeField] bool _isJudgeChangedToTrue = false;                  // 판정이 바뀐 비트인지 여부
+    [SerializeField] bool _isJudgeChangedToFalse = false;                  // 판정이 바뀐 비트인지 여부
 
     public struct BeatJudgementWindow
     {
@@ -37,7 +34,6 @@ public class RhythmManager : MonoBehaviour
         public double FailStart;
         public double SuccessStart2;
         public double End;
-        public bool Judged;
     }
 
     void Awake()
@@ -51,25 +47,30 @@ public class RhythmManager : MonoBehaviour
         {
             SetBpm();
         }
-
+        
         if (AudioSettings.dspTime >= _nextBeatTime)
         {
-            //Debug.Log($"{cnt} {_nextBeatTime}");
-            //Debug.LogError($"테스트 {cnt++}");
-            //Debug.Log(AudioSettings.dspTime);
-
             _lastBeatTime = _nextBeatTime; // ← 여기 주의! 실제 비트 시점은 nextBeatTime
-                                           // Debug.Log($"[Rhythm] 비트 발생 시점 기록: {_lastBeatTime:F4}, 현재 시간: {AudioSettings.dspTime:F4}");
-            _currentBeatTime = _lastBeatTime;
-            SetupJudgeWindow(_currentBeatTime);// 판정윈도우가 먼저 생성되는방식
+            // 판정 윈도우 설정
+            _beatWindow = CreateBeatWindow(_lastBeatTime);
             _nextBeatTime += _beatInterval;
             RegularBeat();
         }
-        else
+        else if (!_isJudgeChangedToFalse && _isJudging && AudioSettings.dspTime >= _beatWindow.FailStart)
         {
-            //Debug.Log($"{cnt} {_nextBeatTime}");
-            //cnt++;
+            _isJudging = false; // 판정 종료
+            _isJudgeChangedToFalse = true; // 판정이 바뀐 비트
+            _isJudgeChangedToTrue = false; // 판정이 바뀐 비트
+            GameManager.Instance.PlayerController.HasInputThisBeat = false; // 입력 초기화
+            Debug.Log("판정 종료");
         }
+        else if (!_isJudgeChangedToTrue && !_isJudging && AudioSettings.dspTime >= _beatWindow.SuccessStart2)
+        {
+            _isJudging = true; // 판정 시작
+            _isJudgeChangedToTrue = true; // 판정이 바뀐 비트
+            Debug.Log("판정 시작");
+        }
+        
     }
 
     public void Init()
@@ -93,7 +94,7 @@ public class RhythmManager : MonoBehaviour
     public void SetBpm()
     {
         _beatInterval = 60f / _bpm;
-        _nextBeatTime = (float)AudioSettings.dspTime + _beatInterval;
+        _nextBeatTime = (double)AudioSettings.dspTime + _beatInterval;
         _prevBpm = _bpm;
     }
 
@@ -102,101 +103,54 @@ public class RhythmManager : MonoBehaviour
     {
         _beatSource.PlayOneShot(_beatClip); // 비트 소리 재생
 
-        if (GameManager.Instance.CurrentEnemy == null)
+        colorFloorAction?.Invoke();                 // 바닥 색상 변경
+        List<Enemy> enemies = GameManager.Instance._currentEnemyList; // 적 리스트
+        foreach (Enemy enemy in enemies)
         {
-            GameManager.Instance.SpawnEnemy(); // 적이 없으면 소환
+            enemy.Move();
+        }
+        if (GameManager.Instance.CheckSpawnPoint()) // 소환 포인트 체크
+        {
+            GameManager.Instance.SpawnEnemy(); // 적 소환
             Debug.LogWarning("적 소환");
         }
         else
         {
-            double beatTime = _lastBeatTime;
-            if (beatTime == _currentBeatTime)       // 동일 박자 중복 처리 방지
-                return;
-
-            _isJudging = true;
-
-            colorFloorAction?.Invoke();                 // 바닥 색상 변경
-            GameManager.Instance.CurrentEnemy.Move();   // 적 이동
-
-            float beatInterval = _beatInterval;     // 큰 박자 간격 (BPM 기반)
-            float window = beatInterval * 0.5f;     // 성공 구간 (±0.5초, BPM 60 기준 1초)
-            _judgeWindowStart = beatTime - window;
-            _judgeWindowEnd = beatTime + window;
-            Debug.Log($"[정박자]: {beatTime:F3}");
-            //Debug.Log($"[큰 박자] 비트: {beatTime:F4}, 간격: {beatInterval:F4}, 성공 구간: {judgeWindowStart:F4}~{judgeWindowEnd:F4}");
-
-            GameManager.Instance.PlayerController.HasInputThisBeat = false; // 플레이어 입력 초기화
-            _currentBeatTime = beatTime;
-
-            // 입력이 없으면 박자 끝에서 Miss
-            if (!GameManager.Instance.PlayerController.HasInputThisBeat && AudioSettings.dspTime >= _judgeWindowEnd)
-            {
-                Debug.Log("입력 없이 큰 박자 종료 - Miss");
-                _isJudging = false;
-            }
+            Debug.LogWarning("소환 포인트 없음");
         }
+        _isJudgeChangedToFalse = false; // 판정이 바뀐 비트 초기화
     }
 
     // 타이밍 판정
     public bool CheckTimingJudgement(double deltaTime)
     {
-        float beatInterval = _beatInterval;
-        float perfectWindow = beatInterval * 0.4f; // ±0.4초 (BPM 60 기준 0.8초)
+        double beatInterval = _beatInterval;
+        double perfectWindow = beatInterval * 0.4f; // ±0.4초 (BPM 60 기준 0.8초)
         return (deltaTime <= perfectWindow) ? true : false;
     }
-    void SetupJudgeWindow(double beatTime) //판정윈도우
+    public bool JudgeInput()
     {
-        float window = _beatInterval * 0.5f;
-
-        _judgeWindowStart = beatTime - window;
-        _judgeWindowEnd = beatTime + window;
-        
-        _isJudging = true;
-        GameManager.Instance.PlayerController.HasInputThisBeat = false;
-
-        Debug.Log($"[판정윈도우 세팅] 중심: {beatTime:F3}, 윈도우: {_judgeWindowStart:F3}~{_judgeWindowEnd:F3}");
+        if(_isJudging)
+        {
+            return true;
+        }
+        else return false;
     }
+
     BeatJudgementWindow CreateBeatWindow(double beatTime)
     {
         double interval = _beatInterval;
 
-        double successRatio = 0.3; // 성공: 30%, 실패: 40%, 성공: 30%
+        double successRatio = 0.25f; // 성공: 25%, 실패: 50%, 성공: 25%
         double successLen = interval * successRatio;
         double failLen = interval * (1 - successRatio * 2);
 
-        return new BeatJudgementWindow
+        return new BeatJudgementWindow()
         {
             SuccessStart1 = beatTime,
             FailStart = beatTime + successLen,
             SuccessStart2 = beatTime + successLen + failLen,
-            End = beatTime + interval,
-            Judged = false
+            End = beatTime + interval
         };
-    }
-    public bool JudgeInput(double inputTime)
-    {
-        foreach (var window in _beatWindows)
-        {
-            if (window.Judged) continue;
-            if (inputTime < window.SuccessStart1 || inputTime > window.End) continue;
-
-            if (inputTime >= window.SuccessStart1 && inputTime < window.FailStart)
-            {
-                window.Judged = true;
-                return true;
-            }
-            else if (inputTime >= window.FailStart && inputTime < window.SuccessStart2)
-            {
-                window.Judged = true;
-                return false;
-            }
-            else if (inputTime >= window.SuccessStart2 && inputTime < window.End)
-            {
-                window.Judged = true;
-                return true;
-            }
-        }
-
-        return false; // 아직 유효한 박자 없음
     }
 }

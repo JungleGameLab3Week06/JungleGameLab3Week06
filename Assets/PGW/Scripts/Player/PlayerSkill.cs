@@ -9,28 +9,20 @@ public class PlayerSkill : MonoBehaviour
 {
     Dictionary<ElementalEffect, ISkill> _skillMap;
 
-    Dictionary<(Elemental, Elemental), ElementalEffect> _tagInteractions =
-        new Dictionary<(Elemental, Elemental), ElementalEffect>
+    Dictionary<int, ElementalEffect> _tagInteractions =
+        new Dictionary<int, ElementalEffect>
         {
-            // 동일 요소 조합
-            { (Elemental.Flame, Elemental.Flame), ElementalEffect.Fire },
-            { (Elemental.Water, Elemental.Water), ElementalEffect.Water },
-            { (Elemental.Lightning, Elemental.Lightning), ElementalEffect.Lightning },
-            { (Elemental.Ground, Elemental.Ground), ElementalEffect.Wall },
-
-            // 서로 다른 요소 조합
-            { (Elemental.Flame, Elemental.Water), ElementalEffect.Fog },
-            { (Elemental.Water, Elemental.Flame), ElementalEffect.Fog }, // 순서 반대
-            { (Elemental.Flame, Elemental.Lightning), ElementalEffect.Diffusion },
-            { (Elemental.Lightning, Elemental.Flame), ElementalEffect.Diffusion },
-            { (Elemental.Flame, Elemental.Ground), ElementalEffect.Ignition },
-            { (Elemental.Ground, Elemental.Flame), ElementalEffect.Ignition },
-            { (Elemental.Water, Elemental.Lightning), ElementalEffect.ElectricShock },
-            { (Elemental.Lightning, Elemental.Water), ElementalEffect.ElectricShock },
-            { (Elemental.Water, Elemental.Ground), ElementalEffect.Grease },
-            { (Elemental.Ground, Elemental.Water), ElementalEffect.Grease },
-            { (Elemental.Lightning, Elemental.Ground), ElementalEffect.None },
-            { (Elemental.Ground, Elemental.Lightning), ElementalEffect.None }
+            //화염1 물2 땅4 번개8
+            {1, ElementalEffect.Fire },
+            {2, ElementalEffect.Water },
+            {4, ElementalEffect.Wall },
+            {8, ElementalEffect.Lightning },
+            {3, ElementalEffect.Fog }, // 화염 + 물
+            {5, ElementalEffect.Ignition }, // 화염 + 땅
+            {9, ElementalEffect.Diffusion }, // 화염 + 번개
+            {6, ElementalEffect.Grease }, // 물 + 땅
+            {10, ElementalEffect.ElectricShock }, // 물 + 번개
+            {12, ElementalEffect.None }, // 땅 + 번개
         };
 
     GameObject[] _skillEffects;
@@ -51,15 +43,14 @@ public class PlayerSkill : MonoBehaviour
         };
 
         // Skills 폴더의 모든 GameObject 로드
-        _skillEffects = Manager.Resource.LoadAll<GameObject>($"Skills");
+        _skillEffects = Manager.Resource.LoadAll<GameObject>("Prefabs/Skills");
     }
 
     // 마법 조합 결과 반환
     public ElementalEffect GetInteraction(Elemental tag1, Elemental tag2)
     {
-        if (_tagInteractions.TryGetValue((tag1, tag2), out ElementalEffect interaction))
-            return interaction;
-        if (_tagInteractions.TryGetValue((tag2, tag1), out interaction))
+        int combinedTag = (int)tag1 | (int)tag2;
+        if (_tagInteractions.TryGetValue(combinedTag, out ElementalEffect interaction))
             return interaction;
         return ElementalEffect.None;
     }

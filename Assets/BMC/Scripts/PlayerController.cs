@@ -44,19 +44,16 @@ public class PlayerController : MonoBehaviour, IStatus
         _playerElemental = elemental;
 
         // 시간 계산
-        dspTime = AudioSettings.dspTime; 
-        lastBeatTime = RhythmManager.Instance.LastBeatTime;
-        deltaTime = System.Math.Abs(dspTime - lastBeatTime);
-        isPerfect = RhythmManager.Instance.CheckTimingJudgement(deltaTime);
+        //dspTime = AudioSettings.dspTime; 
+        //lastBeatTime = RhythmManager.Instance.LastBeatTime;
+        //deltaTime = System.Math.Abs(dspTime - lastBeatTime);
+        //isPerfect = RhythmManager.Instance.CheckTimingJudgement(deltaTime);
+        isPerfect = RhythmManager.Instance.JudgeInput();
 
         Manager.UI.showJudgeTextAction(isPerfect);
         if (isPerfect)
         {
             Attack();
-        }
-        else
-        {
-            Debug.Log($"[즉시 Miss] now: {dspTime:F4} (성공 구간: {RhythmManager.Instance.JudgeWindowStart:F4}~{RhythmManager.Instance.JudgeWindowEnd:F4})");
         }
         _hasInputThisBeat = true; // 큰 박자 내 첫 입력 처리 완료
     }

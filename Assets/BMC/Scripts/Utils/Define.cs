@@ -35,11 +35,11 @@ public class Define
     // 플레이어 마법 속성
     public enum Elemental
     {
-        Flame,      // 화염
-        Water,      // 물
-        Ground,     // 땅
-        Lightning,  // 번개
-        None
+        Flame = 1,      // 화염
+        Water = 1 << 1,      // 물
+        Ground = 1 << 2,     // 땅
+        Lightning = 1 << 3,  // 번개
+        None = 0
     }
 
     // 적 타입

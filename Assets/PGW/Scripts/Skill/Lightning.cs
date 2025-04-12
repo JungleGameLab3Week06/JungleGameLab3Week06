@@ -1,6 +1,6 @@
 using UnityEngine;
-using System.Linq;
 using static Define;
+using System.Collections.Generic;
 
 public class Lightning : ISkill
 {
@@ -28,25 +28,25 @@ public class Lightning : ISkill
                     enemy.TakeDamage(_strongDamage);
                 }
             }
-            Debug.Log($"모든 적에게 {_strongDamage} 데미지!");
+            Debug.Log("모든 적에게 {_strongDamage} 데미지!");
         }
         else
         {
             // isLightningStrong이 false면 맨 앞의 적에게 baseDamage를 줌
-            Enemy target = GameManager.Instance._currentEnemyList
-                .Where(e => e.gameObject.activeSelf)
-                .OrderBy(e => e.transform.position.x)
-                .FirstOrDefault();
+            List<Enemy> target = GameManager.Instance.GetFrontEnemies();
 
-            if (target != null)
+            foreach (Enemy enemy in target)
             {
-                playerSkill.ExcuteEffect(ElementalEffect.Lightning, target.transform.position);
-                target.TakeDamage(_baseDamage);
-                Debug.Log($"맨 앞의 적에게 {_baseDamage} 데미지!");
-            }
-            else
-            {
-                Debug.Log("활성화된 적이 없습니다!");
+                if (enemy != null)
+                {
+                    playerSkill.ExcuteEffect(ElementalEffect.Lightning, enemy.transform.position);
+                    enemy.TakeDamage(_baseDamage);
+                    Debug.Log("맨 앞의 적에게 {_baseDamage} 데미지!");
+                }
+                else
+                {
+                    Debug.Log("활성화된 적이 없습니다!");
+                }
             }
         }
     }
