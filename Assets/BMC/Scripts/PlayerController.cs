@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour, IStatus
     public Elemental PlayerElemental => _playerElemental;
 
     bool _hasInputThisBeat = false; // 현재 비트에서 입력 여부
-    public event Action OnDie;
+
 
     public bool HasInputThisBeat { get { return _hasInputThisBeat; } set { _hasInputThisBeat = value; } } // 현재 비트에서 입력 여부
 
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour, IStatus
         }
         _hasInputThisBeat = true; // 큰 박자 내 첫 입력 처리 완료
     }
+    //친구가 전달하게 옮겼으니 받아서 옮기기만하면됨
     public void TakeDamage(int amount) //플레이어 데미지 피해 
     {
         hp = Mathf.Clamp(hp - amount, 0, 100);

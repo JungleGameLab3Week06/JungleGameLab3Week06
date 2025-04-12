@@ -7,9 +7,9 @@ public class Friend : MonoBehaviour
 {
     public Elemental FriendElemental => _visualElemental;
     [SerializeField] Elemental _visualElemental = Elemental.None;   // 눈으로 보이는 속성
-    [SerializeField] Elemental _realElemental = Elemental.None;     // 실제 속성
+    public Elemental _realElemental = Elemental.None;     // 실제 속성
     [SerializeField] bool _isLying = false;                         // 동료가 속이고 있는지 여부
-    [SerializeField] Sprite[] _willCastSprites;                     // 적 머리 위에 나타나는 약점 Sprite
+    [SerializeField] Sprite[] _willCastSprites;                     // 동료 앞에 나타나야 할 속성 스프라이트
     [SerializeField] float _mistakeProbability = 0.75f;             // 동료가 실수할 확률
 
     PlayerSkill _playerSkill;
@@ -19,28 +19,39 @@ public class Friend : MonoBehaviour
         _playerSkill = GameManager.Instance.PlayerController.GetComponent<PlayerSkill>();
     }
 
-    // 마법 시전
-    public void CastElemental()
+    public void PrepareElemental()
     {
         // 무작위 속성 선택
         _visualElemental = (Elemental)Random.Range(0, Enum.GetValues(typeof(Elemental)).Length - 1);
         TryMistake();
-        ElementalEffect interaction = _playerSkill.GetInteraction(_realElemental, _visualElemental); // 나중에 _visual 말고 player거 넣어주면 됨
- 
-        if (interaction != null)
-        {
-            _playerSkill.ApplyInteraction(interaction);
-            Debug.Log($"반응 발생: {interaction}");
-            //UpdatePreviewElemental();
-            Enemy firstEnemy = GameManager.Instance.enemyList[0];
-            firstEnemy.ShowFriendElemental(_visualElemental, _willCastSprites);
-        }
-        else
-        {
-            Debug.Log($"조합 실패: {_realElemental} + {_visualElemental}는 잘못된 마법이다(기본 데미지 적용)");
-            GameManager.Instance.CurrentEnemy.TakeDamage(10);
-        }
+
+        // 적 머리 위에 표시
+        Enemy firstEnemy = GameManager.Instance.enemyList[0];
+        firstEnemy.ShowFriendElemental(_visualElemental, _willCastSprites);
+        Debug.Log($"동료 예고: {_visualElemental}, 실제: {_realElemental}, 속임수: {_isLying}");
     }
+    // 마법 시전
+    //public void CastElemental()
+    //{
+    //    // 무작위 속성 선택
+    //    _visualElemental = (Elemental)Random.Range(0, Enum.GetValues(typeof(Elemental)).Length - 1);
+    //    TryMistake();
+    //    ElementalEffect interaction = _playerSkill.GetInteraction(_realElemental, _visualElemental); // 나중에 _visual 말고 player거 넣어주면 됨
+ 
+    //    if (interaction != null)
+    //    {
+    //        _playerSkill.ApplyInteraction(interaction);
+    //        Debug.Log($"반응 발생: {interaction}");
+    //        //UpdatePreviewElemental();
+    //        Enemy firstEnemy = GameManager.Instance.enemyList[0];
+    //        firstEnemy.ShowFriendElemental(_visualElemental, _willCastSprites);
+    //    }
+    //    else
+    //    {
+    //        Debug.Log($"조합 실패: {_realElemental} + {_visualElemental}는 잘못된 마법이다(기본 데미지 적용)");
+    //        GameManager.Instance.CurrentEnemy.TakeDamage(10);
+    //    }
+    //}
 
     // 실수 시도
     void TryMistake()
