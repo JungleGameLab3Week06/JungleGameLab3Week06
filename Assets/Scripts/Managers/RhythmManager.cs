@@ -17,14 +17,16 @@ public class RhythmManager : MonoBehaviour
     double _prevBpm = 60f;
     [SerializeField] double _bpm = 60f;                              // 분당 비트 수
     double _beatInterval;                                            // 비트 간격 (초 단위)
-    double _nextBeatTime;                                            // 다음 비트 발생 시점
+    double _nextBeatTime = -1;                                            // 다음 비트 발생 시점
     double _lastBeatTime;                                           // 마지막 비트 발생 시점
     BeatJudgementWindow _beatWindow;                                          // 비트 윈도우
     public Action colorFloorAction;                                 // 비트 발생 시 바닥들 색상 변경하는 것
 
     [Header("판정")]
     public bool IsJudging => _isJudging;
-    bool _isJudging = false;                                // 판정 중인지 여부
+    [SerializeField] bool _isJudging = false;                                // 판정 중인지 여부
+    [SerializeField] bool _isJudgeChangedToTrue = false;                  // 판정이 바뀐 비트인지 여부
+    [SerializeField] bool _isJudgeChangedToFalse = false;                  // 판정이 바뀐 비트인지 여부
 
     public struct BeatJudgementWindow
     {
@@ -54,15 +56,21 @@ public class RhythmManager : MonoBehaviour
             _nextBeatTime += _beatInterval;
             RegularBeat();
         }
-        else if (_isJudging && AudioSettings.dspTime >= _lastBeatTime + _beatWindow.FailStart)
+        else if (!_isJudgeChangedToFalse && _isJudging && AudioSettings.dspTime >= _beatWindow.FailStart)
         {
             _isJudging = false; // 판정 종료
+            _isJudgeChangedToFalse = true; // 판정이 바뀐 비트
+            _isJudgeChangedToTrue = false; // 판정이 바뀐 비트
             GameManager.Instance.PlayerController.HasInputThisBeat = false; // 입력 초기화
+            Debug.Log("판정 종료");
         }
-        else if (!_isJudging && AudioSettings.dspTime >= _lastBeatTime + _beatWindow.SuccessStart2)
+        else if (!_isJudgeChangedToTrue && !_isJudging && AudioSettings.dspTime >= _beatWindow.SuccessStart2)
         {
             _isJudging = true; // 판정 시작
+            _isJudgeChangedToTrue = true; // 판정이 바뀐 비트
+            Debug.Log("판정 시작");
         }
+        
     }
 
     public void Init()
@@ -110,7 +118,7 @@ public class RhythmManager : MonoBehaviour
         {
             Debug.LogWarning("소환 포인트 없음");
         }
-
+        _isJudgeChangedToFalse = false; // 판정이 바뀐 비트 초기화
     }
 
     // 타이밍 판정
