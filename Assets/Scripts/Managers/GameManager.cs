@@ -3,17 +3,17 @@ using UnityEngine;
 using static Define;
 using System.Linq;
 
+// 게임 전반적인 관리 담당
+// 적 소환, 플레이어 및 동료 관리, 웨이브 관리 등
 public class GameManager : MonoBehaviour
 {
+    [Header("싱글톤")]
     static GameManager _instance;
     public static GameManager Instance => _instance;
 
     [Header("적")]
-    [SerializeField] List<Enemy> _normalEnemyPrefab;       // 적 Prefab
-    [SerializeField] List<Enemy> _specialEnemyPrefab;
-    [SerializeField] List<Enemy> _confuseEnemyPrefab;
     List<(Enemy prefab, float weight)> _weightedEnemies;
-    [SerializeField] Transform _spawnPoint;    // 적 소환 지점
+    [SerializeField] Transform _enemySpawnPoint;               // 적 소환 지점
 
     // 웨이브 관리
     int _currentWave = 0;
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     public Enemy CurrentEnemy => _currentEnemy;
 
     // (테스트용)
-    public List<Enemy> enemyList = new List<Enemy>(); // 적 리스트 
+    public List<Enemy> _currentEnemyList = new List<Enemy>(); // 현재 적 리스트 
     public bool isFireStrong = false;
     public bool isLightningStrong = false;
 
@@ -54,61 +54,56 @@ public class GameManager : MonoBehaviour
         }
         _playerController = FindAnyObjectByType<PlayerController>();
         _friend = FindAnyObjectByType<Friend>();
+        _enemySpawnPoint = FindAnyObjectByType<EnemySpawnPoint>().transform;
     }
 
     void Start()
     {
-        _normalEnemyPrefab = Resources.LoadAll<Enemy>("Prefabs/Enemies/None").ToList();
-        _specialEnemyPrefab = Resources.LoadAll<Enemy>("Prefabs/Enemies/Special").ToList();
-        _confuseEnemyPrefab = Resources.LoadAll<Enemy>("Prefabs/Enemies/Confuse").ToList();
-
-        InitializeWaveConfigurations();
-
-        StartWave(1);
-        Debug.Log($"웨이브 {_currentWave} 시작! 가중치: Normal={_weightedEnemies.First(e => _normalEnemyPrefab.Contains(e.prefab)).weight}, Special={_weightedEnemies.First(e => _specialEnemyPrefab.Contains(e.prefab)).weight}, Confuse={_weightedEnemies.First(e => _confuseEnemyPrefab.Contains(e.prefab)).weight}");
+        StartWave(0);
+        //Debug.Log($"웨이브 {_currentWave} 시작! 가중치: Normal={_weightedEnemies.First(e => _normalEnemyPrefabList.Contains(e.prefab)).weight}, Special={_weightedEnemies.First(e => _specialEnemyPrefabList.Contains(e.prefab)).weight}, Confuse={_weightedEnemies.First(e => _confuseEnemyPrefabList.Contains(e.prefab)).weight}");
     }
 
-    void InitializeWaveConfigurations()
-    {
-        // 웨이브 1: Normal 100%, Special 0%, Confuse 0%
-        _waveConfigurations[1] = new List<(Enemy, float)>();
-        float normalWeight1 = _normalEnemyPrefab.Count > 0 ? 1f / _normalEnemyPrefab.Count : 0f;
-        float specialWeight1 = 0f;
-        float confuseWeight1 = 0f;
-        _normalEnemyPrefab.ForEach(e => _waveConfigurations[1].Add((e, normalWeight1)));
-        _specialEnemyPrefab.ForEach(e => _waveConfigurations[1].Add((e, specialWeight1)));
-        _confuseEnemyPrefab.ForEach(e => _waveConfigurations[1].Add((e, confuseWeight1)));
-        Debug.Log($"웨이브 1 설정: {_waveConfigurations[1].Count} 항목");
+    //void InitializeWaveConfigurations()
+    //{
+    //    // 웨이브 1: Normal 100%, Special 0%, Confuse 0%
+    //    _waveConfigurations[1] = new List<(Enemy, float)>();
+    //    float normalWeight1 = _normalEnemyPrefabList.Count > 0 ? 1f / _normalEnemyPrefabList.Count : 0f;
+    //    float specialWeight1 = 0f;
+    //    float confuseWeight1 = 0f;
+    //    _normalEnemyPrefabList.ForEach(e => _waveConfigurations[1].Add((e, normalWeight1)));
+    //    _specialEnemyPrefabList.ForEach(e => _waveConfigurations[1].Add((e, specialWeight1)));
+    //    _confuseEnemyPrefabList.ForEach(e => _waveConfigurations[1].Add((e, confuseWeight1)));
+    //    Debug.Log($"웨이브 1 설정: {_waveConfigurations[1].Count} 항목");
 
-        // 웨이브 2: Normal 70%, Special 0%, Confuse 30%
-        _waveConfigurations[2] = new List<(Enemy, float)>();
-        float normalWeight2 = _normalEnemyPrefab.Count > 0 ? 0.7f / _normalEnemyPrefab.Count : 0f;
-        float specialWeight2 = 0f;
-        float confuseWeight2 = _confuseEnemyPrefab.Count > 0 ? 0.3f / _confuseEnemyPrefab.Count : 0f;
-        _normalEnemyPrefab.ForEach(e => _waveConfigurations[2].Add((e, normalWeight2)));
-        _specialEnemyPrefab.ForEach(e => _waveConfigurations[2].Add((e, specialWeight2)));
-        _confuseEnemyPrefab.ForEach(e => _waveConfigurations[2].Add((e, confuseWeight2)));
-        Debug.Log($"웨이브 2 설정: {_waveConfigurations[2].Count} 항목");
+    //    // 웨이브 2: Normal 70%, Special 0%, Confuse 30%
+    //    _waveConfigurations[2] = new List<(Enemy, float)>();
+    //    float normalWeight2 = _normalEnemyPrefabList.Count > 0 ? 0.7f / _normalEnemyPrefabList.Count : 0f;
+    //    float specialWeight2 = 0f;
+    //    float confuseWeight2 = _confuseEnemyPrefabList.Count > 0 ? 0.3f / _confuseEnemyPrefabList.Count : 0f;
+    //    _normalEnemyPrefabList.ForEach(e => _waveConfigurations[2].Add((e, normalWeight2)));
+    //    _specialEnemyPrefabList.ForEach(e => _waveConfigurations[2].Add((e, specialWeight2)));
+    //    _confuseEnemyPrefabList.ForEach(e => _waveConfigurations[2].Add((e, confuseWeight2)));
+    //    Debug.Log($"웨이브 2 설정: {_waveConfigurations[2].Count} 항목");
 
-        // 웨이브 3: Normal 30%, Special 40%, Confuse 30%
-        _waveConfigurations[3] = new List<(Enemy, float)>();
-        float normalWeight3 = _normalEnemyPrefab.Count > 0 ? 0.3f / _normalEnemyPrefab.Count : 0f;
-        float specialWeight3 = _specialEnemyPrefab.Count > 0 ? 0.4f / _specialEnemyPrefab.Count : 0f;
-        float confuseWeight3 = _confuseEnemyPrefab.Count > 0 ? 0.3f / _confuseEnemyPrefab.Count : 0f;
-        _normalEnemyPrefab.ForEach(e => _waveConfigurations[3].Add((e, normalWeight3)));
-        _specialEnemyPrefab.ForEach(e => _waveConfigurations[3].Add((e, specialWeight3)));
-        _confuseEnemyPrefab.ForEach(e => _waveConfigurations[3].Add((e, confuseWeight3)));
-        Debug.Log($"웨이브 3 설정: {_waveConfigurations[3].Count} 항목");
-    }
+    //    // 웨이브 3: Normal 30%, Special 40%, Confuse 30%
+    //    _waveConfigurations[3] = new List<(Enemy, float)>();
+    //    float normalWeight3 = _normalEnemyPrefabList.Count > 0 ? 0.3f / _normalEnemyPrefabList.Count : 0f;
+    //    float specialWeight3 = _specialEnemyPrefabList.Count > 0 ? 0.4f / _specialEnemyPrefabList.Count : 0f;
+    //    float confuseWeight3 = _confuseEnemyPrefabList.Count > 0 ? 0.3f / _confuseEnemyPrefabList.Count : 0f;
+    //    _normalEnemyPrefabList.ForEach(e => _waveConfigurations[3].Add((e, normalWeight3)));
+    //    _specialEnemyPrefabList.ForEach(e => _waveConfigurations[3].Add((e, specialWeight3)));
+    //    _confuseEnemyPrefabList.ForEach(e => _waveConfigurations[3].Add((e, confuseWeight3)));
+    //    Debug.Log($"웨이브 3 설정: {_waveConfigurations[3].Count} 항목");
+    //}
 
     public void StartWave(int waveNumber)
     {
         _currentWave = waveNumber;
-        if (_waveConfigurations.TryGetValue(waveNumber, out List<(Enemy prefab, float weight)> waveConfig))
+        if (Manager.Data.WaveInfoDict.TryGetValue(waveNumber, out List<(Enemy prefab, float weight)> waveConfig))
         {
             _weightedEnemies = waveConfig;
             _waveMonsterCount = waveConfig.Count;
-            Debug.Log($"웨이브 {_currentWave} 시작! 가중치: Normal={waveConfig.First(e => _normalEnemyPrefab.Contains(e.prefab)).weight}, Special={waveConfig.First(e => _specialEnemyPrefab.Contains(e.prefab)).weight}, Confuse={waveConfig.First(e => _confuseEnemyPrefab.Contains(e.prefab)).weight}");
+            //Debug.Log($"웨이브 {_currentWave} 시작! 가중치: Normal={waveConfig.First(e => _normalEnemyPrefabList.Contains(e.prefab)).weight}, Special={waveConfig.First(e => _specialEnemyPrefabList.Contains(e.prefab)).weight}, Confuse={waveConfig.First(e => _confuseEnemyPrefabList.Contains(e.prefab)).weight}");
         }
         else
         {
@@ -117,16 +112,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // 적 소환
     public void SpawnEnemy()
     {
-        if(!CheckSpawnCondition()) return;
+        if(!CheckSpawnCondition()) 
+            return;
 
         Enemy enemy = GetRandomEnemy();
-        _currentEnemy = Instantiate(enemy, _spawnPoint.position, Quaternion.identity);
-        enemyList.Add(_currentEnemy);
+        _currentEnemy = Instantiate(enemy, _enemySpawnPoint.position, Quaternion.identity);
+        _currentEnemyList.Add(_currentEnemy);
         _waveMonsterCount--;
 
-        if (enemyList.Count > 0)
+        if (_currentEnemyList.Count > 0)
             _friend.PrepareElemental(); // 동료 마법 준비
     }
 
@@ -155,7 +152,7 @@ public class GameManager : MonoBehaviour
 
         if (_waveMonsterCount <= 0)
         {
-            if(enemyList.Count == 0)
+            if(_currentEnemyList.Count == 0)
             {
                 StartWave(_currentWave + 1); // 다음 웨이브 시작
             }
@@ -164,21 +161,21 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
+    // 적 중 가장 앞에 있는 적 반환 (여러 개면 전부 반환)
     public List<Enemy> GetFrontEnemies()
     {
-        if (enemyList.Count == 0) return new List<Enemy>();
-
-        float minX = enemyList.Min(e => e.transform.position.x);
-        return enemyList.Where(e => Mathf.Approximately(e.transform.position.x, minX)).ToList();
+        float minX = _currentEnemyList.Min(enemy => enemy.transform.position.x);
+        return _currentEnemyList.Where(enemy => Mathf.Approximately(enemy.transform.position.x, minX)).ToList();
     }
 
+    // 소환 지점 검사
     public bool CheckSpawnPoint()
     {
-        if (_spawnPoint == null || enemyList.Count == 0)
+        if (_enemySpawnPoint == null || _currentEnemyList.Count == 0)
             return true;
 
-        float spawnX = _spawnPoint.position.x;
-        int count = enemyList.Count(e => Mathf.Approximately(e.transform.position.x, spawnX));
+        float spawnX = _enemySpawnPoint.position.x;
+        int count = _currentEnemyList.Count(e => Mathf.Approximately(e.transform.position.x, spawnX));
         return count < 2;
     }
 }

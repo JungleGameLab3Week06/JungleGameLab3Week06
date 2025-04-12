@@ -19,17 +19,17 @@ public class Define
     // 원소 효과 <- EnemyState와 순서 및 내용 동일
     public enum ElementalEffect
     {
-        None,      // 없음
+        None,          // 없음
         ElectricShock, // 감전
-        Fire,      // 화염
-        Water,     // 물
-        Ground,    // 땅
-        Lightning, // 번개
-        Wall,      // 벽
-        Diffusion, // 확산
-        Ignition,  // 점화
-        Fog,       // 안개
-        Grease,    // 기름
+        Fire,          // 화염
+        Water,         // 물
+        Ground,        // 땅
+        Lightning,     // 번개
+        Wall,          // 벽
+        Diffusion,     // 확산
+        Ignition,      // 점화
+        Fog,           // 안개
+        Grease,        // 기름
     }
 
     // 플레이어 마법 속성
@@ -41,11 +41,13 @@ public class Define
         Lightning,  // 번개
         None
     }
+
+    // 적 타입
     public enum EnemyType
     {
-        None,    //기본타입
-        Special, //특수타입(강적)
-        Confuse  //혼란타입
+        Normal,    // 기본타입
+        Special,   // 특수타입(강적)
+        Confuse    // 혼란타입
     }
 
     #region Sound
