@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour, IStatus
     [SerializeField] int _moveType = 0;
     public bool IsMoving => _isMoving; // 적 이동 타입
     bool _isMoving = true;
+    bool _halfMove = false; // 반 박자 이동 여부
     [SerializeField] float _positionY1;
     [SerializeField] float _positionY2;
 
@@ -54,8 +55,26 @@ public class Enemy : MonoBehaviour, IStatus
             return;
         }
 
+        // 벽 체크: Wall 스크립트가 포함된 오브젝트가 x-2에 있으면 공격
+        foreach (Wall obj in FindObjectsByType<Wall>(FindObjectsSortMode.None))
+        {
+            if (Mathf.Approximately(obj.transform.position.x, transform.position.x - 2))
+            {
+                Attack(obj.gameObject);
+                _isMoving = false; // 이동 중지
+                return;
+            }
+        }
+        // 플레이어 체크
+        if (Mathf.Approximately(PlayerController.Instance.transform.position.x, transform.position.x - 2))
+        {
+            Attack(PlayerController.Instance.gameObject);
+            _isMoving = false; // 이동 중지
+            return;
+        }
+
         // 앞 열의 적이 2명이상이면 이동하지 않음
-        switch(CheckFrontLine())
+        switch (CheckFrontLine())
         {
             case 0: // 적이 2명 이상이면 이동하지 않음
                 _isMoving = false; // 이동 중지
@@ -79,7 +98,11 @@ public class Enemy : MonoBehaviour, IStatus
             //빠른몹
             case 1:
                 transform.position += (Vector3)(Vector2.left * _moveSpeed); // 왼쪽으로 이동
-                StartCoroutine(MoveHalfBeat()); // 반 박자 이동
+                if(!_halfMove)
+                {
+                    StartCoroutine(MoveHalfBeat()); // 반 박자 이동
+                }
+                _halfMove = false; // 반 박자 이동
                 break;
             //느린몹
             case 2:
@@ -111,14 +134,37 @@ public class Enemy : MonoBehaviour, IStatus
     public void TakeDamage(int amount)
     {
         int steelDamage = amount - _hp; // 강철 HP에 입힐 데미지;
-        if (_hp > 0)
+        
+        if (_hp > 0 || _steelHp > 0)
         {
-            _hp = Mathf.Clamp(_hp - amount, 0, 100);
+            if (_hp > 0)
+            {
+                _hp = Mathf.Clamp(_hp - amount, 0, 100);
+            }
+            if (_steelHp > 0 && amount >= 2 && steelDamage > 0)
+            {
+                _steelHp = Mathf.Clamp(_steelHp - steelDamage, 0, 100);
+                _hp = 0;
+            }
+            _hearts.UpdateHearts(_hp + _steelHp); // 체력 UI 업데이트
+            if (_hp <= 0 && _steelHp <= 0)
+                Die();
         }
-        if(_steelHp > 0 && amount >= 2 && steelDamage > 0)
+    }
+
+    // 공격
+    void Attack(GameObject target)
+    {
+        // 공격 애니메이션 재생
+        _anim.SetTrigger("AttackTrigger");
+        // 적이 벽에 닿으면 벽 파괴
+        if (target.TryGetComponent<Wall>(out Wall wall))
         {
-            _steelHp = Mathf.Clamp(_steelHp - steelDamage, 0, 100);
-            _hp = 0;
+            Destroy(target);
+        }
+        if (target.TryGetComponent<PlayerController>(out PlayerController player))
+        {
+            player.TakeDamage(100); // 플레이어에게 데미지 입히기
         }
 
         if(_hearts != null)
@@ -132,43 +178,8 @@ public class Enemy : MonoBehaviour, IStatus
     IEnumerator MoveHalfBeat()
     {
         yield return new WaitForSeconds((float)RhythmManager.Instance.BeatInterval / 2);
-        List<Enemy> enemies = GameManager.Instance.CurrentEnemyList;
-        int count = 0;
-        int posY;
-        //기본 직진
-        if(transform.position.y == _positionY1)
-            posY = 1;
-        else
-            posY = 2;
-        foreach (Enemy e in enemies)
-        {
-            if (Mathf.Approximately(e.transform.position.x, transform.position.x - 2))
-            {
-                count++;
-                if (count == 1)
-                {
-                    posY = e.transform.position.y == _positionY1 ? 2 : 1; // 적의 y좌표에 따라 이동할 y좌표 결정
-                }
-                else if (count == 2)
-                {
-                    _isMoving = false; // 이동 중지
-                    posY = 0; // 적이 2명 이상이면 이동하지 않음
-                }
-            }
-        }
-        
-        if(posY == 1)
-        {
-            _isMoving = true; // 이동 재개
-            transform.position = new Vector3(transform.position.x, _positionY1, transform.position.z);
-            transform.position += (Vector3)(Vector2.left * _moveSpeed); // 왼쪽으로 이동
-        }   
-        else if (posY == 2)
-        {
-            _isMoving = true; // 이동 재개
-            transform.position = new Vector3(transform.position.x, _positionY2, transform.position.z);
-            transform.position += (Vector3)(Vector2.left * _moveSpeed); // 왼쪽으로 이동
-        }
+        _halfMove = true;
+        Move();
     }
 
     // 이동 전 앞라인 체크(정지0, 윗길로 이동1, 아랫길로 이동2)
@@ -184,7 +195,7 @@ public class Enemy : MonoBehaviour, IStatus
             posY = 2;
         foreach (Enemy e in enemies)
         {
-            if (Mathf.Approximately(e.transform.position.x, transform.position.x - 2) && !e.IsMoving)
+            if (Mathf.Approximately(e.transform.position.x, transform.position.x - 2) && (!e.IsMoving || _halfMove))
             {
                 count++;
                 if(count == 1)
