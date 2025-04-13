@@ -1,7 +1,7 @@
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
-using System.Linq;
 
 // 게임 전반적인 관리 담당
 // 적 소환, 플레이어 및 동료 관리, 웨이브 관리 등
@@ -26,10 +26,8 @@ public class GameManager : MonoBehaviour
     Enemy _currentEnemy; // 추후에 리스트로 바꿔서 관리하기
     public Enemy CurrentEnemy => _currentEnemy;
 
-    // (테스트용)
-    public List<Enemy> _currentEnemyList = new List<Enemy>(); // 현재 적 리스트 
-    public bool isFireStrong = false;
-    public bool isLightningStrong = false;
+    public List<Enemy> CurrentEnemyList => _currentEnemyList;
+    List<Enemy> _currentEnemyList = new List<Enemy>();      // 현재 적 리스트 
 
     void Awake()
     {

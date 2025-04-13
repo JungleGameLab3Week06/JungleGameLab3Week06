@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
@@ -11,17 +12,32 @@ public class SoundManager
 
     public void Init()
     {
+        // AudioSource 컴포넌트 가져오기
         AudioSource[] audioSources = Manager.Instance.transform.GetComponentsInChildren<AudioSource>();
         _bgmSource = audioSources[0];
         _effectSource = audioSources[1];
 
-        /* 추후에 Resources 특정 폴더 다 가져와서 등록하기 */
-
-        // BGM 등록
-        AudioClip audioClip =  Manager.Resource.Load<AudioClip>($"Sounds/BGM/{BGM.Main.ToString()}");
-        _bgmDict.Add(BGM.Main, audioClip);
-
-        // Effect 등록
+        // Resources 폴더에서 AudioClip 로드
+        // 1. BGM 등록
+        AudioClip[] bgmClips = Manager.Resource.LoadAll<AudioClip>($"Sounds/BGM");
+        foreach (AudioClip bgmClip in bgmClips)
+        {
+            string name = bgmClip.name;
+            if (Enum.TryParse(name, out BGM bgmType))
+            {
+                _bgmDict.Add(bgmType, bgmClip);
+            }
+        }
+        // 2. Effect 등록
+        AudioClip[] effectClips = Manager.Resource.LoadAll<AudioClip>($"Sounds/Effect");
+        foreach (AudioClip effectClip in effectClips)
+        {
+            string name = effectClip.name;
+            if (Enum.TryParse(name, out Effect effectType))
+            {
+                _effectDict.Add(effectType, effectClip);
+            }
+        }
     }
 
     // BGM 재생

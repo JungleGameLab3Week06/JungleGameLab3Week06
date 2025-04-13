@@ -107,7 +107,7 @@ public class RhythmManager : MonoBehaviour
         colorFloorAction?.Invoke();                 // 바닥 색상 변경
 
         /* 추후에 Action으로 빼기 */
-        List<Enemy> enemies = GameManager.Instance._currentEnemyList; // 적 리스트
+        List<Enemy> enemies = GameManager.Instance.CurrentEnemyList; // 적 리스트
         foreach (Enemy enemy in enemies)
         {
             enemy.Move();

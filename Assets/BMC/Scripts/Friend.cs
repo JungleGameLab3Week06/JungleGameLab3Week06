@@ -22,23 +22,21 @@ public class Friend : MonoBehaviour
     public void PrepareElemental()
     {
         // 무작위 속성 선택해서 예고
-        _visualElemental = (Elemental)Random.Range(0, Enum.GetValues(typeof(Elemental)).Length - 1);
+        _visualElemental = GetRandomElemental();
         TryMistake();
 
         // 동료 마법 예고 UI에 원소 표시
         _friendCastVisualCanvas.SetElementalImage(_isLying, _visualElemental);
-
-        Enemy firstEnemy = GameManager.Instance._currentEnemyList[0];
         Debug.Log($"친구 예고: 비주얼({_visualElemental}), 실제({_realElemental})");
     }
 
     // 실수 시도
     void TryMistake()
     {
-        Enemy firstEnemy = GameManager.Instance._currentEnemyList[0];
+        Enemy firstEnemy = GameManager.Instance.CurrentEnemyList[0];
         if (firstEnemy.EnemyType == EnemyType.Confuse)  // 적이 혼란 상태일 경우(실수하게 됨)
         {
-            _realElemental = Random.value > _mistakeProbability ? (Elemental)Random.Range(0, Enum.GetValues(typeof(Elemental)).Length - 1) : _visualElemental;
+            _realElemental = Random.value > _mistakeProbability ? GetRandomElemental() : _visualElemental;
 
             if(_realElemental != _visualElemental)
                 _isLying = true;
@@ -55,13 +53,19 @@ public class Friend : MonoBehaviour
     public void UpdatePreviewElemental()
     {
         // 비주얼적으로 보이는 것과 실제 속성 설정
-        _visualElemental = (Elemental)Random.Range(0, Enum.GetValues(typeof(Elemental)).Length - 1);
-        Elemental newRealElemental = (Elemental)Random.Range(0, Enum.GetValues(typeof(Elemental)).Length - 1);
-        _realElemental = newRealElemental;
+        _visualElemental = GetRandomElemental();
+        _realElemental = GetRandomElemental();
 
         // 원소 표시
         _isLying = (_realElemental != _visualElemental) ? true : false;
         _friendCastVisualCanvas.SetElementalImage(_isLying, _visualElemental);
         Debug.Log($"친구 새로운 예고: 비주얼({_visualElemental}), 실제({_realElemental})");
+    }
+
+    // 랜덤한 원소 반환
+    public Elemental GetRandomElemental()
+    {
+        Elemental randomElemental = (Elemental)Random.Range(0, Enum.GetValues(typeof(Elemental)).Length - 1);
+        return randomElemental;
     }
 }
