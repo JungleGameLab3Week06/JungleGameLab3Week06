@@ -64,21 +64,19 @@ public class GameManager : MonoBehaviour
     }
 
     // 적 소환
-    public void SpawnEnemy()
+    public void SpawnEnemy(Vector3 spawnPoint)
     {
         if(!CheckSpawnCondition()) 
             return;
 
         Enemy enemy = GetRandomEnemy();
-        _currentEnemy = Instantiate(enemy, _enemySpawnPoint.position, Quaternion.identity);
+        _currentEnemy = Instantiate(enemy, spawnPoint, Quaternion.identity);
         _currentEnemyList.Add(_currentEnemy);
         _waveMonsterCount--;
 
         if (_currentEnemyList.Count > 0)
             _friend.PrepareElemental(); // 동료 마법 준비
 
-        // ? 나중에 옮기기
-        _currentWave++;
     }
 
     Enemy GetRandomEnemy()
@@ -104,6 +102,7 @@ public class GameManager : MonoBehaviour
             if(_currentEnemyList.Count == 0)
             {
                 StartWave(); // 다음 웨이브 시작
+                Debug.Log($"웨이브 {_currentWave} 시작!");
             }
             return false;
         }
@@ -118,13 +117,27 @@ public class GameManager : MonoBehaviour
     }
 
     // 소환 지점 검사
-    public bool CheckSpawnPoint()
+    public bool CheckSpawnPoint(out Vector3 spawnPoint)
     {
+        spawnPoint = _enemySpawnPoint.position;
         if (_enemySpawnPoint == null || _currentEnemyList.Count == 0)
             return true;
 
         float spawnX = _enemySpawnPoint.position.x;
-        int count = _currentEnemyList.Count(e => Mathf.Approximately(e.transform.position.x, spawnX));
-        return count < 2;
+        List<Enemy> spawnPointEnemies = new List<Enemy>();
+        foreach (Enemy enemy in _currentEnemyList)
+        {
+            if (Mathf.Approximately(enemy.transform.position.x, spawnX))
+                spawnPointEnemies.Add(enemy);
+        }
+        if(spawnPointEnemies.Count == 0)
+            return true;
+        else if (spawnPointEnemies.Count == 1)
+        {
+            if(spawnPointEnemies[0].transform.position == _enemySpawnPoint.position)
+                spawnPoint = _enemySpawnPoint.position + new Vector3(0, -4f, 0);
+            return true;
+        }
+        return false;
     }
 }

@@ -116,7 +116,7 @@ MonoBehaviour:
   _enemyType: 0
   _enemyState: 0
   _moveType: 1
-  _hp: 3
+  _hp: 2
   _steelHp: 0
   _sturnCoolCount: 0
 --- !u!1 &3891161119513418810
