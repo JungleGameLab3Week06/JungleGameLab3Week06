@@ -11,7 +11,12 @@ public class Fog : Skill
     public override void Execute()
     {
         PlayerSkill playerSkill = PlayerController.Instance.PlayerSkill;
-        playerSkill.ExcuteEffect(ElementalEffect.Fog, new Vector3(0, 0, 0));
+        playerSkill.ExcuteEffect(ElementalEffect.Fog, Vector3.down * 5);
         playerSkill.IsLightningStrong = true;
+    }
+
+    void OnDestroy()
+    {
+        playerSkill.IsLightningStrong = false;
     }
 }

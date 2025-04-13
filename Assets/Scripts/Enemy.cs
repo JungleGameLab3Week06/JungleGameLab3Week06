@@ -120,7 +120,10 @@ public class Enemy : MonoBehaviour, IStatus
             _steelHp = Mathf.Clamp(_steelHp - steelDamage, 0, 100);
             _hp = 0;
         }
-        _hearts.UpdateHearts(_hp + _steelHp); // 체력 UI 업데이트
+
+        if(_hearts != null)
+            _hearts.UpdateHearts(_hp + _steelHp); // 체력 UI 업데이트
+
         if (_hp <= 0 && _steelHp <= 0)
             Die();
     }

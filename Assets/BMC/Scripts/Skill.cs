@@ -5,10 +5,12 @@ using static Define;
 public class Skill : MonoBehaviour
 {
     protected PlayerSkill playerSkill;
+    CameraController _cameraController;
 
     public void Init()
     {
         playerSkill = PlayerController.Instance.PlayerSkill;
+        _cameraController = Camera.main.GetComponent<CameraController>();
     }
 
     public virtual void Execute()
@@ -36,7 +38,7 @@ public class Skill : MonoBehaviour
 
             if (enemyList[i] != null)
             {
-                Vector3 position = (isSpawnTarget) ? enemyList[i].transform.position : Vector3.zero;
+                Vector3 position = (isSpawnTarget) ? enemyList[i].transform.position : Vector3.down * 5f;
 
                 if (playerSkill == null)
                 {
@@ -45,6 +47,7 @@ public class Skill : MonoBehaviour
 
                 playerSkill.ExcuteEffect(elementalEffect, position);
                 enemyList[i].TakeDamage(damage);
+                CameraController.Instance.ShakeCamera(2f);
             }
         }
         Debug.Log($"모든 적에게 {damage} 데미지!");

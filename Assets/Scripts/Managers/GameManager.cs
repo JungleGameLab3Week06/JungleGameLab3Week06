@@ -54,6 +54,9 @@ public class GameManager : MonoBehaviour
             _currentWaveSpawnInfoList = currentWaveInfoList;
             _waveMonsterCount = currentWaveInfoList.Count;
             _currentWave++;
+
+            RhythmManager.Instance.IncreaseBPM();
+
             //Debug.Log($"웨이브 {_currentWave} 시작! 가중치: Normal={currentWaveInfoList.First(e => _normalEnemyPrefabList.Contains(e.prefab)).weight}, Special={waveConfig.First(e => _specialEnemyPrefabList.Contains(e.prefab)).weight}, Confuse={waveConfig.First(e => _confuseEnemyPrefabList.Contains(e.prefab)).weight}");
         }
         else
@@ -112,7 +115,15 @@ public class GameManager : MonoBehaviour
     // 적 중 가장 앞에 있는 적 반환 (여러 개면 전부 반환)
     public List<Enemy> GetFrontEnemies()
     {
-        float minX = _currentEnemyList.Min(enemy => enemy.transform.position.x);
+        float minX = float.MaxValue;
+        for(int i=0; i<_currentEnemyList.Count; i++)
+        {
+            if (_currentEnemyList[i] == null)
+                continue;
+            if (_currentEnemyList[i].transform.position.x < minX)
+                minX = _currentEnemyList[i].transform.position.x;
+        }
+
         return _currentEnemyList.Where(enemy => Mathf.Approximately(enemy.transform.position.x, minX)).ToList();
     }
 
