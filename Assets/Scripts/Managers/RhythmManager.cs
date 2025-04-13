@@ -113,9 +113,9 @@ public class RhythmManager : MonoBehaviour
             enemy.Move();
         }
 
-        if (GameManager.Instance.CheckSpawnPoint()) // 소환 포인트 체크
+        if (GameManager.Instance.CheckSpawnPoint(out Vector3 spawnPoint)) // 소환 포인트 체크
         {
-            GameManager.Instance.SpawnEnemy(); // 적 소환
+            GameManager.Instance.SpawnEnemy(spawnPoint); // 적 소환
             Debug.LogWarning("적 소환");
         }
         else

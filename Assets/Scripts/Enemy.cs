@@ -1,5 +1,8 @@
 using UnityEngine;
 using static Define;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Enemy : MonoBehaviour, IStatus
 {
@@ -12,7 +15,10 @@ public class Enemy : MonoBehaviour, IStatus
     [SerializeField] EnemyState _enemyState = EnemyState.None;       // 적 상태
 
     [SerializeField] int _moveType = 0;
-    bool _isMoved = false;
+    public bool IsMoving => _isMoving; // 적 이동 타입
+    bool _isMoving = true;
+    [SerializeField] float _positionY1;
+    [SerializeField] float _positionY2;
 
     [Header("스테이터스")]
     public int Health => _hp;
@@ -27,22 +33,44 @@ public class Enemy : MonoBehaviour, IStatus
     {
         _anim = GetComponent<Animator>();
         _hearts = GetComponentInChildren<EnemyHearts>();
-
+        _positionY1 = transform.position.y;
+        _positionY2 = transform.position.y - 4f;
     }
 
     // 적 이동
     public void Move()
     {
         Wriggle();
+        // 스턴 판정
         if (_enemyState == EnemyState.Shock && _sturnCoolCount > 0) // 스턴 상태일 때는 이동하지 않음
         {
+            _isMoving = false; // 이동 중지
             _sturnCoolCount--;
             if(_sturnCoolCount == 0) // 스턴 상태 해제
+            {
                 _enemyState = EnemyState.None;
-
+                _isMoving = true;
+            }
             return;
         }
-        switch(_moveType)
+
+        // 앞 열의 적이 2명이상이면 이동하지 않음
+        switch(CheckFrontLine())
+        {
+            case 0: // 적이 2명 이상이면 이동하지 않음
+                _isMoving = false; // 이동 중지
+                return;
+            case 1: // 윗길로 이동
+                _isMoving = true; // 이동 재개
+                transform.position = new Vector3(transform.position.x, _positionY1, transform.position.z);
+                break;
+            case 2: // 아랫길로 이동
+                _isMoving = true; // 이동 재개
+                transform.position = new Vector3(transform.position.x, _positionY2, transform.position.z);
+                break;
+        }
+
+        switch (_moveType)
         {
             //일반몹
             case 0:
@@ -50,18 +78,19 @@ public class Enemy : MonoBehaviour, IStatus
                 break;
             //빠른몹
             case 1:
-                transform.position += (Vector3)(Vector2.left * _moveSpeed * 2); // 왼쪽으로 두배 이동
+                transform.position += (Vector3)(Vector2.left * _moveSpeed); // 왼쪽으로 이동
+                StartCoroutine(MoveHalfBeat()); // 반 박자 이동
                 break;
             //느린몹
             case 2:
-                if (!_isMoved)
+                if (_isMoving)
                 {
                     transform.position += (Vector3)(Vector2.left * _moveSpeed); // 두턴마다 왼쪽으로 이동
-                    _isMoved = true;
+                    _isMoving = false;
                 }
                 else
                 {
-                    _isMoved = false;
+                    _isMoving = true;
                 }
                 break;
             default:
@@ -96,6 +125,74 @@ public class Enemy : MonoBehaviour, IStatus
             Die();
     }
 
+    // 반 박자 이동
+    IEnumerator MoveHalfBeat()
+    {
+        yield return new WaitForSeconds((float)RhythmManager.Instance.BeatInterval / 2);
+        List<Enemy> enemies = GameManager.Instance.CurrentEnemyList;
+        int count = 0;
+        int posY;
+        //기본 직진
+        if(transform.position.y == _positionY1)
+            posY = 1;
+        else
+            posY = 2;
+        foreach (Enemy e in enemies)
+        {
+            if (Mathf.Approximately(e.transform.position.x, transform.position.x - 2))
+            {
+                count++;
+                if (count == 1)
+                {
+                    posY = e.transform.position.y == _positionY1 ? 2 : 1; // 적의 y좌표에 따라 이동할 y좌표 결정
+                }
+                else if (count == 2)
+                {
+                    _isMoving = false; // 이동 중지
+                    posY = 0; // 적이 2명 이상이면 이동하지 않음
+                }
+            }
+        }
+        
+        if(posY == 1)
+        {
+            _isMoving = true; // 이동 재개
+            transform.position = new Vector3(transform.position.x, _positionY1, transform.position.z);
+            transform.position += (Vector3)(Vector2.left * _moveSpeed); // 왼쪽으로 이동
+        }   
+        else if (posY == 2)
+        {
+            _isMoving = true; // 이동 재개
+            transform.position = new Vector3(transform.position.x, _positionY2, transform.position.z);
+            transform.position += (Vector3)(Vector2.left * _moveSpeed); // 왼쪽으로 이동
+        }
+    }
+
+    // 이동 전 앞라인 체크(정지0, 윗길로 이동1, 아랫길로 이동2)
+    int CheckFrontLine()
+    {
+        List<Enemy> enemies = GameManager.Instance.CurrentEnemyList;
+        int count = 0;
+        int posY;
+        //기본 직진
+        if (transform.position.y == _positionY1)
+            posY = 1;
+        else
+            posY = 2;
+        foreach (Enemy e in enemies)
+        {
+            if (Mathf.Approximately(e.transform.position.x, transform.position.x - 2) && !e.IsMoving)
+            {
+                count++;
+                if(count == 1)
+                    posY = e.transform.position.y == _positionY1 ? 2 : 1; // 적의 y좌표에 따라 이동할 y좌표 결정
+                else if (count == 2)
+                    return 0; // 적이 2명 이상이면 이동하지 않음
+            }
+        }
+        return posY;
+    }
+
     // 사망
     public void Die()
     {
@@ -104,6 +201,7 @@ public class Enemy : MonoBehaviour, IStatus
         애니메이션
         효과음 
          */
+        GameManager.Instance.CurrentEnemyList.Remove(this);
         Destroy(gameObject);
     }
 
