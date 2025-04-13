@@ -7,6 +7,9 @@ public class UI_GameQuitBtnCanvas : MonoBehaviour
     void Start()
     {
         _gameQuitBtn = GetComponentInChildren<Button>();
-        _gameQuitBtn.onClick.AddListener(() => Application.Quit());
+        _gameQuitBtn.onClick.AddListener(() => {
+            Manager.Sound.PlayEffect(Define.Effect.BtnClick);
+            Application.Quit(); 
+        });
     }
 }

@@ -11,6 +11,9 @@ public class UI_GameStartBtnCanvas : MonoBehaviour
     {
         _gameStartBtnCanvas = GetComponent<Canvas>();
         _gameStartBtn = GetComponentInChildren<Button>();
-        _gameStartBtn.onClick.AddListener(() => Manager.Scene.LoadScene(SceneType.InGameScene));
+        _gameStartBtn.onClick.AddListener(() => {
+            Manager.Sound.PlayEffect(Effect.BtnClick);
+            Manager.Scene.LoadScene(SceneType.InGameScene); 
+        });
     }
 }
