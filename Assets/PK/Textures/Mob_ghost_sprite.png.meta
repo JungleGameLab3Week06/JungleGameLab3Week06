@@ -43,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Mob_ghost_sprite_0: 4814055431140337489
+      Mob_ghost_sprite_1: -7492499240789429551
+      Mob_ghost_sprite_2: 133158127742308954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
