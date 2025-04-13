@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -67,30 +66,18 @@ public class PlayerSkill : MonoBehaviour
     public void ExcuteEffect(ElementalEffect effect, Vector3 pos)
     {
         GameObject skillEffect = GetSkillEffect(effect);
-
         if (skillEffect != null)
         {
             GameObject effectInstance = Instantiate(skillEffect, pos, Quaternion.identity);
-            Animator animator = effectInstance.GetComponent<Animator>();
-            if (animator != null)
-            {
-                // 애니메이션 길이에 맞춰 삭제
-                AnimationClip clip = animator.runtimeAnimatorController.animationClips.FirstOrDefault();
-                if (clip != null)
-                {
-                    StartCoroutine(DestroyAfterAnimation(effectInstance, clip.length));
-                }
-            }
-        }
-    }
+            float delayTime = 10f;
 
-    // 스킬 애니메이션 후, 파괴
-    IEnumerator DestroyAfterAnimation(GameObject effectInstance, float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        if (effectInstance != null)
-        {
-            Destroy(effectInstance);
+            // 애니메이터 존재하는 경우
+            if(effectInstance.TryGetComponent<Animator>(out Animator anim))
+            {
+                AnimationClip clip = anim.runtimeAnimatorController.animationClips.FirstOrDefault();
+                delayTime = clip.length;
+            }
+            Destroy(effectInstance, delayTime);
         }
     }
 }

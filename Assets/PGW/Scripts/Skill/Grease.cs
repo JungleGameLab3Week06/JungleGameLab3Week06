@@ -10,7 +10,12 @@ public class Grease : Skill
 
     public override void Execute()
     {
-        PlayerController.Instance.PlayerSkill.ExcuteEffect(ElementalEffect.Grease, new Vector3(0, 0, 0));
+        PlayerController.Instance.PlayerSkill.ExcuteEffect(ElementalEffect.Grease, Vector3.down * 5);
         PlayerController.Instance.PlayerSkill.IsFireStrong = true;
+    }
+
+    void OnDestroy()
+    {
+        PlayerController.Instance.PlayerSkill.IsFireStrong = false;
     }
 }

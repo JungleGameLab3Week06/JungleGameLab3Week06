@@ -22,6 +22,8 @@ public class RhythmManager : MonoBehaviour
 
     double _prevBpm;
     [SerializeField] double _bpm = 60f;                             // 분당 비트 수
+    public double BPM { get { return _bpm; } set { _bpm = value; } }
+    double _increaseBPM = 20f;
 
     public double BeatInterval => _beatInterval;
     public double LastBeatTime => _lastBeatTime; 
@@ -98,6 +100,7 @@ public class RhythmManager : MonoBehaviour
         _beatInterval = 60f / _bpm;
         _nextBeatTime = (double)AudioSettings.dspTime + _beatInterval;
         _prevBpm = _bpm;
+        Manager.Sound.SetBGMPitch((float)_bpm);     // BGM 재생 속도 조절
     }
 
     // 정박자
@@ -140,5 +143,10 @@ public class RhythmManager : MonoBehaviour
             SuccessStart2 = beatTime + successLen + failLen,
             End = beatTime + interval
         };
+    }
+
+    public void IncreaseBPM()
+    {
+        _bpm += _increaseBPM;
     }
 }

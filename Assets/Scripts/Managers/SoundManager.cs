@@ -40,10 +40,17 @@ public class SoundManager
         }
     }
 
+    // BGM 재생 속도 조절
+    public void SetBGMPitch(float bpm)
+    {
+        _bgmSource.pitch = bpm / 60;
+    }
+
     // BGM 재생
     public void PlayBGM(BGM bgm)
     {
         _bgmSource.clip = _bgmDict[bgm];
+        _bgmSource.pitch = 1f;
         _bgmSource.Play();
     }
 
