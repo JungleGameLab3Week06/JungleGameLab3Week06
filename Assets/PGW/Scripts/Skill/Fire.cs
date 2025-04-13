@@ -24,7 +24,7 @@ public class Fire : ISkill
             {
                 if (enemy.gameObject.activeSelf)
                 {
-                    playerSkill.ExcuteEffect(ElementalEffect.Fire, enemy.transform.position);
+                    playerSkill.ExcuteEffect(ElementalEffect.Flame, enemy.transform.position);
                     enemy.TakeDamage(_strongDamage);
                 }
             }
@@ -38,7 +38,7 @@ public class Fire : ISkill
         {
             if (enemy != null)
             {
-                playerSkill.ExcuteEffect(ElementalEffect.Fire, enemy.transform.position);
+                playerSkill.ExcuteEffect(ElementalEffect.Flame, enemy.transform.position);
                 enemy.TakeDamage(_baseDamage);
                 Debug.Log($"맨 앞의 적에게 {_baseDamage} 데미지!");
             }

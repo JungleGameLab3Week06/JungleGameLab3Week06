@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fire_0
+      name: Flame_0
       rect:
         serializedVersion: 2
         x: 1
@@ -134,7 +134,7 @@ TextureImporter:
         width: 247
         height: 300
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3d1d18bb3a58b9245bee60e9ffc629de
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Fire_0: 1098286324429101383
+      Flame_0: 1098286324429101383
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
