@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour, IStatus
 
     [Header("비트 판정")]
     bool _isPerfect;
+    
+    public Animator animator;
 
     void Awake()
     {
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviour, IStatus
     public void Attack()
     {
         ElementalEffect interaction = _playerSkill.GetInteraction(_playerElemental, _friend.RealElemental);
+        animator.SetTrigger("AttackTrigger");
+
 
         if (interaction != ElementalEffect.None)
         {

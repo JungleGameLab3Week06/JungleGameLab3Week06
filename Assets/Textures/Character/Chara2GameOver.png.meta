@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: ae58dff59257cd343a02efe5caa08e6f
+guid: ac80fcf4a34da52488d8f1e08b3952c4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7082326438033693337
-    second: MainCharacter_Attack 1_0
+      213: -7058167215661931960
+    second: Chara2GameOver_0
+  - first:
+      213: 1174232437620966361
+    second: Chara2GameOver_1
+  - first:
+      213: 869332917832392044
+    second: Chara2GameOver_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,8 +57,8 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 256
-  spriteBorder: {x: 80, y: 17, z: 150, w: 104}
+  spritePixelsToUnits: 10
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -126,23 +132,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MainCharacter_Attack 1_0
+      name: Chara2GameOver_0
       rect:
         serializedVersion: 2
-        x: 79
-        y: 15
-        width: 794
-        height: 906
+        x: 6
+        y: 90
+        width: 12
+        height: 26
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 99a1b522f5a794260800000000000000
-      internalID: 7082326438033693337
+      spriteID: 842a929205a5c0e90800000000000000
+      internalID: -7058167215661931960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chara2GameOver_1
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 85
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d383204e26bb4010800000000000000
+      internalID: 1174232437620966361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chara2GameOver_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1
+        width: 99
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6d14fecead701c00800000000000000
+      internalID: 869332917832392044
       vertices: []
       indices: 
       edges: []
@@ -152,7 +202,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -161,7 +211,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MainCharacter_Attack 1_0: 7082326438033693337
+      Chara2GameOver_0: -7058167215661931960
+      Chara2GameOver_1: 1174232437620966361
+      Chara2GameOver_2: 869332917832392044
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
