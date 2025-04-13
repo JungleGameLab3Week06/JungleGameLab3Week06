@@ -4,8 +4,8 @@ public class EnemyHearts : MonoBehaviour
 {
     Enemy _enemy; // Reference to the enemy script
 
-    [SerializeField] GameObject _heartPrefab; // Prefab for the heart icon
-    [SerializeField] GameObject _steelHeartPrefab; // Prefab for the steal heart icon
+    GameObject _heartPrefab; // Prefab for the heart icon
+    GameObject _steelHeartPrefab; // Prefab for the steal heart icon
     int _maxHealth = 0; // Maximum number of hearts
     int _maxSteelHealth = 0;
     int _currentHealth = 0; // Current health
@@ -17,6 +17,9 @@ public class EnemyHearts : MonoBehaviour
 
     void Start()
     {
+        _heartPrefab = Manager.Resource.Load<GameObject>("Prefabs/Heart/Heart"); // Load the heart prefab
+        _steelHeartPrefab = Manager.Resource.Load<GameObject>("Prefabs/Heart/SteelHeart"); // Load the steal heart prefab
+
         _maxHealth = _enemy.Health; // Get the maximum health from the enemy script
         _maxSteelHealth = _enemy.SteelHealth; // Get the maximum steel health from the enemy script
         _currentHealth = _maxHealth + _maxSteelHealth;

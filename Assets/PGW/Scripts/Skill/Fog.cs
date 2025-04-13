@@ -1,12 +1,17 @@
 using UnityEngine;
 using static Define;
 
-public class Fog : ISkill
+public class Fog : Skill
 {
-    public void Execute()
+    void Start()
     {
-        PlayerSkill playerSkill = GameManager.Instance.PlayerController.GetComponent<PlayerSkill>();
+        Init();
+    }
+
+    public override void Execute()
+    {
+        PlayerSkill playerSkill = PlayerController.Instance.PlayerSkill;
         playerSkill.ExcuteEffect(ElementalEffect.Fog, new Vector3(0, 0, 0));
-        GameManager.Instance.isLightningStrong = true;
+        playerSkill.IsLightningStrong = true;
     }
 }

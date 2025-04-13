@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5422851429536354324}
   - component: {fileID: 6018156968130667758}
   m_Layer: 0
-  m_Name: EnemyShock
+  m_Name: DummyEnemyShock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
