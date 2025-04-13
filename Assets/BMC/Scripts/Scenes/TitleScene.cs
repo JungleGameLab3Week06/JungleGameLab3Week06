@@ -6,8 +6,7 @@ public class TitleScene : BaseScene
     protected override void Init()
     {
         SceneType = Define.SceneType.TitleScene;
-
-        // 인게임 씬에서 할 것
+        Manager.Sound.PlayBGM(Define.BGM.Title);
         Debug.Log("TitleScene 초기화");
     }
 }
