@@ -155,7 +155,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 45
+        y: 135
         width: 292
         height: 45
       alignment: 0
@@ -177,7 +177,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 90
         width: 336
         height: 45
       alignment: 0
@@ -190,6 +190,116 @@ TextureImporter:
       bones: []
       spriteID: d959e4fa70dd319458e01e636a58ec44
       internalID: -960336991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GameClear_Title
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 45
+        width: 322
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b8f6b0380cb5b24799192d88254530d
+      internalID: -575154837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wave_TItle
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 153
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fe5376e526b5114d930eb67574bb0ff
+      internalID: -2053082647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wave_No_1
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 0
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 196165a624803b642977eedfa21326da
+      internalID: 329357735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wave_No_2
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 0
+        width: 46
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b21516896ad67ac41b89c4fb4aa9c0a3
+      internalID: 802666192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wave_No_3
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 0
+        width: 63
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65c658a073d25a34fafc1f203ce58b1d
+      internalID: 914375921
       vertices: []
       indices: 
       edges: []
@@ -208,8 +318,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      GameClear_Title: -575154837
       Gameover_Title: 1559660567
       Stageclear_Title: -960336991
+      Wave_No_1: 329357735
+      Wave_No_2: 802666192
+      Wave_No_3: 914375921
+      Wave_TItle: -2053082647
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
