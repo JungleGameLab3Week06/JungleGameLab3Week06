@@ -6,7 +6,9 @@ public class Define
     {
         None,
         TitleScene,
-        InGameScene
+        InGameScene,
+        GameOverScene,
+        GameClearScene
     }
 
     // 적 상태
