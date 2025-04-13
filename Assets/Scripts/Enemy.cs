@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour, IStatus
     // 적 이동
     public void Move()
     {
-        //Wriggle();
+        Wriggle();
         if (_enemyState == EnemyState.Shock && _sturnCoolCount > 0) // 스턴 상태일 때는 이동하지 않음
         {
             _sturnCoolCount--;
@@ -107,9 +107,9 @@ public class Enemy : MonoBehaviour, IStatus
         Destroy(gameObject);
     }
 
-    // 꿈틀거리기
-    //public void Wriggle()
-    //{
-    //    _anim.SetTrigger("WriggleTrigger");
-    //}
+    //꿈틀거리기
+    public void Wriggle()
+    {
+        _anim.SetTrigger("WriggleTrigger");
+    }
 }
