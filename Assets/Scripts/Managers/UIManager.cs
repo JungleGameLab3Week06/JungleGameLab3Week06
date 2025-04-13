@@ -14,6 +14,7 @@ public class UIManager
 
     [Header("InGame")]
     public Action<bool> showJudgeTextAction;
+    public Action<string> activateSkillTextAction;
 
     #endregion
 }

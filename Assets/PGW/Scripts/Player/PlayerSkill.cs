@@ -61,6 +61,7 @@ public class PlayerSkill : MonoBehaviour
         if (_skillMap.TryGetValue(effect, out ISkill skill))
         {
             skill.Execute();
+            Manager.UI.activateSkillTextAction?.Invoke(effect.ToString());
             Debug.Log($"스킬 실행: {effect}");
         }
         else
