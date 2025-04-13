@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 4402350525438392227}
   - component: {fileID: 5975105369169749937}
   - component: {fileID: 9210061679827741051}
-  - component: {fileID: 955617831015755436}
   m_Layer: 5
   m_Name: CanvasSkillRequirements
   m_TagString: Untagged
@@ -136,23 +135,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &955617831015755436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090400266410700826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9613b29296e99a6499534617991680ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  images:
-  - {fileID: 1098286324429101383, guid: fce4f5cceab8f22428351ffecbcc24a1, type: 3}
-  - {fileID: 6049605792901559095, guid: bc1118dfc57834d42b40668753e28533, type: 3}
-  - {fileID: 6423806749927177598, guid: 1ec1ca79bd61a3845b5990d146459db5, type: 3}
-  - {fileID: -894095381526335850, guid: d8cca2083027839409a96a748162b300, type: 3}
 --- !u!1 &6062276007584687654
 GameObject:
   m_ObjectHideFlags: 0

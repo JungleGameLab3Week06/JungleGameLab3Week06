@@ -8645,7 +8645,6 @@ GameObject:
   - component: {fileID: 7625491413766055646}
   - component: {fileID: 441542830384953036}
   - component: {fileID: 3106300932099586054}
-  - component: {fileID: 6451533093796478929}
   - component: {fileID: 7625491413766055647}
   m_Layer: 5
   m_Name: UI_FriendCastVisualCanvas
@@ -8684,23 +8683,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6451533093796478929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5317042002974073191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9613b29296e99a6499534617991680ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  images:
-  - {fileID: 1098286324429101383, guid: fce4f5cceab8f22428351ffecbcc24a1, type: 3}
-  - {fileID: 6049605792901559095, guid: bc1118dfc57834d42b40668753e28533, type: 3}
-  - {fileID: 6423806749927177598, guid: 1ec1ca79bd61a3845b5990d146459db5, type: 3}
-  - {fileID: -894095381526335850, guid: d8cca2083027839409a96a748162b300, type: 3}
 --- !u!222 &7119055580471436837
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8770,7 +8752,7 @@ MonoBehaviour:
   _elementalSprites:
   - {fileID: 1098286324429101383, guid: fce4f5cceab8f22428351ffecbcc24a1, type: 3}
   - {fileID: 6049605792901559095, guid: bc1118dfc57834d42b40668753e28533, type: 3}
-  - {fileID: 6423806749927177598, guid: 1ec1ca79bd61a3845b5990d146459db5, type: 3}
+  - {fileID: 2555306400629851598, guid: eef58f33622befb48ba922b34144d466, type: 3}
   - {fileID: -894095381526335850, guid: d8cca2083027839409a96a748162b300, type: 3}
 --- !u!114 &9161736331581773137
 MonoBehaviour:
