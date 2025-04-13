@@ -1,12 +1,16 @@
 using UnityEngine;
 using static Define;
 
-public class Grease : ISkill
+public class Grease : Skill
 {
-    public void Execute()
+    void Start()
     {
-        PlayerSkill playerSkill = GameManager.Instance.PlayerController.GetComponent<PlayerSkill>();
-        playerSkill.ExcuteEffect(ElementalEffect.Grease, new Vector3(0, 0, 0));
-        GameManager.Instance.isFireStrong = true;
+        Init();
+    }
+
+    public override void Execute()
+    {
+        PlayerController.Instance.PlayerSkill.ExcuteEffect(ElementalEffect.Grease, new Vector3(0, 0, 0));
+        PlayerController.Instance.PlayerSkill.IsFireStrong = true;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -23,16 +24,33 @@ public class DataManager
         new float[] { 0.3f, 0.4f, 0.3f }    // 웨이브 3: Normal 30%, Special 40%, Confuse 30%
     };
 
+    [Header("스킬")]
+    public Dictionary<ElementalEffect, Skill> SkillDict => _skillDict;
+    Dictionary<ElementalEffect, Skill> _skillDict = new Dictionary<ElementalEffect, Skill>();   // 스킬 딕셔너리
+
     public void Init()
     {
         // 적 Prefab 로드 및 웨이브 정보 설정
         _enemyPrefabDict.Add(EnemyType.Normal, Resources.LoadAll<Enemy>("Prefabs/Enemies/Normal").ToList());
         _enemyPrefabDict.Add(EnemyType.Special, Resources.LoadAll<Enemy>("Prefabs/Enemies/Special").ToList());
         _enemyPrefabDict.Add(EnemyType.Confuse, Resources.LoadAll<Enemy>("Prefabs/Enemies/Confuse").ToList());
+
         SetWaveInfo();
         //Debug.Log($"몬스터 프리팹 로드 완료 {_enemyPrefabDict[EnemyType.Normal].Count} {_enemyPrefabDict[EnemyType.Special].Count} {_enemyPrefabDict[EnemyType.Confuse].Count}");
+
+        // 스킬 Prefab 로드
+        GameObject[] skillEffectPrefabs = Manager.Resource.LoadAll<GameObject>($"Prefabs/Skills");
+        foreach (GameObject skillEffectPrefab in skillEffectPrefabs)
+        {
+            string skillEffectPrefabName = skillEffectPrefab.name;
+            if (Enum.TryParse(skillEffectPrefabName, out ElementalEffect elementalEffectType))
+            {
+                _skillDict.Add(elementalEffectType, skillEffectPrefab.GetComponent<Skill>());
+            }
+        }
     }
 
+    // 웨이브 정보 설정
     public void SetWaveInfo()
     {
         for(int i=0; i< _maxWave; i++)

@@ -33,7 +33,7 @@ public class Friend : MonoBehaviour
     // 실수 시도
     void TryMistake()
     {
-        Enemy firstEnemy = GameManager.Instance._currentEnemyList[0];
+        Enemy firstEnemy = GameManager.Instance.CurrentEnemyList[0];
         if (firstEnemy.EnemyType == EnemyType.Confuse)  // 적이 혼란 상태일 경우(실수하게 됨)
         {
             _realElemental = Random.value > _mistakeProbability ? GetRandomElemental() : _visualElemental;
