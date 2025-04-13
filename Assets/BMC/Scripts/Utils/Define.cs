@@ -53,6 +53,7 @@ public class Define
     public enum BGM
     {
         None,
+        Title,
         Main,
         Boss,
         GameOver

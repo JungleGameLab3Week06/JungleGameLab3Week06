@@ -1,12 +1,16 @@
 using UnityEngine;
 using static Define;
 
-public class Wall : ISkill
+public class Wall : Skill
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void Execute()
+    void Start()
     {
-        PlayerSkill playerSkill = GameManager.Instance.PlayerController.GetComponent<PlayerSkill>();
+        Init();
+    }
+
+    public override void Execute()
+    {
+        PlayerSkill playerSkill = PlayerController.Instance.PlayerSkill;
         playerSkill.ExcuteEffect(ElementalEffect.Wall, playerSkill.transform.position + new Vector3(2, 0, 0));
     }
 }

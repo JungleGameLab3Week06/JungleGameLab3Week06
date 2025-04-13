@@ -3,8 +3,12 @@ using static Define;
 
 public class PlayerController : MonoBehaviour, IStatus
 {
+    static PlayerController _instance;
+    public static PlayerController Instance => _instance;
+
     [Header("컴포넌트")]
-    PlayerSkill _playerSkill;
+    public PlayerSkill PlayerSkill => _playerSkill;
+    [SerializeField] PlayerSkill _playerSkill;
 
     [Header("스테이터스")]
     public int Health => _hp;
@@ -21,8 +25,11 @@ public class PlayerController : MonoBehaviour, IStatus
     [Header("비트 판정")]
     bool _isPerfect;
 
-    void Start()
+    void Awake()
     {
+        if (_instance == null)
+            _instance = this;
+
         InputManager.Instance.selectElementalAction += SelectElemental; // 원소 선택 이벤트 등록
         _friend = FindAnyObjectByType<Friend>();
         _playerSkill = GetComponent<PlayerSkill>();
@@ -76,9 +83,9 @@ public class PlayerController : MonoBehaviour, IStatus
         if (_hp <= 0)
             Die();
     }
-    
+
     public void Die()
-    {   
+    {
         gameObject.SetActive(false); // 플레이어 비활성화
         /* 
            사망 애니메이션 재생

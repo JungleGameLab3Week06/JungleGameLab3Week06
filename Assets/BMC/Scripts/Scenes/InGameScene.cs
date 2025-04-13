@@ -6,8 +6,7 @@ public class InGameScene : BaseScene
     protected override void Init()
     {
         SceneType = Define.SceneType.InGameScene;
-
-        // 인게임 씬에서 할 것
+        Manager.Sound.PlayBGM(Define.BGM.Main);
         Debug.Log("InGameScene 초기화");
     }
 }
