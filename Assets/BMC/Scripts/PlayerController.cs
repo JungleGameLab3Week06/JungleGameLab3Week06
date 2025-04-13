@@ -15,14 +15,11 @@ public class PlayerController : MonoBehaviour, IStatus
     public Elemental PlayerElemental => _playerElemental;
     public bool HasInputThisBeat { get { return _hasInputThisBeat; } set { _hasInputThisBeat = value; } } // 현재 비트에서 입력 여부
     Elemental _playerElemental;
-    bool _hasInputThisBeat = false; // 현재 비트에서 입력 여부
-    Friend _friend;                 // 친구
+    bool _hasInputThisBeat = false;     // 현재 비트에서 입력 여부
+    Friend _friend;                     // 친구
 
     [Header("비트 판정")]
-    double dspTime;                 // 오디오 시스템에서 처리된 실제 오디오 샘플 수에 기반하여 반환되는 초 단위 시간 (실제 시간에 가까움)
-    double lastBeatTime;
-    double deltaTime;
-    bool isPerfect;
+    bool _isPerfect;
 
     void Start()
     {
@@ -42,9 +39,9 @@ public class PlayerController : MonoBehaviour, IStatus
         }
 
         _playerElemental = elemental;
-        isPerfect = RhythmManager.Instance.IsJudging;
-        Manager.UI.showJudgeTextAction(isPerfect);
-        if (isPerfect)
+        _isPerfect = RhythmManager.Instance.IsJudging;
+        Manager.UI.showJudgeTextAction(_isPerfect);
+        if (_isPerfect)
         {
             Attack();
         }
@@ -54,14 +51,15 @@ public class PlayerController : MonoBehaviour, IStatus
     // 마법 공격 (친구가 시전한 마법과 조합)
     public void Attack()
     {
-        ElementalEffect interaction = _playerSkill.GetInteraction(_playerElemental, _friend.RealElemental); 
+        ElementalEffect interaction = _playerSkill.GetInteraction(_playerElemental, _friend.RealElemental);
 
-        if (interaction != null)
+        if (interaction != ElementalEffect.None)
         {
             _playerSkill.ApplyInteraction(interaction);
-            //Debug.Log($"반응 발생: {interaction}");
-            Enemy firstEnemy = GameManager.Instance._currentEnemyList[0];
-            _friend.UpdatePreviewElemental();
+            // Debug.Log($"반응 발생: {interaction}");
+            // Enemy firstEnemy = GameManager.Instance._currentEnemyList[0];
+            //_friend.UpdatePreviewElemental();
+            _friend.PrepareElemental(); // 친구 마법 예고 다시
         }
         else
         {
