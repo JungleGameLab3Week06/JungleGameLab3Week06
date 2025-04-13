@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 572586586292122061}
   - component: {fileID: 2324216110602740138}
   - component: {fileID: 1418903193169590605}
+  - component: {fileID: 3680542424158435558}
   m_Layer: 0
   m_Name: ElectricShock
   m_TagString: Untagged
@@ -110,3 +111,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3680542424158435558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6139343896378120447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8711733075e7144a32fa4c0cf794d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

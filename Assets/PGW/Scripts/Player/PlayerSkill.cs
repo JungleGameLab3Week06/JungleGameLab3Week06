@@ -7,25 +7,19 @@ using static Define;
 
 public class PlayerSkill : MonoBehaviour
 {
-    // 스킬 딕셔너리
-    Dictionary<ElementalEffect, ISkill> _skillDict = new Dictionary<ElementalEffect, ISkill>
-    {
-        { ElementalEffect.Flame, new Fire() },
-        { ElementalEffect.Water, new Water() },
-        { ElementalEffect.Lightning, new Lightning() },
-        { ElementalEffect.Wall, new Wall() },
-        { ElementalEffect.Ignition, new Ignition() },
-        { ElementalEffect.ElectricShock, new ElectricShock() },
-        { ElementalEffect.Fog, new Fog() },
-        { ElementalEffect.Grease, new Grease() }
-    };
-
+    public bool IsFireStrong { get { return _isFireStrong; } set { _isFireStrong = value; } }
+    public bool IsLightningStrong { get { return _isLightningStrong; } set { _isLightningStrong = value; } }
+    [SerializeField] bool _isFireStrong = false;          // 불 속성 강화
+    [SerializeField] bool _isLightningStrong = false;     // 전기 속성 강화
     GameObject[] _skillEffects;
 
+    Dictionary<ElementalEffect, Skill> _skillDict;
     void Start()
     {
         // Skills 폴더의 모든 GameObject 로드
         _skillEffects = Manager.Resource.LoadAll<GameObject>("Prefabs/Skills");
+
+        _skillDict = Manager.Data.SkillDict;
     }
 
     // 마법 조합 결과 반환
@@ -43,7 +37,7 @@ public class PlayerSkill : MonoBehaviour
     // 마법 조합 효과 적용
     public void ApplyInteraction(ElementalEffect effect)
     {
-        if (_skillDict.TryGetValue(effect, out ISkill skill))
+        if (_skillDict.TryGetValue(effect, out Skill skill))
         {
             skill.Execute();
             Manager.UI.activateSkillTextAction?.Invoke(effect.ToString());
