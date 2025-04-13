@@ -133,7 +133,7 @@ Animator:
   m_GameObject: {fileID: 7493994160148458571}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 32b1c766db5ec5a4699ddf407e6cb595, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2983c70adfdb3fa45a79aaf2babc40a1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -187,10 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace79107853fc9543a9e070fc1f0c02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSkill: {fileID: 0}
+  _playerSkill: {fileID: 1668059168173639572}
   _hp: 100
   _maxHp: 100
-  animator: {fileID: 4466565229738694398}
 --- !u!114 &1668059168173639572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5458584641868912964}
   - component: {fileID: 8169221002415798858}
-  - component: {fileID: 4466565229738694398}
+  - component: {fileID: 8946718595527602582}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -295,7 +294,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &4466565229738694398
+--- !u!95 &8946718595527602582
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
