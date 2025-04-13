@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour, IStatus
         else
         {
             //Debug.Log($"조합 실패: 플레이어({_playerElemental}) + 친구(visual: {_friend.VisualElemental} real: {_friend.RealElemental})는 잘못된 마법(기본 데미지 적용)");
+            Manager.Sound.PlayEffect(Effect.NormalElemental);
             GameManager.Instance.CurrentEnemy.TakeDamage(10);
         }
     }
@@ -90,7 +91,7 @@ public class PlayerController : MonoBehaviour, IStatus
 
     public void Die()
     {
-        gameObject.SetActive(false); // 플레이어 비활성화
+        Manager.Sound.PlayEffect(Effect.PlayerDeath);
         /* 
            사망 애니메이션 재생
            사망 이펙트 재생

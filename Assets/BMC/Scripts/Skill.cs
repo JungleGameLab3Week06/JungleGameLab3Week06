@@ -26,19 +26,25 @@ public class Skill : MonoBehaviour
     /// <param name="isSpawnTarget"> 적 자리에 효과 발생 여부 </param>
     public void WideAttack(List<Enemy> enemyList, ElementalEffect elementalEffect, int damage, bool isSpawnTarget = true)
     {
-        foreach (Enemy enemy in enemyList)
-        {
-            if (enemy != null)
-            {
-                Vector3 position = (isSpawnTarget) ? enemy.transform.position : Vector3.zero;
+        if (enemyList == null)
+            Debug.LogError("적 리스트가 null~");
 
-                if(playerSkill == null)
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            if(enemyList[i] == null)
+                continue;
+
+            if (enemyList[i] != null)
+            {
+                Vector3 position = (isSpawnTarget) ? enemyList[i].transform.position : Vector3.zero;
+
+                if (playerSkill == null)
                 {
                     playerSkill = PlayerController.Instance.PlayerSkill;
                 }
 
                 playerSkill.ExcuteEffect(elementalEffect, position);
-                enemy.TakeDamage(damage);
+                enemyList[i].TakeDamage(damage);
             }
         }
         Debug.Log($"모든 적에게 {damage} 데미지!");

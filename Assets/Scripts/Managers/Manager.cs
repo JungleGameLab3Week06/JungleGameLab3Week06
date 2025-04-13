@@ -22,6 +22,12 @@ public class Manager : MonoBehaviour
         if(_instance == null)
         {
             _instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
         }
 
         _data.Init();

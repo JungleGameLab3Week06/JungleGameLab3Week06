@@ -7,6 +7,9 @@ public class UI_ManualBtnCanvas : MonoBehaviour
     void Start()
     {
         _manualBtn = GetComponentInChildren<Button>();
-        _manualBtn.onClick.AddListener(() => { Manager.UI.toggleManualPanelCanvasAction?.Invoke(); });
+        _manualBtn.onClick.AddListener(() => { 
+            Manager.Sound.PlayEffect(Define.Effect.BtnClick);
+            Manager.UI.toggleManualPanelCanvasAction?.Invoke(); 
+        });
     }
 }

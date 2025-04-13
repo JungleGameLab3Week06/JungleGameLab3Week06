@@ -12,8 +12,8 @@ public class PlayerSkill : MonoBehaviour
     [SerializeField] bool _isFireStrong = false;          // 불 속성 강화
     [SerializeField] bool _isLightningStrong = false;     // 전기 속성 강화
     GameObject[] _skillEffects;
-
     Dictionary<ElementalEffect, Skill> _skillDict;
+
     void Start()
     {
         // Skills 폴더의 모든 GameObject 로드

@@ -6,7 +6,9 @@ public class Define
     {
         None,
         TitleScene,
-        InGameScene
+        InGameScene,
+        GameOverScene,
+        GameClearScene
     }
 
     // 적 상태
@@ -53,14 +55,21 @@ public class Define
     public enum BGM
     {
         None,
-        Title,
-        Main,
-        Boss,
-        GameOver
+        Title,              // TitleScene
+        Main,               // InGameScene
+        Boss,               // BossScene
+        GameOver            // GameOverScene
     }
     public enum Effect
     {
-
+        BestElemental,      // 최고 공격
+        BossDeath,          // 보스 사망
+        BtnClick,           // 버튼 클릭
+        EnemyDeath,         // 일반 적 사망
+        GameStart,          // 게임 시작
+        NormalElemental,    // 일반 공격
+        PlayerCast,         // 플레이어 마법 시전
+        PlayerDeath,        // 플레이어 사망
     }
     #endregion
 }
