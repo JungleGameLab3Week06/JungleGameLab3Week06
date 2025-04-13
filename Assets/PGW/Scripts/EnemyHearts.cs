@@ -23,12 +23,14 @@ public class EnemyHearts : MonoBehaviour
         _maxHealth = _enemy.Health; // Get the maximum health from the enemy script
         _maxSteelHealth = _enemy.SteelHealth; // Get the maximum steel health from the enemy script
         _currentHealth = _maxHealth + _maxSteelHealth;
+        
         // Initialize the Stealhearts
         for (int i = 0; i < _maxSteelHealth; i++)   
         {
             GameObject stealHeart = Instantiate(_steelHeartPrefab, transform);
             stealHeart.transform.localPosition = new Vector3(i % 3 * 0.6f, i / 3 * 0.6f, 0); // Adjust position as needed
         }
+
         // Initialize the hearts
         for (int i = 0; i < _maxHealth; i++)
         {
@@ -40,7 +42,9 @@ public class EnemyHearts : MonoBehaviour
 
     public void UpdateHearts(int currentHealth)
     {
-        // Update the heart icons based on the current health
+        if (transform == null)
+            return;
+
         for (int i = 0; i < transform.childCount; i++)
         {
             _currentHealth = Mathf.Clamp(currentHealth, 0, _maxHealth);

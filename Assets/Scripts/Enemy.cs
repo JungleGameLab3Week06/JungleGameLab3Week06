@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour, IStatus
         _anim = GetComponent<Animator>();
         _hearts = GetComponentInChildren<EnemyHearts>();
         _positionY1 = transform.position.y;
-        _positionY2 = transform.position.y - 4f;
+        _positionY2 = transform.position.y - 2f;
     }
 
     // 적 이동
