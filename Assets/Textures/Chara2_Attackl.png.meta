@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9474dc62edc1b964495dab936b46c1b5
+guid: af0907114b8a2a14a9c1ec3f0729fe96
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5539564400629647092
-    second: I2I__00109_v2_pixelated_v5_0
+      213: 2140504447981991006
+    second: Chara2_Attackl_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 86
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: I2I__00109_v2_pixelated_v5_0
+      name: Chara2_Attackl_0
       rect:
         serializedVersion: 2
-        x: 79
-        y: 7
-        width: 746
-        height: 946
+        x: 16
+        y: 4
+        width: 74
+        height: 115
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c09f11a07838f13b0800000000000000
-      internalID: -5539564400629647092
+      spriteID: e543c1e547994bd10800000000000000
+      internalID: 2140504447981991006
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      I2I__00109_v2_pixelated_v5_0: -5539564400629647092
+      Chara2_Attackl_0: 2140504447981991006
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
