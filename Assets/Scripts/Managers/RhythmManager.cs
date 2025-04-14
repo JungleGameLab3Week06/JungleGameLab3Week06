@@ -23,7 +23,7 @@ public class RhythmManager : MonoBehaviour
     double _prevBpm;
     [SerializeField] double _bpm = 60f;                             // 분당 비트 수
     public double BPM { get { return _bpm; } set { _bpm = value; } }
-    double _increaseBPM = 20f;
+    double _increaseBPM = 4f;
 
     public double BeatInterval => _beatInterval;
     public double LastBeatTime => _lastBeatTime; 
