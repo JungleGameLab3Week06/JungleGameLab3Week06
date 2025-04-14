@@ -4,7 +4,7 @@ using static Define;
 
 public class Ignition : Skill
 {
-    int _baseDamage = 4;
+    int _baseDamage = 2;
     int _strongDamage = 2;
 
     void Start()
@@ -25,7 +25,7 @@ public class Ignition : Skill
         List<Enemy> enemies = GameManager.Instance.CurrentEnemyList;
         if (playerSkill.IsFireStrong)
         {
-            WideAttack(enemies, ElementalEffect.Ignition, _strongDamage, false);
+            WideAttack(enemies, ElementalEffect.StrongFire, _strongDamage, false);
             Debug.Log($"모든 적에게 {_strongDamage} 데미지!");
         }
 

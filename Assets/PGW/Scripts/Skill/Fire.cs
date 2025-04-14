@@ -25,7 +25,8 @@ public class Fire : Skill
         List<Enemy> enemies = GameManager.Instance.CurrentEnemyList;
         if (playerSkill.IsFireStrong)
         {
-            WideAttack(enemies, ElementalEffect.Flame, _strongDamage);
+            WideAttack(enemies, ElementalEffect.StrongFire, _strongDamage, false);
+            playerSkill.DestroyGrease();
             Debug.Log($"모든 적에게 {_strongDamage} 데미지!");
         }
 

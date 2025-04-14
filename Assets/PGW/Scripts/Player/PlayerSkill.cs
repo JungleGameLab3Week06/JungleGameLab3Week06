@@ -69,7 +69,7 @@ public class PlayerSkill : MonoBehaviour
         if (skillEffect != null)
         {
             GameObject effectInstance = Instantiate(skillEffect, pos, Quaternion.identity);
-            float delayTime = 10f;
+            float delayTime = 5f;
 
             // 애니메이터 존재하는 경우
             if(effectInstance.TryGetComponent<Animator>(out Animator anim))
@@ -78,6 +78,24 @@ public class PlayerSkill : MonoBehaviour
                 delayTime = clip.length;
             }
             Destroy(effectInstance, delayTime);
+        }
+    }
+
+    public void DestroyFog()
+    {
+        Fog fog = GameObject.FindAnyObjectByType<Fog>();
+        if (fog != null)
+        {
+            Destroy(fog.gameObject);
+        }
+    }
+
+    public void DestroyGrease()
+    {
+        Grease grease = GameObject.FindAnyObjectByType<Grease>();
+        if (grease != null)
+        {
+            Destroy(grease.gameObject);
         }
     }
 }
