@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class UI_WaveNotifier : MonoBehaviour
 {
-    public static UI_WaveNotifier Instance;
     CanvasGroup _waveCanvasGroup;
     TextMeshProUGUI _waveText;
     TextMeshProUGUI _waveTextShadows;
@@ -13,16 +12,13 @@ public class UI_WaveNotifier : MonoBehaviour
     [SerializeField] string waveText = "WAVE ";
 
     void Start()
-    {
-        Instance = this;
-        
+    {   
         _waveCanvasGroup = transform.GetChild(0).GetComponent<CanvasGroup>();
-
         _waveText = _waveCanvasGroup.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         _waveTextShadows = _waveCanvasGroup.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-
         _anim = GetComponent<Animator>();
 
+        Manager.UI.updateWaveAction += UpdateWave;
     }
 
     // Update is called once per frame
