@@ -10,7 +10,7 @@ public class UIManager
     Coroutine beatCoroutine;
 
     [Header("Title")]
-    public Action toggleManualPanelCanvasAction;
+    public Action toggleHelpPanelCanvasAction;
 
     [Header("InGame")]
     public Action<bool> showJudgeTextAction;
@@ -21,7 +21,7 @@ public class UIManager
 
     public void Clear()
     {
-        toggleManualPanelCanvasAction = null;
+        toggleHelpPanelCanvasAction = null;
 
         showJudgeTextAction = null;
         activateSkillTextAction = null;
