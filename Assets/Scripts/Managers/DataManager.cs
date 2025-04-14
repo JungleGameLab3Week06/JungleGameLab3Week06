@@ -80,20 +80,20 @@ public class DataManager
     {
         TextAsset json = Manager.Resource.Load<TextAsset>("JSON/SkillInfo");
 
-        if (json == null)
-            Debug.LogError("못가져옴~");
-        else
-            Debug.LogError(json.ToString());
+        //if (json == null)
+        //    Debug.LogError("못가져옴~");
+        //else
+        //    Debug.LogError(json.ToString());
 
         var test = JsonUtility.FromJson<SkillInfoList>(json.text);
 
-        Debug.LogError(test.skillInfoList.Count);
+        //Debug.LogError(test.skillInfoList.Count);
 
         for(int i=0; i<test.skillInfoList.Count; i++)
         {
             var info = test.skillInfoList[i];
             _skillInfoDict[info.SkillName] = info;
-            Debug.LogError($"{test.skillInfoList[i].SkillName} {test.skillInfoList[i].SkillDescription}");
+            //Debug.LogError($"{test.skillInfoList[i].SkillName} {test.skillInfoList[i].SkillDescription}");
         }
     }
     [Serializable]
