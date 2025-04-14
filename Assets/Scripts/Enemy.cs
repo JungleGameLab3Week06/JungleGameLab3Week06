@@ -134,6 +134,7 @@ public class Enemy : MonoBehaviour, IStatus
     // 피해 입기
     public void TakeDamage(int amount)
     {
+        _animator.SetTrigger("HitTrigger");
         int steelDamage = amount - _hp; // 강철 HP에 입힐 데미지;
         
         if (_hp > 0 || _steelHp > 0)
