@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Manager : MonoBehaviour
@@ -37,6 +38,10 @@ public class Manager : MonoBehaviour
     void Start()
     {
         
+    }
+
+    void Update()
+    {
     }
 
     void Init()

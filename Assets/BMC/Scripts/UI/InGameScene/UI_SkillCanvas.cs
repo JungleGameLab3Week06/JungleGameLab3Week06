@@ -8,24 +8,26 @@ public class UI_SkillCanvas : MonoBehaviour
     TextMeshProUGUI _skillText;
     Coroutine _activateSkillCoroutine;
     float _disappearWeight = 1f;
-
+    TextMeshProUGUI _descriptionText;
     void Start()
     {
         _skillCanvas = GetComponent<Canvas>();
         _skillText = GetComponentInChildren<TextMeshProUGUI>();
-
+        //텍스트 하나 더 넣어서 거기에 effectDEscription을받아오는걸로하기
         Manager.UI.activateSkillTextAction += ActivateSkillText;
+        _descriptionText = transform.Find("DescriptionText").GetComponent<TextMeshProUGUI>();
     }
 
-    public void ActivateSkillText(string skillDescription)
+    public void ActivateSkillText(string effectTranslation, string effectDescription)
     {
         if(_activateSkillCoroutine != null)
             StopCoroutine(_activateSkillCoroutine);
-        _activateSkillCoroutine = StartCoroutine(ActivateSkillTextCoroutine(skillDescription));
+        _activateSkillCoroutine = StartCoroutine(ActivateSkillTextCoroutine(effectTranslation, effectDescription));
     }
 
-    public IEnumerator ActivateSkillTextCoroutine(string skillDescription)
+    public IEnumerator ActivateSkillTextCoroutine(string skillDescription, string effectDescription)
     {
+        _descriptionText.text = effectDescription;
         _skillText.text = skillDescription;
         _skillCanvas.enabled = true;
 
@@ -37,6 +39,7 @@ public class UI_SkillCanvas : MonoBehaviour
             alphaValue -= Time.deltaTime * _disappearWeight;
             _skillText.color = new Color(_skillText.color.r, _skillText.color.g, _skillText.color.b, alphaValue);
             yield return null;
+            _descriptionText.color = new Color(_descriptionText.color.r, _descriptionText.color.g, _descriptionText.color.b, alphaValue);
         }
 
         // Hide Text
