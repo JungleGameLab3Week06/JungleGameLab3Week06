@@ -94,8 +94,9 @@ public class PlayerController : MonoBehaviour, IStatus
 
     public void Die()
     {
+        InputManager.Instance.Clear();
         Manager.Sound.PlayEffect(Effect.PlayerDeath);
-        
+
         /* 
            사망 애니메이션 재생
         */
