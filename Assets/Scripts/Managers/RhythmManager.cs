@@ -109,6 +109,9 @@ public class RhythmManager : MonoBehaviour
         _beatSource.PlayOneShot(_beatClip);         // 비트 소리 재생
         colorFloorAction?.Invoke();                 // 바닥 색상 변경
 
+        Friend.Instance.Wriggle();           // 동료 꿈틀거리기
+        PlayerController.Instance.Wriggle(); // 플레이어 꿈틀거리기
+
         /* 추후에 Action으로 빼기 */
         List<Enemy> enemies = GameManager.Instance.CurrentEnemyList; // 적 리스트
         foreach (Enemy enemy in enemies)

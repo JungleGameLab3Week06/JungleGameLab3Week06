@@ -5,6 +5,8 @@ using UnityEngine.UI;
 // 동료 마법 예고 UI
 public class UI_FriendCastVisualCanvas : MonoBehaviour
 {
+    Canvas _friendCastVisualCanvas;
+
     [SerializeField] Image _backgroundImage;              // 말풍선
     [SerializeField] Image _elementalImage;               // 원소 이미지
     [SerializeField] Sprite[] _elementalSprites;          // 원소 Sprite
@@ -21,6 +23,8 @@ public class UI_FriendCastVisualCanvas : MonoBehaviour
 
     void Awake()
     {
+        _friendCastVisualCanvas = GetComponent<Canvas>();
+
         posOriginal = transform.localPosition;
 
         Image[] images = GetComponentsInChildren<Image>();
@@ -36,6 +40,7 @@ public class UI_FriendCastVisualCanvas : MonoBehaviour
     // 원소 이미지 및 말풍선 색 설정
     public void SetElementalImage(bool isLying, Define.Elemental elemental)
     {
+        _friendCastVisualCanvas.enabled = true;
         int idx = (int)elemental;
         _elementalImage.sprite = _elementalSprites[idx];
         _backgroundImage.color = isLying ? _colorNotCertain : _colorCertain;

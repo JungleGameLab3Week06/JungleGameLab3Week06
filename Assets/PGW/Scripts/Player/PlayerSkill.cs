@@ -29,7 +29,9 @@ public class PlayerSkill : MonoBehaviour
         int elementalEffect = (1 << (int)playerElemental) | (1 << (int)friendElemental);    // 마법 조합
         bool isExistEffect = Enum.IsDefined(typeof(ElementalEffect), elementalEffect);      // 조합이 ElementalEffect에 정의된 값인지 확인
         if (isExistEffect)
+        {
             resultElementalEffect = (ElementalEffect)elementalEffect;
+        }
         return resultElementalEffect;
     }
 
@@ -39,8 +41,13 @@ public class PlayerSkill : MonoBehaviour
         if (_skillDict.TryGetValue(effect, out Skill skill))
         {
             skill.Execute();
-            Manager.UI.activateSkillTextAction?.Invoke(effect.ToString());
-            Debug.Log($"스킬 실행: {effect}");
+
+            string effectTranslation = ((Translation)effect).ToString();
+            string description = Manager.Data.SkillInfoDict[effectTranslation].SkillDescription;
+            string result = $"{effectTranslation}: {description}";
+
+            Manager.UI.activateSkillTextAction?.Invoke(effectTranslation, description);
+            Debug.Log($"(스킬) {result}");
         }
         else
         {
@@ -69,7 +76,7 @@ public class PlayerSkill : MonoBehaviour
         if (skillEffect != null)
         {
             GameObject effectInstance = Instantiate(skillEffect, pos, Quaternion.identity);
-            float delayTime = 10f;
+            float delayTime = 5f;
 
             // 애니메이터 존재하는 경우
             if(effectInstance.TryGetComponent<Animator>(out Animator anim))
@@ -78,6 +85,24 @@ public class PlayerSkill : MonoBehaviour
                 delayTime = clip.length;
             }
             Destroy(effectInstance, delayTime);
+        }
+    }
+
+    public void DestroyFog()
+    {
+        Fog fog = GameObject.FindAnyObjectByType<Fog>();
+        if (fog != null)
+        {
+            Destroy(fog.gameObject);
+        }
+    }
+
+    public void DestroyGrease()
+    {
+        Grease grease = GameObject.FindAnyObjectByType<Grease>();
+        if (grease != null)
+        {
+            Destroy(grease.gameObject);
         }
     }
 }

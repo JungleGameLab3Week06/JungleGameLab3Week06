@@ -5,7 +5,7 @@ using static Define;
 public class Lightning : Skill
 {
     int _baseDamage = 3;
-    int _strongDamage = 2;
+    int _strongDamage = 4;
 
     void Start()
     {
@@ -21,8 +21,13 @@ public class Lightning : Skill
         }
 
         PlayerSkill playerSkill = PlayerController.Instance.PlayerSkill;
-        List<Enemy> enemies = (playerSkill.IsLightningStrong) ? GameManager.Instance.CurrentEnemyList : GameManager.Instance.GetFrontEnemies();
-        int damage = (playerSkill.IsLightningStrong) ? _strongDamage : _baseDamage;
-        WideAttack(enemies, ElementalEffect.Lightning, damage);
+        List<Enemy> enemies = GameManager.Instance.GetFrontEnemies();
+        if (playerSkill.IsLightningStrong)
+        {
+            WideAttack(enemies, ElementalEffect.StrongLightning, _strongDamage, true);
+            playerSkill.DestroyFog();
+            Debug.Log($"모든 적에게 {_strongDamage} 데미지!");
+        }
+        WideAttack(enemies, ElementalEffect.Lightning, _baseDamage);
     }
 }
