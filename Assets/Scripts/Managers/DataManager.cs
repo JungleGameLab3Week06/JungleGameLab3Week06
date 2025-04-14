@@ -15,7 +15,7 @@ public class DataManager
     Dictionary<EnemyType, List<Enemy>> _enemyPrefabDict = new Dictionary<EnemyType, List<Enemy>>();
 
     [Header("Wave")]
-    int _maxWave = 3;
+    int _maxWave = 9;
     public Dictionary<int, List<(Enemy enemy, float weight)>> WaveInfoDict => _waveInfoDict;
     Dictionary<int, List<(Enemy enemy, float weight)>> _waveInfoDict = new Dictionary<int, List<(Enemy enemy, float weight)>>(); // key: 웨이브 번호, value: List<(적 Prefab, 가중치)>
 
@@ -23,7 +23,13 @@ public class DataManager
     {
         // [0]: Normal, [1]: Special, [2]: Confuse
         new float[] { 1f, 0f, 0f },         // 웨이브 1: Normal 100%, Special 0%, Confuse 0%
-        new float[] { 0.7f, 0f, 0.3f },     // 웨이브 2: Normal 70%, Special 0%, Confuse 30%
+        new float[] { 0.8f, 0f, 0.2f },         // 웨이브 1: Normal 100%, Special 0%, Confuse 0%
+        new float[] { 0.9f, 0.1f, 0f },         // 웨이브 1: Normal 100%, Special 0%, Confuse 0%
+        new float[] { 0.8f, 0.1f, 0.1f },     // 웨이브 2: Normal 70%, Special 0%, Confuse 30%
+        new float[] { 0.7f, 0.1f, 0.3f },     // 웨이브 2: Normal 70%, Special 20%, Confuse 10%
+        new float[] { 0.6f, 0.2f, 0.2f },     // 웨이브 2: Normal 60%, Special 20%, Confuse 20%
+        new float[] { 0.5f, 0.3f, 0.2f },     // 웨이브 2: Normal 50%, Special 30%, Confuse 20%
+        new float[] { 0.4f, 0.3f, 0.3f },     // 웨이브 2: Normal 40%, Special 30%, Confuse 30
         new float[] { 0.3f, 0.4f, 0.3f }    // 웨이브 3: Normal 30%, Special 40%, Confuse 30%
     };
 
@@ -79,21 +85,11 @@ public class DataManager
     public void LoadSkillInfo()
     {
         TextAsset json = Manager.Resource.Load<TextAsset>("JSON/SkillInfo");
-
-        //if (json == null)
-        //    Debug.LogError("못가져옴~");
-        //else
-        //    Debug.LogError(json.ToString());
-
         var test = JsonUtility.FromJson<SkillInfoList>(json.text);
-
-        //Debug.LogError(test.skillInfoList.Count);
-
         for(int i=0; i<test.skillInfoList.Count; i++)
         {
             var info = test.skillInfoList[i];
             _skillInfoDict[info.SkillName] = info;
-            //Debug.LogError($"{test.skillInfoList[i].SkillName} {test.skillInfoList[i].SkillDescription}");
         }
     }
     [Serializable]
