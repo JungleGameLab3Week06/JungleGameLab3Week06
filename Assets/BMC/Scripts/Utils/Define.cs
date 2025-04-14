@@ -30,7 +30,7 @@ public class Define
         Diffusion =     (1 << Elemental.Flame) | (1 << Elemental.Lightning),  // 확산 = 화염 + 번개
         Grease =        (1 << Elemental.Water) | (1 << Elemental.Ground),     // 기름 = 물 + 땅
         ElectricShock = (1 << Elemental.Water) | (1 << Elemental.Lightning),  // 감전 = 물 + 번개
-        None =          (1 << Elemental.Ground) | (1 << Elemental.Lightning), // 없음 = 땅 + 번개
+        None =          (1 << Elemental.Ground) | (1 << Elemental.Lightning), // 조합실패 = 땅 + 번개
         StrongFire,
         StrongLightning
     }

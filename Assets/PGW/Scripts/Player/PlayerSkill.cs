@@ -31,6 +31,7 @@ public class PlayerSkill : MonoBehaviour
         if (isExistEffect)
         {
             resultElementalEffect = (ElementalEffect)elementalEffect;
+            
         }
         return resultElementalEffect;
     }

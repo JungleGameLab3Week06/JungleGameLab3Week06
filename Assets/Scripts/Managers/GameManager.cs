@@ -72,11 +72,26 @@ public class GameManager : MonoBehaviour
     {
         if(!CheckSpawnCondition()) 
             return;
-
-        Enemy enemy = GetRandomEnemy();
-        _currentEnemy = Instantiate(enemy, spawnPoint, Quaternion.identity);
-        _currentEnemyList.Add(_currentEnemy);
+        if (_currentWave < 5)
+        {
+            if (Random.value > 0.5f)
+            {
+                Enemy enemy = GetRandomEnemy();
+                _currentEnemy = Instantiate(enemy, spawnPoint, Quaternion.identity);
+                _currentEnemyList.Add(_currentEnemy);
+                _waveMonsterCount--;
+            }
+            else {  _waveMonsterCount--; Debug.LogError("웨이브브브브.None" + _waveMonsterCount); }
+        }
+        else
+        {
+            Enemy enemy = GetRandomEnemy();
+            _currentEnemy = Instantiate(enemy, spawnPoint, Quaternion.identity);
+            _currentEnemyList.Add(_currentEnemy);
+        }
         _waveMonsterCount--;
+        Debug.Log($"웨이브 {_currentWave} 몬스터 수: {_waveMonsterCount}");
+
     }
 
     Enemy GetRandomEnemy()
