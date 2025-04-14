@@ -91,19 +91,25 @@ public class PlayerSkill : MonoBehaviour
 
     public void DestroyFog()
     {
-        Fog fog = GameObject.FindAnyObjectByType<Fog>();
-        if (fog != null)
+        Fog[] fogs = GameObject.FindObjectsOfType<Fog>();
+        foreach (Fog fog in fogs)
         {
-            Destroy(fog.gameObject);
+            if (fog != null)
+            {
+                Destroy(fog.gameObject);
+            }
         }
     }
 
     public void DestroyGrease()
     {
-        Grease grease = GameObject.FindAnyObjectByType<Grease>();
-        if (grease != null)
+        Grease[] greases = GameObject.FindObjectsOfType<Grease>();
+        foreach (Grease grease in greases)
         {
-            Destroy(grease.gameObject);
+            if (grease != null)
+            {
+                Destroy(grease.gameObject);
+            }
         }
     }
 }
