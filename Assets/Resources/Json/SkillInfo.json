@@ -2,43 +2,43 @@
   "skillInfoList": [
       {
         "SkillName": "화염",
-        "SkillDescription": "화염구 발사!"
+        "SkillDescription": "[불+불] 화염구 발사!"
       },
       {
         "SkillName": "물",
-        "SkillDescription": "시원해져라 얍!"
+        "SkillDescription": "[물+물] 시원해져라 얍!"
       },
       {
         "SkillName": "벽",
-        "SkillDescription": "벽 하나 세울게! 한번정도는 막아줄거야!"
+        "SkillDescription": "[땅+땅]벽 하나 세울게! 한번정도는 막아줄거야!"
       },
       {
         "SkillName": "번개",
-        "SkillDescription": "번개 꽝!"
+        "SkillDescription": "[번개+번개]번개 꽝!"
       },
       {
         "SkillName": "안개",
-        "SkillDescription": "다들 젖었어! 정전기만 살짝 일으키면..?"
+        "SkillDescription": "[불+물]다들 젖었어! 정전기만 살짝 일으키면..?"
       },
       {
         "SkillName": "점화",
-        "SkillDescription": "타올라라 활활!"
+        "SkillDescription": "[불+땅]타올라라 활활!"
       },
       {
         "SkillName": "확산",
-        "SkillDescription": "불! 번개! 터져라! 와장창!"
+        "SkillDescription": "[불+번개]불! 번개! 터져라! 와장창!"
       },
       {
         "SkillName": "기름",
-        "SkillDescription": "기름 묻혔어! 불 붙이면 꽤 크게 터질거야!"
+        "SkillDescription": "[물+땅]기름 묻혔어! 불 붙이면 꽤 크게 터질거야!"
       },
       {
         "SkillName": "감전",
-        "SkillDescription": "전기 팍! 다 기절했어!"
+        "SkillDescription": "[번개+물]전기 팍! 다 기절했어!"
       },
       {
         "SkillName": "조합실패",
-        "SkillDescription": "어.. 이게 아닌가봐!"
+        "SkillDescription": "[번개+땅]어.. 이게 아닌가봐!"
       }
   ]
 }

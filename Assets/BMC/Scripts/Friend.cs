@@ -45,7 +45,10 @@ public class Friend : MonoBehaviour
     void TryMistake()
     {
         if (GameManager.Instance.CurrentEnemyList.Count == 0)
+        {
+            _realElemental = _visualElemental;
             return;
+        }
 
         Enemy firstEnemy = GameManager.Instance.CurrentEnemyList[0];
         if (firstEnemy.EnemyType == EnemyType.Confuse)  // 적이 혼란 상태일 경우(실수하게 됨)
