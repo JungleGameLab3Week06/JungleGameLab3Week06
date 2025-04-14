@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour, IStatus
         if (interaction != ElementalEffect.None)
         {
             _playerSkill.ApplyInteraction(interaction);
+            Manager.Sound.PlayEffect(Effect.BestElemental);
             // Debug.Log($"반응 발생: {interaction}");
             // Enemy firstEnemy = GameManager.Instance._currentEnemyList[0];
             //_friend.UpdatePreviewElemental();

@@ -32,7 +32,8 @@ public class Define
         ElectricShock = (1 << Elemental.Water) | (1 << Elemental.Lightning),  // 감전 = 물 + 번개
         None =          (1 << Elemental.Ground) | (1 << Elemental.Lightning), // 조합실패 = 땅 + 번개
         StrongFire,
-        StrongLightning
+        StrongLightning,
+        EnemyShock
     }
 
     // 플레이어 마법 속성

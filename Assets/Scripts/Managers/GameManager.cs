@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
             _waveMonsterCount = 30;
             _currentWave++;
 
+            Manager.UI.updateWaveAction?.Invoke(_currentWave); // UI 업데이트
+
             RhythmManager.Instance.IncreaseBPM();
 
             //Debug.Log($"웨이브 {_currentWave} 시작! 가중치: Normal={currentWaveInfoList.First(e => _normalEnemyPrefabList.Contains(e.prefab)).weight}, Special={waveConfig.First(e => _specialEnemyPrefabList.Contains(e.prefab)).weight}, Confuse={waveConfig.First(e => _confuseEnemyPrefabList.Contains(e.prefab)).weight}");

@@ -52,6 +52,15 @@ public class Enemy : MonoBehaviour, IStatus
             {
                 _enemyState = EnemyState.None;
                 _isMoving = true;
+                // 이름에 "EnemyShock"를 포함하는 모든 오브젝트 찾기
+                GameObject[] enemyShockObjects = GameObject.FindObjectsOfType<GameObject>()
+                    .Where(obj => obj.name.Contains("EnemyShock"))
+                    .ToArray();
+                // 찾은 오브젝트 파괴
+                foreach (GameObject obj in enemyShockObjects)
+                {
+                    Destroy(obj);
+                }
             }
             return;
         }

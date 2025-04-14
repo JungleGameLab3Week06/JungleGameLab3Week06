@@ -15,6 +15,7 @@ public class UIManager
     [Header("InGame")]
     public Action<bool> showJudgeTextAction;
     public Action<string, string> activateSkillTextAction;
+    public Action<int> updateWaveAction;
 
     #endregion
 
@@ -24,5 +25,6 @@ public class UIManager
 
         showJudgeTextAction = null;
         activateSkillTextAction = null;
+        updateWaveAction = null;
     }
 }
