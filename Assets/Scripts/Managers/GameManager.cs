@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         if (Manager.Data.WaveInfoDict.TryGetValue(_currentWave, out List<(Enemy enemy, float weight)> currentWaveInfoList))
         {
             _currentWaveSpawnInfoList = currentWaveInfoList;
-            _waveMonsterCount = 30;
+            _waveMonsterCount = 20;
             _currentWave++;
             Manager.UI.updateWaveAction?.Invoke(_currentWave); // UI 업데이트
 
@@ -78,7 +78,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"웨이브 {_currentWave} 설정이 없습니다!");
+            Manager.Scene.LoadScene(SceneType.GameClearScene);
+            Debug.Log($"웨이브 {_currentWave} 설정이 없습니다! Clear Scene으로 이동합니다.");
             return;
         }
     }
@@ -98,9 +99,9 @@ public class GameManager : MonoBehaviour
                     _currentEnemy = Instantiate(enemy, spawnPoint, Quaternion.identity);
                     _currentEnemyList.Add(_currentEnemy);
                     _waveMonsterCount--;
-                    Debug.Log($"웨이브 {_currentWave} 몬스터 타입{enemy}");
+                    //Debug.Log($"웨이브 {_currentWave} 몬스터 타입{enemy}");
                 }
-                else { _waveMonsterCount--; _noneMonsetCount--; Debug.LogError("웨이브브브브.None" + _waveMonsterCount); }
+                else { _waveMonsterCount--; _noneMonsetCount--; }
             }
             else
             {
@@ -116,7 +117,7 @@ public class GameManager : MonoBehaviour
             _currentEnemyList.Add(_currentEnemy);
         }
         _waveMonsterCount--;
-        Debug.Log($"웨이브 {_currentWave} 몬스터 수: {_waveMonsterCount}");
+       
 
     }
 
