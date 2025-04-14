@@ -14,7 +14,15 @@ public class UIManager
 
     [Header("InGame")]
     public Action<bool> showJudgeTextAction;
-    public Action<string> activateSkillTextAction;
+    public Action<string, string> activateSkillTextAction;
 
     #endregion
+
+    public void Clear()
+    {
+        toggleManualPanelCanvasAction = null;
+
+        showJudgeTextAction = null;
+        activateSkillTextAction = null;
+    }
 }

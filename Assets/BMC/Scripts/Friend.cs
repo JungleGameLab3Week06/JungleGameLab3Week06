@@ -5,6 +5,9 @@ using static Define;
 
 public class Friend : MonoBehaviour
 {
+    static Friend _instance;
+    public static Friend Instance => _instance;
+
     public Elemental VisualElemental => _visualElemental;
     public Elemental RealElemental => _realElemental;
     [SerializeField] Elemental _visualElemental = Elemental.None;   // 눈으로 보이는 속성
@@ -15,19 +18,20 @@ public class Friend : MonoBehaviour
     public Animator Anim => _visualAnim; // 애니메이터
     Animator _anim;                                         // 비주얼 애니메이터
     bool _isLying = false;                                          // 동료가 속이는 중인지 여부
-    void Start()
+
+    void Awake()
     {
+        if (_instance == null)
+            _instance = this;
+
+        _anim = GetComponent<Animator>();
         _friendCastVisualCanvas = GetComponentInChildren<UI_FriendCastVisualCanvas>();
         _visualAnim = transform.Find("Visual").GetComponent<Animator>();
-        _anim = GetComponent<Animator>();
     }
 
     // 마법 준비
     public void PrepareElemental()
     {
-        Wriggle();
-        PlayerController.Instance.Wriggle(); // 플레이어 꿈틀거리기
-
         // 무작위 속성 선택해서 예고
         _visualElemental = GetRandomElemental();
         TryMistake();

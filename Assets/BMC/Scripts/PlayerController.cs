@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour, IStatus
     {
         if (_instance == null)
             _instance = this;
+        else
+            Destroy(gameObject);
 
         InputManager.Instance.selectElementalAction += SelectElemental; // 원소 선택 이벤트 등록
         _friend = FindAnyObjectByType<Friend>();
@@ -95,12 +97,13 @@ public class PlayerController : MonoBehaviour, IStatus
     public void Die()
     {
         Manager.Sound.PlayEffect(Effect.PlayerDeath);
+
         /* 
            사망 애니메이션 재생
-           사망 이펙트 재생
-           사망 사운드 재생
-           UI 업데이트
         */
+
+        /* 몇 초 뒤에 넘어가게 해야 함 */
+        Manager.Scene.LoadScene(SceneType.GameOverScene);
         Debug.Log("플레이어 사망 이벤트 발생");
     }
 

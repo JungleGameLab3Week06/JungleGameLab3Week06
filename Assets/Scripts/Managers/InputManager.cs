@@ -75,4 +75,23 @@ public class InputManager : MonoBehaviour
         //    Debug.Log("Cast 액션 취소됨");
         //}
     }
+
+    public void Clear()
+    {
+        selectElementalAction = null;
+
+        _inputSystemActions.Player.Disable();
+        _inputSystemActions.UI.Disable();
+
+        _inputSystemActions.Player.Cast.performed -= OnCast;
+        _inputSystemActions.Player.Cast.canceled -= OnCast;
+
+        _inputSystemActions.Disable();
+        _inputSystemActions = null;
+    }
+
+    void OnDestroy()
+    {
+        Clear();
+    }
 }

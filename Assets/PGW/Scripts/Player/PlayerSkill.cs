@@ -29,7 +29,9 @@ public class PlayerSkill : MonoBehaviour
         int elementalEffect = (1 << (int)playerElemental) | (1 << (int)friendElemental);    // 마법 조합
         bool isExistEffect = Enum.IsDefined(typeof(ElementalEffect), elementalEffect);      // 조합이 ElementalEffect에 정의된 값인지 확인
         if (isExistEffect)
+        {
             resultElementalEffect = (ElementalEffect)elementalEffect;
+        }
         return resultElementalEffect;
     }
 
@@ -39,8 +41,13 @@ public class PlayerSkill : MonoBehaviour
         if (_skillDict.TryGetValue(effect, out Skill skill))
         {
             skill.Execute();
-            Manager.UI.activateSkillTextAction?.Invoke(effect.ToString());
-            Debug.Log($"스킬 실행: {effect}");
+
+            string effectTranslation = ((Translation)effect).ToString();
+            string description = Manager.Data.SkillInfoDict[effectTranslation].SkillDescription;
+            string result = $"{effectTranslation}: {description}";
+
+            Manager.UI.activateSkillTextAction?.Invoke(effectTranslation, description);
+            Debug.Log($"(스킬) {result}");
         }
         else
         {

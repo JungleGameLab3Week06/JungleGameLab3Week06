@@ -50,7 +50,7 @@ public class Define
     {
         Normal,    // 기본타입
         Special,   // 특수타입(강적)
-        Confuse    // 혼란타입
+        Confuse,    // 혼란타입
     }
 
     #region Sound
@@ -73,5 +73,20 @@ public class Define
         PlayerCast,         // 플레이어 마법 시전
         PlayerDeath,        // 플레이어 사망
     }
+    
+    public enum Translation
+    {
+        화염 = (1 << Elemental.Flame) | (1 << Elemental.Flame),          // 화염 = 화염 + 화염
+        물 = (1 << Elemental.Water) | (1 << Elemental.Water),          // 물 = 물 + 물
+        벽 = (1 << Elemental.Ground) | (1 << Elemental.Ground),        // 벽 = 땅 + 땅
+        번개 = (1 << Elemental.Lightning) | (1 << Elemental.Lightning),  // 번개 = 번개 + 번개
+        안개 = (1 << Elemental.Flame) | (1 << Elemental.Water),          // 안개 = 화염 물
+        점화 = (1 << Elemental.Flame) | (1 << Elemental.Ground),         // 점화 = 화염 + 땅
+        확산 = (1 << Elemental.Flame) | (1 << Elemental.Lightning),  // 확산 = 화염 + 번개
+        기름 = (1 << Elemental.Water) | (1 << Elemental.Ground),     // 기름 = 물 + 땅
+        감전 = (1 << Elemental.Water) | (1 << Elemental.Lightning),  // 감전 = 물 + 번개
+        조합실패 = (1 << Elemental.Ground) | (1 << Elemental.Lightning), // 없음 = 땅 + 번개
+    }
+
     #endregion
 }
