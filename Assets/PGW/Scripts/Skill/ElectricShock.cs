@@ -22,15 +22,17 @@ public class ElectricShock : Skill
         List<Enemy> enemies = GameManager.Instance.GetFrontEnemies();
         if (playerSkill.IsLightningStrong)
         {
-            WideAttack(enemies, ElementalEffect.ElectricShock, _strongDamage, true);
+            WideAttack(enemies, ElementalEffect.StrongLightning, _strongDamage, true);
             playerSkill.DestroyFog();
         }
 
+        enemies = GameManager.Instance.CurrentEnemyList;
         foreach (Enemy enemy in enemies)
         {
             if (enemy.gameObject.activeSelf)
             {
                 enemy.ApplyState(EnemyState.Shock);
+                PlayerController.Instance.PlayerSkill.ExcuteEffect(ElementalEffect.EnemyShock, enemy.transform.position);
             }
         }
         Debug.Log($"모든 적 스턴!");
