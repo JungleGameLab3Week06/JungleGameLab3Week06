@@ -69,20 +69,20 @@ public class PlayerController : MonoBehaviour, IStatus
         _friend.Anim.SetTrigger("AttackTrigger");
         _visualAnim.SetTrigger("AttackTrigger");
 
+        _playerSkill.ApplyInteraction(interaction);
         if (interaction != ElementalEffect.None)
         {
             _playerSkill.ApplyInteraction(interaction);
-            Manager.Sound.PlayEffect(Effect.BestElemental);
             // Debug.Log($"반응 발생: {interaction}");
             // Enemy firstEnemy = GameManager.Instance._currentEnemyList[0];
             //_friend.UpdatePreviewElemental();
+            Manager.Sound.PlayEffect(Effect.BestElemental);
             _friend.PrepareElemental(); // 친구 마법 예고 다시
         }
         else
         {
             //Debug.Log($"조합 실패: 플레이어({_playerElemental}) + 친구(visual: {_friend.VisualElemental} real: {_friend.RealElemental})는 잘못된 마법(기본 데미지 적용)");
             Manager.Sound.PlayEffect(Effect.NormalElemental);
-            GameManager.Instance.CurrentEnemy.TakeDamage(10);
         }
     }
 
