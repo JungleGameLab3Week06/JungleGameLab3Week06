@@ -221,13 +221,7 @@ public class Enemy : MonoBehaviour, IStatus
     // 사망
     public void Die()
     {
-        /*
-        사망 
-        애니메이션
-        효과음 
-         */
         _animator.SetTrigger("DeathTrigger");
-
         GameManager.Instance.CurrentEnemyList.Remove(this);
         Destroy(gameObject);
     }
