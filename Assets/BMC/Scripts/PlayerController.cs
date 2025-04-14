@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour, IStatus
     [Header("비트 판정")]
     bool _isPerfect;
     
-    public Animator animator;
+    Animator _anim;       // Wriggle 애니메이터
+    Animator _visualAnim; // 비주얼 애니메이터
 
     void Awake()
     {
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour, IStatus
         InputManager.Instance.selectElementalAction += SelectElemental; // 원소 선택 이벤트 등록
         _friend = FindAnyObjectByType<Friend>();
         _playerSkill = GetComponent<PlayerSkill>();
+        _anim = GetComponent<Animator>();
+        _visualAnim = transform.Find("Visual").GetComponent<Animator>();
     }
 
     // 플레이어 마법 시전
@@ -61,8 +64,8 @@ public class PlayerController : MonoBehaviour, IStatus
     public void Attack()
     {
         ElementalEffect interaction = _playerSkill.GetInteraction(_playerElemental, _friend.RealElemental);
-        animator.SetTrigger("AttackTrigger");
-
+        _friend.Anim.SetTrigger("AttackTrigger");
+        _visualAnim.SetTrigger("AttackTrigger");
 
         if (interaction != ElementalEffect.None)
         {
@@ -100,5 +103,11 @@ public class PlayerController : MonoBehaviour, IStatus
         /* 몇 초 뒤에 넘어가게 해야 함 */
         Manager.Scene.LoadScene(SceneType.GameOverScene);
         Debug.Log("플레이어 사망 이벤트 발생");
+    }
+
+    //꿈틀거리기
+    public void Wriggle()
+    {
+        _anim.SetTrigger("WriggleTrigger");
     }
 }
