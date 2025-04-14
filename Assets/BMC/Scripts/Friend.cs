@@ -11,17 +11,23 @@ public class Friend : MonoBehaviour
     [SerializeField] Elemental _realElemental = Elemental.None;     // 실제 속성
     [SerializeField] float _mistakeProbability = 0.75f;             // 동료가 실수할 확률
     UI_FriendCastVisualCanvas _friendCastVisualCanvas;              // 동료 마법 예고 UI
+    Animator _visualAnim;                                               // 애니메이터
+    public Animator Anim => _visualAnim; // 애니메이터
+    Animator _anim;                                         // 비주얼 애니메이터
     bool _isLying = false;                                          // 동료가 속이는 중인지 여부
-    public Animator animator;                                             // 동료 애니메이터
     void Start()
     {
         _friendCastVisualCanvas = GetComponentInChildren<UI_FriendCastVisualCanvas>();
-        animator = transform.Find("Visual").GetComponent<Animator>();
+        _visualAnim = transform.Find("Visual").GetComponent<Animator>();
+        _anim = GetComponent<Animator>();
     }
 
     // 마법 준비
     public void PrepareElemental()
     {
+        Wriggle();
+        PlayerController.Instance.Wriggle(); // 플레이어 꿈틀거리기
+
         // 무작위 속성 선택해서 예고
         _visualElemental = GetRandomElemental();
         TryMistake();
@@ -71,5 +77,9 @@ public class Friend : MonoBehaviour
     {
         Elemental randomElemental = (Elemental)Random.Range(0, Enum.GetValues(typeof(Elemental)).Length - 1);
         return randomElemental;
+    }
+    public void Wriggle()
+    {
+        _anim.SetTrigger("WriggleTrigger");
     }
 }

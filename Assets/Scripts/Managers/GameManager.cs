@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         if (Manager.Data.WaveInfoDict.TryGetValue(_currentWave, out List<(Enemy enemy, float weight)> currentWaveInfoList))
         {
             _currentWaveSpawnInfoList = currentWaveInfoList;
-            _waveMonsterCount = currentWaveInfoList.Count;
+            _waveMonsterCount = 30;
             _currentWave++;
 
             RhythmManager.Instance.IncreaseBPM();
