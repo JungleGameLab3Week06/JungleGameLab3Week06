@@ -27,8 +27,8 @@ public class Enemy : MonoBehaviour, IStatus
     public int SteelHealth => _steelHp;
     [SerializeField] int _steelHp = 0; // 강철 HP
     float _moveSpeed = 2f;                      // 비트당 이동 거리
-
     [SerializeField] int _sturnCoolCount = 0;   // 기절 쿨 카운트
+    Animator _animator;                         // 적 애니메이터
 
     void Awake()
     {
@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour, IStatus
         _hearts = GetComponentInChildren<EnemyHearts>();
         _positionY1 = transform.position.y;
         _positionY2 = transform.position.y - 2f;
+        _animator = transform.Find("Visual").GetComponent<Animator>();
     }
 
     // 적 이동
@@ -156,7 +157,7 @@ public class Enemy : MonoBehaviour, IStatus
     void Attack(GameObject target)
     {
         // 공격 애니메이션 재생
-        _anim.SetTrigger("AttackTrigger");
+        _animator.SetTrigger("AttackTrigger");
         // 적이 벽에 닿으면 벽 파괴
         if (target.TryGetComponent<Wall>(out Wall wall))
         {
@@ -215,6 +216,8 @@ public class Enemy : MonoBehaviour, IStatus
         애니메이션
         효과음 
          */
+        _animator.SetTrigger("DeathTrigger");
+
         GameManager.Instance.CurrentEnemyList.Remove(this);
         Destroy(gameObject);
     }
