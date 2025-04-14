@@ -1,8 +1,11 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static Define;
+using static DataManager;
+
 
 // 데이터 관리
 // 스킬, 적, 웨이브 등 정보
@@ -28,6 +31,10 @@ public class DataManager
     public Dictionary<ElementalEffect, Skill> SkillDict => _skillDict;
     Dictionary<ElementalEffect, Skill> _skillDict = new Dictionary<ElementalEffect, Skill>();   // 스킬 딕셔너리
 
+    Dictionary<string, SkillInfo> _skillInfoDict = new Dictionary<string, SkillInfo>();
+    public Dictionary<string, SkillInfo> SkillInfoDict => _skillInfoDict;
+
+
     public void Init()
     {
         // 적 Prefab 로드 및 웨이브 정보 설정
@@ -48,6 +55,9 @@ public class DataManager
                 _skillDict.Add(elementalEffectType, skillEffectPrefab.GetComponent<Skill>());
             }
         }
+
+        // 스킬 정보 로드
+        LoadSkillInfo();
     }
 
     // 웨이브 정보 설정
@@ -65,4 +75,38 @@ public class DataManager
             Debug.Log($"웨이브 {i + 1} 설정: {_waveInfoDict[i].Count} 항목");
         }
     }
+
+    public void LoadSkillInfo()
+    {
+        TextAsset json = Manager.Resource.Load<TextAsset>("JSON/SkillInfo");
+
+        if (json == null)
+            Debug.LogError("못가져옴~");
+        else
+            Debug.LogError(json.ToString());
+
+        var test = JsonUtility.FromJson<SkillInfoList>(json.text);
+
+        Debug.LogError(test.skillInfoList.Count);
+
+        for(int i=0; i<test.skillInfoList.Count; i++)
+        {
+            var info = test.skillInfoList[i];
+            _skillInfoDict[info.SkillName] = info;
+            Debug.LogError($"{test.skillInfoList[i].SkillName} {test.skillInfoList[i].SkillDescription}");
+        }
+    }
+    [Serializable]
+    public class SkillInfo
+    {
+        public string SkillName;
+        public string SkillDescription;
+    }
+
+    [Serializable]
+    public class SkillInfoList
+    {
+        public List<SkillInfo> skillInfoList = new List<SkillInfo>();
+    }
+
 }
