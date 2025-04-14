@@ -210,7 +210,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Chara2GameOver_0: -7058167215661931960
+      Chara2GameOver_1: 1174232437620966361
+      Chara2GameOver_2: 869332917832392044
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
