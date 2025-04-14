@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour, IStatus
     {
         if (_instance == null)
             _instance = this;
+        else
+            Destroy(gameObject);
 
         InputManager.Instance.selectElementalAction += SelectElemental; // 원소 선택 이벤트 등록
         _friend = FindAnyObjectByType<Friend>();
@@ -94,7 +96,6 @@ public class PlayerController : MonoBehaviour, IStatus
 
     public void Die()
     {
-        InputManager.Instance.Clear();
         Manager.Sound.PlayEffect(Effect.PlayerDeath);
 
         /* 

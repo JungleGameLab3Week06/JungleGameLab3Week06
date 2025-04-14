@@ -89,4 +89,9 @@ public class InputManager : MonoBehaviour
         _inputSystemActions.Disable();
         _inputSystemActions = null;
     }
+
+    void OnDestroy()
+    {
+        Clear();
+    }
 }

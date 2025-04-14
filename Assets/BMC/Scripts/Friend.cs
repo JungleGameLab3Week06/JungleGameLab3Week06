@@ -29,11 +29,6 @@ public class Friend : MonoBehaviour
         _visualAnim = transform.Find("Visual").GetComponent<Animator>();
     }
 
-    void Start()
-    {
-        
-    }
-
     // 마법 준비
     public void PrepareElemental()
     {
