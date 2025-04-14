@@ -129,12 +129,12 @@ TextureImporter:
       name: Lightning_0
       rect:
         serializedVersion: 2
-        x: 35
-        y: 2
-        width: 180
-        height: 296
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6f93340532bd2ff46baca0c9a2bbbdbf
     internalID: 0
     vertices: []
     indices: 
