@@ -7,6 +7,8 @@ public class UI_ControlCanvas : MonoBehaviour
 {
     [SerializeField] Image[] btnImage; // Content as Flame, Water, Ground, Lightning
 
+    Coroutine _showPressBtnFXCoroutine;
+
     void Start()
     {
         InputManager.Instance.makePressBtnFX += MakePressBtnFX;
@@ -18,8 +20,10 @@ public class UI_ControlCanvas : MonoBehaviour
         CanvasGroup _canvasGroup = btnImage[index].GetComponent<CanvasGroup>();
         Image buttonImage = btnImage[index].GetComponent<Image>();
         RectTransform buttonRect = btnImage[index].GetComponent<RectTransform>();
-        if (_canvasGroup){
-            StartCoroutine(ShowPressBtnFX(_canvasGroup, buttonImage, buttonRect));
+
+        if (_showPressBtnFXCoroutine == null)
+        {
+            _showPressBtnFXCoroutine = StartCoroutine(ShowPressBtnFX(_canvasGroup, buttonImage, buttonRect));
         }
     }
     
@@ -68,5 +72,7 @@ public class UI_ControlCanvas : MonoBehaviour
 
         buttonImage.color = originalColor;
         cg.alpha = 1f;
+
+        _showPressBtnFXCoroutine = null;
     }
 }
