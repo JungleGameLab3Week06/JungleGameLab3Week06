@@ -7021,6 +7021,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8836886070454682852}
   - component: {fileID: 6769240555519631175}
+  - component: {fileID: 8836886070454682853}
   m_Layer: 0
   m_Name: Friend
   m_TagString: Untagged
@@ -7498,6 +7499,7 @@ GameObject:
   m_Component:
   - component: {fileID: 848913978967853470}
   - component: {fileID: 7716522834133980211}
+  - component: {fileID: 7716522834133980212}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -7611,7 +7613,6 @@ MonoBehaviour:
   _playerSkill: {fileID: 0}
   _hp: 100
   _maxHp: 100
-  animator: {fileID: 3217144395199235783}
 --- !u!114 &6379248636665555067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7830,6 +7831,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7716522834133980212
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5563690625447639233}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 669fa77f1d1195a428ddbcde0f2efe16, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8658660553927286623
 GameObject:
   m_ObjectHideFlags: 0
@@ -7902,6 +7925,28 @@ Transform:
   - {fileID: 8975646641872657467}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!95 &8836886070454682853
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313642840800122486}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2983c70adfdb3fa45a79aaf2babc40a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!224 &8975646641872657467
 RectTransform:
   m_ObjectHideFlags: 0
