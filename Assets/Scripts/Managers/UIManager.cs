@@ -17,4 +17,12 @@ public class UIManager
     public Action<string> activateSkillTextAction;
 
     #endregion
+
+    public void Clear()
+    {
+        toggleManualPanelCanvasAction = null;
+
+        showJudgeTextAction = null;
+        activateSkillTextAction = null;
+    }
 }
