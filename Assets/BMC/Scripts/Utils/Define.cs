@@ -31,6 +31,8 @@ public class Define
         Grease =        (1 << Elemental.Water) | (1 << Elemental.Ground),     // 기름 = 물 + 땅
         ElectricShock = (1 << Elemental.Water) | (1 << Elemental.Lightning),  // 감전 = 물 + 번개
         None =          (1 << Elemental.Ground) | (1 << Elemental.Lightning), // 없음 = 땅 + 번개
+        StrongFire,
+        StrongLightning
     }
 
     // 플레이어 마법 속성

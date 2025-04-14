@@ -4,7 +4,7 @@ using static Define;
 
 public class ElectricShock : Skill
 {
-    int _strongDamage = 2;
+    int _strongDamage = 4;
 
     void Start()
     {
@@ -19,11 +19,11 @@ public class ElectricShock : Skill
         }
 
         PlayerSkill playerSkill = PlayerController.Instance.PlayerSkill;
-        List<Enemy> enemies = GameManager.Instance.CurrentEnemyList;
+        List<Enemy> enemies = GameManager.Instance.GetFrontEnemies();
         if (playerSkill.IsLightningStrong)
         {
-            WideAttack(enemies, ElementalEffect.ElectricShock, _strongDamage, false);
-            Debug.Log($"모든 적에게 {_strongDamage} 데미지!");
+            WideAttack(enemies, ElementalEffect.ElectricShock, _strongDamage, true);
+            playerSkill.DestroyFog();
         }
 
         foreach (Enemy enemy in enemies)
