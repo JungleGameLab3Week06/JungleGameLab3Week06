@@ -12,10 +12,11 @@ public class Friend : MonoBehaviour
     [SerializeField] float _mistakeProbability = 0.75f;             // 동료가 실수할 확률
     UI_FriendCastVisualCanvas _friendCastVisualCanvas;              // 동료 마법 예고 UI
     bool _isLying = false;                                          // 동료가 속이는 중인지 여부
-
+    public Animator animator;                                             // 동료 애니메이터
     void Start()
     {
         _friendCastVisualCanvas = GetComponentInChildren<UI_FriendCastVisualCanvas>();
+        animator = transform.Find("Visual").GetComponent<Animator>();
     }
 
     // 마법 준비

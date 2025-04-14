@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour, IStatus
     [Header("비트 판정")]
     bool _isPerfect;
     
-    public Animator animator;
+    Animator _animator;
 
     void Awake()
     {
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour, IStatus
         InputManager.Instance.selectElementalAction += SelectElemental; // 원소 선택 이벤트 등록
         _friend = FindAnyObjectByType<Friend>();
         _playerSkill = GetComponent<PlayerSkill>();
+        _animator = transform.Find("Visual").GetComponent<Animator>();
     }
 
     // 플레이어 마법 시전
@@ -61,8 +62,8 @@ public class PlayerController : MonoBehaviour, IStatus
     public void Attack()
     {
         ElementalEffect interaction = _playerSkill.GetInteraction(_playerElemental, _friend.RealElemental);
-        animator.SetTrigger("AttackTrigger");
-
+        _animator.SetTrigger("AttackTrigger");
+        _friend.animator.SetTrigger("AttackTrigger");
 
         if (interaction != ElementalEffect.None)
         {
