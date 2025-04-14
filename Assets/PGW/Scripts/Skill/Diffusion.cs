@@ -30,7 +30,7 @@ public class Diffusion : Skill
             Debug.Log($"모든 적에게 {_strongDamage} 데미지!");
         }
 
-        WideAttack(enemies, ElementalEffect.Diffusion, _baseDamage, false);
+        WideAttack(enemies, ElementalEffect.Diffusion, _baseDamage, true);
         Debug.Log($"모든 적에게 {_baseDamage} 데미지!");
     }
 }

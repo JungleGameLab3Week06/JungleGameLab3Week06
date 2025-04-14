@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartWave();
+        _friend.PrepareElemental(); // 동료 마법 준비
         //Debug.Log($"웨이브 {_currentWave} 시작! 가중치: Normal={_weightedEnemies.First(e => _normalEnemyPrefabList.Contains(e.prefab)).weight}, Special={_weightedEnemies.First(e => _specialEnemyPrefabList.Contains(e.prefab)).weight}, Confuse={_weightedEnemies.First(e => _confuseEnemyPrefabList.Contains(e.prefab)).weight}");
     }
 
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
         if (Manager.Data.WaveInfoDict.TryGetValue(_currentWave, out List<(Enemy enemy, float weight)> currentWaveInfoList))
         {
             _currentWaveSpawnInfoList = currentWaveInfoList;
-            _waveMonsterCount = currentWaveInfoList.Count;
+            _waveMonsterCount = 30;
             _currentWave++;
 
             RhythmManager.Instance.IncreaseBPM();
@@ -76,10 +77,6 @@ public class GameManager : MonoBehaviour
         _currentEnemy = Instantiate(enemy, spawnPoint, Quaternion.identity);
         _currentEnemyList.Add(_currentEnemy);
         _waveMonsterCount--;
-
-        if (_currentEnemyList.Count > 0)
-            _friend.PrepareElemental(); // 동료 마법 준비
-
     }
 
     Enemy GetRandomEnemy()

@@ -7,6 +7,7 @@ public class GameOverScene : BaseScene
     {
         SceneType = Define.SceneType.GameOverScene;
         Manager.Sound.PlayBGM(Define.BGM.Title);
+        Manager.UI.Clear();
         Debug.Log("GameOverScene 초기화");
     }
 }

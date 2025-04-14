@@ -25,12 +25,12 @@ public class Ignition : Skill
         List<Enemy> enemies = GameManager.Instance.CurrentEnemyList;
         if (playerSkill.IsFireStrong)
         {
-            WideAttack(enemies, ElementalEffect.Ignition, _strongDamage, true);
+            WideAttack(enemies, ElementalEffect.Ignition, _strongDamage, false);
             Debug.Log($"모든 적에게 {_strongDamage} 데미지!");
         }
 
         // 맨 앞의 적에게 baseDamage를 줌
         enemies = GameManager.Instance.GetFrontEnemies();
-        WideAttack(enemies, ElementalEffect.Ignition, _baseDamage, false);
+        WideAttack(enemies, ElementalEffect.Ignition, _baseDamage, true);
     }
 }
