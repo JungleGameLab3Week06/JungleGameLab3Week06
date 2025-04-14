@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     int _waveMonsterCount = 0;                                                            // 웨이브 몬스터 수
     [SerializeField] List<(Enemy enemyPrefab, float weight)> _currentWaveSpawnInfoList;   // 현재 웨이브의 적 정보 리스트
     [SerializeField] Transform _enemySpawnPoint;                                          // 적 소환 지점
+    int _noneMonsetCount = 0;                                                             // 공백 몬스터 수
 
     [Header("플레이어 및 동료")]
     public PlayerController PlayerController => _playerController;
@@ -55,11 +56,24 @@ public class GameManager : MonoBehaviour
             _currentWaveSpawnInfoList = currentWaveInfoList;
             _waveMonsterCount = 30;
             _currentWave++;
-
             Manager.UI.updateWaveAction?.Invoke(_currentWave); // UI 업데이트
 
             RhythmManager.Instance.IncreaseBPM();
-
+            if (_currentWave < 6)
+            {
+                if (_currentWave <= 3)
+                {
+                    _noneMonsetCount = 10;
+                }
+                else
+                {
+                    _noneMonsetCount = 5;
+                }
+            }
+            else
+            {
+                _noneMonsetCount = 0;
+            }
             //Debug.Log($"웨이브 {_currentWave} 시작! 가중치: Normal={currentWaveInfoList.First(e => _normalEnemyPrefabList.Contains(e.prefab)).weight}, Special={waveConfig.First(e => _specialEnemyPrefabList.Contains(e.prefab)).weight}, Confuse={waveConfig.First(e => _confuseEnemyPrefabList.Contains(e.prefab)).weight}");
         }
         else
@@ -74,16 +88,26 @@ public class GameManager : MonoBehaviour
     {
         if(!CheckSpawnCondition()) 
             return;
-        if (_currentWave < 5)
+        if (_currentWave < 6)
         {
-            if (Random.value > 0.5f)
+            if (_noneMonsetCount > 0)
+            {
+                if (Random.value > 0.3f)
+                {
+                    Enemy enemy = GetRandomEnemy();
+                    _currentEnemy = Instantiate(enemy, spawnPoint, Quaternion.identity);
+                    _currentEnemyList.Add(_currentEnemy);
+                    _waveMonsterCount--;
+                    Debug.Log($"웨이브 {_currentWave} 몬스터 타입{enemy}");
+                }
+                else { _waveMonsterCount--; _noneMonsetCount--; Debug.LogError("웨이브브브브.None" + _waveMonsterCount); }
+            }
+            else
             {
                 Enemy enemy = GetRandomEnemy();
                 _currentEnemy = Instantiate(enemy, spawnPoint, Quaternion.identity);
                 _currentEnemyList.Add(_currentEnemy);
-                _waveMonsterCount--;
             }
-            else {  _waveMonsterCount--; Debug.LogError("웨이브브브브.None" + _waveMonsterCount); }
         }
         else
         {

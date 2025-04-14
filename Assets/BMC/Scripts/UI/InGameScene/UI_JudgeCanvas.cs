@@ -38,7 +38,7 @@ public class UI_JudgeCanvas : MonoBehaviour
     private IEnumerator ShowJudgeCoroutine(bool isPerfect)
     {
         // Set Text
-        _judgeText.text = (isPerfect) ? "Pefect" : "Miss";
+        _judgeText.text = (isPerfect) ? "Success" : "Miss";
         _judgeText.color = (isPerfect) ? colorPerfect : colorMiss;
 
         // Fade out text
